@@ -23,7 +23,7 @@ O design segue uma estética minimalista e elegante, com funcionalidades de UX a
 
 Acompanhe a versão mais recente e online através deste link, após o deploy:
 
-[Deploy Vercel](https://claralivia.vercel.app/)
+[Deploy Vercel](https://claralivia.dev/)
 
 </br>
 
@@ -37,7 +37,7 @@ Clara Lívia M. de Oliveira. 🧡
 
 <div>
   <a href="https://www.linkedin.com/in/claralivia" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-FF4500?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
-  <a href="https://github.com/claralmoura" target="_blank"><img src="https://img.shields.io/badge/-GitHub-FF4500?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>
+  <a href="https://github.com/claralivia" target="_blank"><img src="https://img.shields.io/badge/-GitHub-FF4500?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>
   <a href="https://www.instagram.com/cclaralivia/" target="_blank"><img src="https://img.shields.io/badge/-Instagram-FF4500?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
 </div>
 
@@ -47,6 +47,6 @@ Em caso de dúvidas ou propostas, envie-me um email: claramoura2303@gmail.com.
 
 ## Licença
 
-Este projeto está sob a licença [MIT](https://github.com/claralmoura/meu-portfolio/blob/main/LICENSE).
+Este projeto está sob a licença [MIT](https://github.com/claralivia/meu-portfolio/blob/main/LICENSE).
 
 ###### © Clara Lívia, 2025
