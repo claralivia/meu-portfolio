@@ -1,11 +1,54 @@
 {
   "about": {
-    "title": "Desenvolvedora Fullstack com paixão por código limpo e soluções escaláveis",
-    "description": "Mais de dois anos de experiência em startup B2B, atuando na criação, otimização e manutenção de soluções web. Foco em performance de sistemas, otimização de queries em MongoDB e mentoria técnica. Sólidos conhecimentos em JavaScript, Node.js (NestJS, Express), Vue.js e arquitetura Serverless."
+    "title": "Desenvolvedora Fullstack",
+    "description": "Desenvolvedora com mais de 2 anos de experiência em startups B2B, especialista no ecossistema JavaScript e TypeScript com Vue.js e Node.js. Foco na criação de interfaces elegantes, arquiteturas de alta performance e otimização de sistemas. Possuo forte atuação em cibersegurança, adequação a normas PCI DSS e refatoração de código legado, sempre elevando a qualidade técnica através de boas práticas e mentoria de novos talentos."
   },
   "buttons": {
     "linkedin": "LinkedIn",
-    "github": "GitHub"
+    "github": "GitHub",
+    "live": "Ao Vivo",
+    "resume": "Baixar CV"
+  },
+  "education": {
+    "title": "Formação e Certificações",
+    "items": [
+      {
+        "title": "Análise e Desenvolvimento de Sistemas (ADS)",
+        "institution": "Universidade Estácio de Sá (UNESA)",
+        "date": "Cursando (4º Semestre de 5) | Previsão de Conclusão: Dez/2027",
+        "type": "degree"
+      },
+      {
+        "title": "Sistemas e Mídias Digitais (SMD)",
+        "institution": "Universidade Federal do Ceará (UFC)",
+        "date": "2023 - 2025 (Interrompido no 4º Semestre)",
+        "type": "interrupted"
+      },
+      {
+        "title": "Boas Práticas em Segurança da Informação e Cyber",
+        "institution": "Udemy",
+        "date": "Certificação Concluída",
+        "type": "certification"
+      },
+      {
+        "title": "OWASP top 10 Web Application Security for Absolute Beginners",
+        "institution": "Udemy",
+        "date": "Certificação Concluída",
+        "type": "certification"
+      },
+      {
+        "title": "Fundamentos do Design da Experiência do Usuário",
+        "institution": "Coursera + Google",
+        "date": "Certificação Concluída",
+        "type": "certification"
+      },
+      {
+        "title": "Técnico em Informática",
+        "institution": "Instituto Federal do Ceará (IFCE)",
+        "date": "2018 - 2022 (Completo)",
+        "type": "technical"
+      }
+    ]
   },
   "experience": {
     "title": "Experiência Profissional",
@@ -21,7 +64,7 @@
         ]
       },
       {
-        "title": "Desenvolvedora Fullstack Junior",
+        "title": "Desenvolvedora Fullstack Jr.",
         "company": "COTABOX TECNOLOGIA E SOFTWARE LTDA",
         "date": "Julho/2024 - Novembro/2025",
         "points": [
@@ -40,12 +83,19 @@
   },
   "projects": {
     "title": "Projetos Pessoais",
+    "filters": {
+      "all": "Todos",
+      "frontend": "Front-end",
+      "fullstack": "Full-stack"
+    },
     "items": [
       {
-        "title": "Meu Portfólio Pessoal",
+        "title": "Portfólio",
         "description": "Este portfólio dinâmico, desenvolvido com Vue 3, TypeScript e Tailwind CSS, utiliza princípios de Glassmorphism.",
-        "tags": ["Vue.js 3", "TypeScript", "Tailwind CSS", "Glassmorphism", "UI/UX"],
-        "githubUrl": "https://github.com/claralmoura/meu-portfolio",
+        "tags": ["Vue.js 3", "TypeScript", "Tailwind CSS", "Glassmorphism", "UI/UX", "Vercel"],
+        "githubUrl": "https://github.com/claralivia/meu-portfolio",
+        "liveUrl": "https://claralivia.dev/",
+        "category": "frontend",
         "key": "meu-portfolio-pessoal"
       },
       {
@@ -53,27 +103,38 @@
         "description": "App full-stack para gestão financeira pessoal feito para substituir o uso de planilhas no dia a dia.",
         "challenge": "Planilhas de Excel não eram mais suficientes para um controle financeiro eficaz e para o acompanhamento de metas pessoais.",
         "solution": "Desenvolvi uma aplicação full-stack com backend em NestJS/GraphQL e frontend em Vue.js 3, criando dashboards interativos para um gerenciamento visual.",
-        "tags": ["Vue.js 3", "NestJS", "GraphQL", "MongoDB", "TypeScript"],
-        "githubUrl": "https://github.com/claralmoura/financial-app",
+        "tags": ["Vue.js 3", "NestJS", "GraphQL", "MongoDB", "TypeScript", "Tailwind CSS", "Vercel", "Render", "Monorepo"],
+        "githubUrl": "https://github.com/claralivia/financial-app",
+        "liveUrl": "https://minhasfinancas-controle.vercel.app/",
+        "category": "fullstack",
         "key": "minhas-financas"
       },
       {
         "title": "Beauty Manager",
-        "description": "Aplicação acadêmica para agendamento em salão de beleza.",
+        "description": "Aplicação acadêmica para agendamento em salão de beleza. O projeto também incluiu protótipos de baixa, média e alta fidelidade e um Design System adaptado.",
         "challenge": "O salão de beleza da minha mãe tinha dificuldades com agendamentos manuais, o que causava erros como marcações duplicadas ou esquecimentos.",
         "solution": "Criei uma aplicação de agendamento com uma API REST (Python/FastAPI) e um frontend em React, permitindo que clientes e administradores gerenciem horários.",
-        "tags": ["React", "Python", "FastAPI", "MongoDB"],
-        "githubUrl": "https://github.com/afonsomateus21/bm-web",
+        "tags": ["React", "Python", "FastAPI", "MongoDB", "Supabase", "Tailwind CSS", "Render", "UI/UX", "Design System"],
+        "githubUrls": [
+          { "label": "Front", "url": "https://github.com/afonsomateus21/bm-web" },
+          { "label": "API", "url": "https://github.com/afonsomateus21/bm-api" }
+        ],
+        "category": "fullstack",
         "key": "beauty-manager"
       },
       {
-        "title": "Gestalt em Mídia",
-        "description": "Mídia interativa acadêmica sobre os princípios da Gestalt.",
-        "challenge": "Traduzir os conceitos teóricos da Gestalt em uma experiência digital, explicando como esses princípios se aplicam em filmes, séries e jogos.",
-        "solution": "Desenvolvi uma mídia interativa usando React, TypeScript e Vite. O site apresenta os conceitos de forma visual e exemplifica a Gestalt no contexto dessas mídias.",
-        "tags": ["React", "TypeScript", "Vite", "UI/UX"],
-        "githubUrl": "https://github.com/afonsomateus21/gestalt-midia",
-        "key": "gestalt-em-midia"
+        "title": "CV Studio",
+        "description": "Aplicação full-stack para gerenciamento e criação de currículos profissionais.",
+        "challenge": "Facilitar a criação, o armazenamento e a formatação de currículos de maneira centralizada.",
+        "solution": "Desenvolvimento de um ecossistema completo, contando com uma API robusta e um front-end interativo para a construção visual dos currículos.",
+        "tags": ["Vue.js 3", "Node.js", "TypeScript", "MongoDB", "Supabase", "Tailwind CSS", "Vercel", "Render"],
+        "githubUrls": [
+          { "label": "Front", "url": "https://github.com/claralivia/curriculos-frontend" },
+          { "label": "API", "url": "https://github.com/claralivia/curriculos-backend" }
+        ],
+        "liveUrl": "https://cv-studio-beta.vercel.app/",
+        "category": "fullstack",
+        "key": "gerenciador-curriculos"
       }
     ]
   },
@@ -102,8 +163,13 @@
   "navbar": {
     "about": "Sobre",
     "experience": "Experiência",
+    "education": "Formação",
     "projects": "Projetos",
     "contact": "Contato",
     "toggleTheme": "Mudar Tema"
+  },
+  "footer": {
+    "credit": "Projetado & Construído por Clara Lívia",
+    "rights": "Todos os direitos reservados."
   }
 }

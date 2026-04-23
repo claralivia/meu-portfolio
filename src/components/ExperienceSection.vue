@@ -24,15 +24,15 @@ const experienceJobs = computed((): ExperienceJob[] => {
     </h2>
 
     <div class="relative border-l border-gray-300 dark:border-gray-700 ml-10">
-      <div v-for="job in experienceJobs" :key="job.title" class="mb-16 relative">
+      <div v-for="job in experienceJobs" :key="job.title" class="mb-16 relative group">
         <div
-          class="absolute -left-5 top-0 w-10 h-10 rounded-full bg-white/30 dark:bg-neutral-800/70 backdrop-blur-xl flex items-center justify-center z-20 shadow-lg shadow-gray-300/20 dark:shadow-black/20 border border-white/50 dark:border-neutral-700"
+          class="absolute -left-5 top-0 w-10 h-10 rounded-full bg-white/40 dark:bg-neutral-800/80 backdrop-blur-2xl flex items-center justify-center z-20 shadow-md shadow-black/5 dark:shadow-black/20 border border-white/50 dark:border-neutral-700/50 transition-all duration-500 group-hover:scale-110"
         >
           <BriefcaseIcon class="w-5 h-5 text-neutral-800 dark:text-gray-300" />
         </div>
 
         <div
-          class="relative z-10 p-6 rounded-2xl ml-8 transition-all duration-500 border backdrop-blur-xl bg-white/10 border-white/30 shadow-xl shadow-gray-300/20 dark:bg-white/5 dark:border-white/20 dark:shadow-black/20 hover:shadow-2xl hover:scale-[1.02] transform origin-top-left"
+          class="relative z-10 p-8 rounded-[2rem] ml-8 transition-all duration-500 border backdrop-blur-2xl bg-white/40 dark:bg-neutral-800/40 border-white/50 dark:border-neutral-700/50 shadow-xl shadow-black/5 dark:shadow-black/20 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/30 hover:-translate-y-1 transform origin-top-left"
         >
           <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-1">
             {{ job.title }}
