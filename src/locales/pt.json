@@ -90,15 +90,6 @@
     },
     "items": [
       {
-        "title": "Portfólio",
-        "description": "Este portfólio dinâmico, desenvolvido com Vue 3, TypeScript e Tailwind CSS, utiliza princípios de Glassmorphism.",
-        "tags": ["Vue.js 3", "TypeScript", "Tailwind CSS", "Glassmorphism", "UI/UX", "Vercel"],
-        "githubUrl": "https://github.com/claralivia/meu-portfolio",
-        "liveUrl": "https://claralivia.dev/",
-        "category": "frontend",
-        "key": "meu-portfolio-pessoal"
-      },
-      {
         "title": "Minhas Finanças",
         "description": "App full-stack para gestão financeira pessoal feito para substituir o uso de planilhas no dia a dia.",
         "challenge": "Planilhas de Excel não eram mais suficientes para um controle financeiro eficaz e para o acompanhamento de metas pessoais.",
@@ -108,6 +99,15 @@
         "liveUrl": "https://minhasfinancas-controle.vercel.app/",
         "category": "fullstack",
         "key": "minhas-financas"
+      },
+      {
+        "title": "Portfólio",
+        "description": "Este portfólio dinâmico, desenvolvido com Vue 3, TypeScript e Tailwind CSS, utiliza princípios de Glassmorphism.",
+        "tags": ["Vue.js 3", "TypeScript", "Tailwind CSS", "Glassmorphism", "UI/UX", "Vercel"],
+        "githubUrl": "https://github.com/claralivia/meu-portfolio",
+        "liveUrl": "https://claralivia.dev/",
+        "category": "frontend",
+        "key": "meu-portfolio-pessoal"
       },
       {
         "title": "Beauty Manager",
