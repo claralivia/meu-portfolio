@@ -30,7 +30,7 @@ const scrollToTop = () => {
     <button
       v-if="isButtonVisible"
       aria-label="Voltar ao topo da página"
-      class="fixed bottom-8 right-8 z-40 p-3.5 rounded-full bg-white/40 dark:bg-neutral-800/60 backdrop-blur-2xl border border-white/50 dark:border-neutral-700/50 shadow-xl shadow-black/5 dark:shadow-black/40 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 outline-none"
+      class="fixed bottom-8 right-8 z-40 p-3.5 rounded-full bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 backdrop-blur-3xl border border-white/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:from-white/60 hover:to-white/30 dark:hover:from-white/20 dark:hover:to-white/10 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 outline-none"
       @click="scrollToTop"
     >
       <ArrowUpIcon class="w-6 h-6" />

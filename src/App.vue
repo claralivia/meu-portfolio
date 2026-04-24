@@ -14,6 +14,8 @@ import RevealOnScroll from './components/RevealOnScroll.vue'
 import { computed, watchEffect } from 'vue'
 import { useWindowScroll, useWindowSize } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
+import { inject as injectAnalytics } from '@vercel/analytics'
+import { injectSpeedInsights } from '@vercel/speed-insights'
 
 const { y } = useWindowScroll()
 const { height } = useWindowSize()
@@ -26,6 +28,9 @@ const scrollProgress = computed(() => {
 })
 
 const { t } = useI18n()
+
+injectAnalytics()
+injectSpeedInsights()
 
 watchEffect(() => {
   if (typeof document === 'undefined') return
@@ -58,10 +63,10 @@ watchEffect(() => {
 
 <template>
   <div
-    class="relative min-h-screen overflow-hidden font-sans antialiased transition-colors duration-300 bg-neutral-100 text-neutral-800 dark:bg-neutral-900 dark:text-gray-200"
+    class="relative min-h-screen overflow-hidden font-sans antialiased transition-colors duration-300 bg-neutral-100 text-neutral-800 dark:bg-[#0a0a0a] dark:text-gray-200"
   >
     <div
-      class="fixed inset-0 z-0 pointer-events-none bg-gradient-to-b from-blue-400/10 via-purple-400/10 to-emerald-400/10 dark:from-blue-500/10 dark:via-purple-500/10 dark:to-emerald-500/10"
+      class="fixed inset-0 z-0 pointer-events-none bg-gradient-to-b from-blue-400/10 via-purple-400/10 to-emerald-400/10 dark:bg-none"
       :style="{
         backgroundSize: '100% 300%',
         backgroundPosition: `0% ${scrollProgress * 100}%`
@@ -105,6 +110,19 @@ watchEffect(() => {
 <style>
 html {
   scroll-behavior: smooth;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  @apply outline outline-2 outline-offset-2 outline-blue-500 dark:outline-blue-400;
+}
+
+.card-glass {
+  @apply bg-gradient-to-br from-white/50 to-white/20 dark:from-neutral-800/50 dark:to-neutral-900/20 backdrop-blur-3xl border border-white/60 dark:border-neutral-700/50 rounded-[2rem] shadow-xl shadow-black/5 dark:shadow-black/30 transition-all duration-500;
+}
+.card-glass:hover {
+  @apply shadow-2xl shadow-black/10 dark:shadow-black/40 -translate-y-2;
 }
 
 ::-webkit-scrollbar {

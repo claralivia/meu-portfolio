@@ -47,6 +47,6 @@ const contactInfo = computed((): ContactInfo => (tm('contact') as ContactInfo) |
 
 <style scoped>
 .contact-btn {
-  @apply flex items-center justify-center gap-2 font-medium py-3 px-6 rounded-2xl bg-white/50 dark:bg-neutral-700/50 border border-white/60 dark:border-neutral-600/50 backdrop-blur-md shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-neutral-900 dark:text-white;
+  @apply flex items-center justify-center gap-2 font-medium py-3 px-6 rounded-2xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 backdrop-blur-lg shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:from-white/60 hover:to-white/30 dark:hover:from-white/20 dark:hover:to-white/10 hover:-translate-y-1 transition-all duration-300 text-neutral-900 dark:text-white;
 }
 </style>

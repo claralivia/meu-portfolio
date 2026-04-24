@@ -4,7 +4,7 @@ import { useMouse } from '@vueuse/core'
 import { useScroll } from '../composables/useScroll'
 
 const { isScrolled } = useScroll()
-const { x, y } = useMouse()
+const { x, y } = useMouse({ type: 'client' })
 
 const blobStyle = computed(() => ({
   transform: `translate(${x.value - 200}px, ${y.value - 200}px)`,
@@ -12,19 +12,19 @@ const blobStyle = computed(() => ({
 </script>
 
 <template>
-  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none backdrop-blur-[60px] backdrop-saturate-[180%]">
+  <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
     <div
-      class="absolute top-20 -left-20 w-80 h-80 rounded-full bg-gradient-to-r from-blue-300/50 to-indigo-400/40 dark:from-blue-700/20 dark:to-indigo-800/20 blur-[120px] opacity-60 dark:opacity-40 animate-blob"
+      class="absolute top-[-10%] -left-20 w-[30rem] h-[30rem] rounded-full bg-gradient-to-r from-blue-300/60 to-indigo-400/50 dark:from-blue-600/40 dark:to-indigo-600/40 blur-[120px] animate-blob"
     ></div>
 
     <div
-      class="absolute bottom-40 -right-20 w-[28rem] h-[28rem] rounded-full bg-gradient-to-tr from-pink-300/50 to-purple-400/40 dark:from-pink-700/20 dark:to-purple-800/20 blur-[140px] opacity-60 dark:opacity-40 animate-blob"
+      class="absolute top-[40%] -right-20 w-[35rem] h-[35rem] rounded-full bg-gradient-to-tr from-pink-300/60 to-purple-400/50 dark:from-purple-600/40 dark:to-pink-600/40 blur-[140px] animate-blob"
       style="animation-delay: 4s"
     ></div>
 
     <div
       :style="blobStyle"
-      class="absolute top-0 left-0 w-[22rem] h-[22rem] rounded-full bg-gradient-to-br from-emerald-300/50 to-cyan-400/40 dark:from-emerald-600/20 dark:to-cyan-700/20 blur-[120px] opacity-60 dark:opacity-40 transition-transform duration-500 ease-out will-change-transform"
+      class="absolute top-0 left-0 w-[25rem] h-[25rem] rounded-full bg-gradient-to-br from-emerald-300/60 to-cyan-400/50 dark:from-emerald-500/30 dark:to-cyan-600/30 blur-[100px] transition-transform duration-500 ease-out will-change-transform"
     ></div>
   </div>
 
@@ -38,12 +38,12 @@ const blobStyle = computed(() => ({
   >
     <div
       v-if="isScrolled"
-      class="fixed top-0 left-0 w-full h-32 bg-gradient-to-b from-neutral-100/90 to-transparent dark:from-neutral-900/90 dark:to-transparent pointer-events-none z-20"
+      class="fixed top-0 left-0 w-full h-32 bg-gradient-to-b from-neutral-100/90 to-transparent dark:from-[#0a0a0a]/90 dark:to-transparent pointer-events-none z-20"
     ></div>
   </transition>
 
   <div
-    class="fixed bottom-0 left-0 w-full h-64 bg-gradient-to-t from-neutral-100/90 to-transparent dark:from-neutral-900/90 dark:to-transparent pointer-events-none z-20"
+    class="fixed bottom-0 left-0 w-full h-64 bg-gradient-to-t from-neutral-100/90 to-transparent dark:from-[#0a0a0a]/90 dark:to-transparent pointer-events-none z-20"
   ></div>
 </template>
 

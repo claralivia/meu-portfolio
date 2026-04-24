@@ -15,7 +15,6 @@ const navLinks = ['about', 'projects', 'education', 'experience', 'contact']
 
 const { isScrolled } = useScroll()
 
-// Bloqueia o scroll da página quando o menu mobile está aberto
 const isLocked = useScrollLock(typeof document !== 'undefined' ? document.body : null)
 const { width } = useWindowSize()
 
@@ -23,7 +22,6 @@ watch(isMobileMenuOpen, (val) => {
   isLocked.value = val
 })
 
-// Previne o travamento do scroll caso a tela seja redimensionada (ex: girar tablet)
 watch(width, (newWidth) => {
   if (newWidth >= 768 && isMobileMenuOpen.value) {
     closeMobileMenu()
@@ -48,9 +46,9 @@ const trackNavClick = (link: string) => {
   <header
     class="sticky top-0 z-30 py-4 transition-all duration-300 ease-in-out border-b"
     :class="{
-      'bg-white/40 dark:bg-neutral-900/60 backdrop-blur-2xl border-white/40 dark:border-neutral-800/50': !isMobileMenuOpen,
+      'bg-white/50 dark:bg-white/5 backdrop-blur-2xl border-white/50 dark:border-white/10': !isMobileMenuOpen,
       'bg-transparent border-transparent': isMobileMenuOpen,
-      'shadow-md shadow-black/5 dark:shadow-black/40': isScrolled && !isMobileMenuOpen,
+      'shadow-lg shadow-black/5 dark:shadow-black/20': isScrolled && !isMobileMenuOpen,
     }"
   >
     <div class="relative z-30 max-w-4xl mx-auto flex justify-between items-center px-4 sm:px-0">
@@ -110,7 +108,7 @@ const trackNavClick = (link: string) => {
     <transition name="mobile-menu">
       <div
         v-if="isMobileMenuOpen"
-        class="md:hidden fixed inset-0 z-20 flex flex-col items-center justify-center gap-8 p-6 min-h-screen bg-white/80 dark:bg-neutral-900/80 backdrop-blur-3xl"
+        class="md:hidden fixed inset-0 z-20 flex flex-col items-center justify-center gap-8 p-6 min-h-screen bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-3xl"
       >
         <a
           v-for="link in navLinks"
