@@ -43,7 +43,7 @@ Clara Lívia M. de Oliveira. 🧡
 
 ## Dúvida?
 
-Em caso de dúvidas ou propostas, envie-me um email: claramoura2303@gmail.com.
+Em caso de dúvidas ou propostas, envie-me um email: contato@claralivia.dev.
 
 ## Licença
 
