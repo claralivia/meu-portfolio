@@ -4,7 +4,6 @@ import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
 import { useMouseInElement } from '@vueuse/core'
 import GithubIcon from './icons/GithubIcon.vue'
 import LinkedinIcon from './icons/LinkedinIcon.vue'
-import { ArrowDownTrayIcon } from '@heroicons/vue/24/outline'
 import { useAnalytics } from '../composables/useAnalytics'
 
 const { t } = useI18n()
@@ -98,18 +97,9 @@ const formattedTitle = computed(() => {
 
           <div class="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-start w-full">
             <a
-              href="/curriculo.pdf"
-              target="_blank"
-              class="flex items-center justify-center gap-2 font-medium text-sm sm:text-base py-2.5 px-4 sm:py-3 sm:px-6 w-full sm:w-auto rounded-2xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 backdrop-blur-lg shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:from-white/60 hover:to-white/30 dark:hover:from-white/20 dark:hover:to-white/10 hover:-translate-y-1 transition-all duration-300 text-neutral-900 dark:text-white"
-              @click="() => trackClick('click_resume_download', { section: 'about' })"
-            >
-              <ArrowDownTrayIcon class="w-5 h-5" />
-              {{ t('buttons.resume') }}
-            </a>
-
-            <a
               :href="t('contact.linkedinUrl')"
               target="_blank"
+              rel="noopener noreferrer"
               class="flex items-center justify-center gap-2 font-medium text-sm sm:text-base py-2.5 px-4 sm:py-3 sm:px-6 flex-1 sm:flex-none rounded-2xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 backdrop-blur-lg shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:from-white/60 hover:to-white/30 dark:hover:from-white/20 dark:hover:to-white/10 hover:-translate-y-1 transition-all duration-300 text-neutral-900 dark:text-white"
               @click="() => trackClick('click_linkedin', { section: 'about' })"
             >
@@ -120,6 +110,7 @@ const formattedTitle = computed(() => {
             <a
               :href="t('contact.githubUrl')"
               target="_blank"
+              rel="noopener noreferrer"
               class="flex items-center justify-center gap-2 font-medium text-sm sm:text-base py-2.5 px-4 sm:py-3 sm:px-6 flex-1 sm:flex-none rounded-2xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 backdrop-blur-lg shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:from-white/60 hover:to-white/30 dark:hover:from-white/20 dark:hover:to-white/10 hover:-translate-y-1 transition-all duration-300 text-neutral-900 dark:text-white"
               @click="() => trackClick('click_github', { section: 'about' })"
             >

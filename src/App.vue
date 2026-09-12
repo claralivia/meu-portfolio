@@ -27,14 +27,16 @@ const scrollProgress = computed(() => {
   return Math.min(Math.max(y.value / maxScroll, 0), 1)
 })
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 injectAnalytics()
 injectSpeedInsights()
 
 watchEffect(() => {
   if (typeof document === 'undefined') return
-  
+
+  document.documentElement.lang = locale.value === 'pt' ? 'pt-BR' : locale.value
+
   const title = `Clara Lívia | ${t('about.title')}`
   const description = t('about.description')
 

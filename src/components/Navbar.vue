@@ -75,7 +75,7 @@ const trackNavClick = (link: string) => {
       <div class="hidden md:flex items-center gap-3">
         <button
           class="icon-btn"
-          aria-label="Toggle theme"
+          :aria-label="t('navbar.toggleTheme')"
           @click="
             () => {
               toggleDark()
@@ -87,18 +87,22 @@ const trackNavClick = (link: string) => {
           <SunIcon v-else class="w-6 h-6" />
         </button>
 
-        <button class="icon-btn flex gap-1 items-center" aria-label="Change language" @click="toggleLocale">
+        <button class="icon-btn flex gap-1 items-center" :aria-label="t('navbar.changeLanguage')" @click="toggleLocale">
           <LanguageIcon class="w-6 h-6" />
           <span class="font-medium">{{ locale.toUpperCase() }}</span>
         </button>
       </div>
 
       <div class="flex md:hidden items-center gap-3">
-        <button class="icon-btn flex gap-1 items-center" @click="toggleLocale">
+        <button class="icon-btn flex gap-1 items-center" :aria-label="t('navbar.changeLanguage')" @click="toggleLocale">
           <LanguageIcon class="w-6 h-6" />
           <span class="font-medium">{{ locale.toUpperCase() }}</span>
         </button>
-        <button class="icon-btn" @click="isMobileMenuOpen = !isMobileMenuOpen">
+        <button
+          class="icon-btn"
+          :aria-label="isMobileMenuOpen ? t('navbar.closeMenu') : t('navbar.openMenu')"
+          @click="isMobileMenuOpen = !isMobileMenuOpen"
+        >
           <XMarkIcon v-if="isMobileMenuOpen" class="w-7 h-7" />
           <Bars3Icon v-else class="w-7 h-7" />
         </button>

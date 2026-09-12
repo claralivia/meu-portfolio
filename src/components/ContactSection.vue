@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { EnvelopeIcon } from '@heroicons/vue/24/solid'
 import GithubIcon from './icons/GithubIcon.vue'
 import LinkedinIcon from './icons/LinkedinIcon.vue'
+import ContactForm from './ContactForm.vue'
 import { useAnalytics } from '../composables/useAnalytics'
 
 interface ContactInfo {
@@ -24,16 +25,26 @@ const contactInfo = computed((): ContactInfo => (tm('contact') as ContactInfo) |
     <h2 class="text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-white mb-4">
       {{ t('contact.title') }}
     </h2>
-    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6">
       {{ t('contact.description') }}
     </p>
 
+    <div class="inline-flex items-center gap-2 py-2 px-4 mb-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-sm font-medium">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+      </span>
+      {{ t('contact.freelanceAvailability') }}
+    </div>
+
+    <ContactForm />
+
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a :href="contactInfo.linkedinUrl" target="_blank" class="contact-btn w-full sm:w-auto" @click="() => trackClick('click_linkedin', { section: 'contact' })">
+      <a :href="contactInfo.linkedinUrl" target="_blank" rel="noopener noreferrer" class="contact-btn w-full sm:w-auto" @click="() => trackClick('click_linkedin', { section: 'contact' })">
         <LinkedinIcon class="w-6 h-6" />
         <span>LinkedIn</span>
       </a>
-      <a :href="contactInfo.githubUrl" target="_blank" class="contact-btn w-full sm:w-auto" @click="() => trackClick('click_github', { section: 'contact' })">
+      <a :href="contactInfo.githubUrl" target="_blank" rel="noopener noreferrer" class="contact-btn w-full sm:w-auto" @click="() => trackClick('click_github', { section: 'contact' })">
         <GithubIcon class="w-6 h-6" />
         <span>GitHub</span>
       </a>
