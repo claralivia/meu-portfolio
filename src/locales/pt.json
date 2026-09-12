@@ -7,7 +7,7 @@
     "linkedin": "LinkedIn",
     "github": "GitHub",
     "live": "Ao Vivo",
-    "resume": "Baixar CV"
+    "backToTop": "Voltar ao topo da página"
   },
   "education": {
     "title": "Formação e Certificações",
@@ -156,9 +156,19 @@
   "contact": {
     "title": "Vamos Conversar?",
     "description": "Estou aberta a novas oportunidades e conexões. Sinta-se à vontade para entrar em contato através do meu e-mail ou redes sociais.",
+    "freelanceAvailability": "Disponível para projetos freelance",
     "email": "contato@claralivia.dev",
     "linkedinUrl": "https://linkedin.com/in/claralivia",
-    "githubUrl": "https://github.com/claralivia"
+    "githubUrl": "https://github.com/claralivia",
+    "form": {
+      "name": "Nome",
+      "email": "E-mail",
+      "message": "Mensagem",
+      "send": "Enviar mensagem",
+      "sending": "Enviando...",
+      "success": "Mensagem enviada! Retorno em breve.",
+      "error": "Não foi possível enviar. Tente novamente ou use o e-mail direto."
+    }
   },
   "navbar": {
     "about": "Sobre",
@@ -166,7 +176,10 @@
     "education": "Formação",
     "projects": "Projetos",
     "contact": "Contato",
-    "toggleTheme": "Mudar Tema"
+    "toggleTheme": "Mudar Tema",
+    "changeLanguage": "Mudar idioma",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
   },
   "footer": {
     "credit": "Projetado & Construído por Clara Lívia",
