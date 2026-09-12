@@ -15,14 +15,8 @@
       {
         "title": "Análise e Desenvolvimento de Sistemas (ADS)",
         "institution": "Universidade Estácio de Sá (UNESA)",
-        "date": "Cursando (4º Semestre de 5) | Previsão de Conclusão: Dez/2026",
+        "date": "Cursando (5º Semestre de 5) | Previsão de Conclusão: Dez/2026",
         "type": "degree"
-      },
-      {
-        "title": "Sistemas e Mídias Digitais (SMD)",
-        "institution": "Universidade Federal do Ceará (UFC)",
-        "date": "2023 - 2025 (Interrompido no 4º Semestre)",
-        "type": "interrupted"
       },
       {
         "title": "Boas Práticas em Segurança da Informação e Cyber",
@@ -150,7 +144,8 @@
         "items": ["Vue.js", "React", "Nuxt.js", "HTML5", "CSS3", "Tailwind CSS"]
       },
       { "name": "Banco de Dados", "items": ["MongoDB", "MySQL"] },
-      { "name": "Cloud & DevOps", "items": ["AWS", "GCP", "Docker", "Git"] }
+      { "name": "Cloud & DevOps", "items": ["AWS", "GCP", "Docker", "Git", "Grafana", "Datadog", "Percona"] },
+      { "name": "Ferramentas", "items": ["Jira", "Figma", "Claude Code", "GitHub Copilot", "Gemini", "Codex"] }
     ]
   },
   "contact": {

@@ -15,14 +15,8 @@
       {
         "title": "Analysis and Systems Development (ADS)",
         "institution": "Universidade Estácio de Sá (UNESA)",
-        "date": "In Progress (4th Semester of 5) | Expected Conclusion: Dec/2026",
+        "date": "In Progress (5th Semester of 5) | Expected Conclusion: Dec/2026",
         "type": "degree"
-      },
-      {
-        "title": "Digital Systems and Media (SMD)",
-        "institution": "Universidade Federal do Ceará (UFC)",
-        "date": "2023 - 2025 (Interrupted at 4th Semester)",
-        "type": "interrupted"
       },
       {
         "title": "Information Security and Cyber Best Practices",
@@ -150,7 +144,8 @@
         "items": ["Vue.js", "React", "Nuxt.js", "HTML5", "CSS3", "Tailwind CSS"]
       },
       { "name": "Database", "items": ["MongoDB", "MySQL"] },
-      { "name": "Cloud & DevOps", "items": ["AWS", "GCP", "Docker", "Git"] }
+      { "name": "Cloud & DevOps", "items": ["AWS", "GCP", "Docker", "Git", "Grafana", "Datadog", "Percona"] },
+      { "name": "Tools", "items": ["Jira", "Figma", "Claude Code", "GitHub Copilot", "Gemini", "Codex"] }
     ]
   },
   "contact": {
