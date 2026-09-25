@@ -109,6 +109,6 @@ const submit = async () => {
 
 <style scoped>
 .form-input {
-  @apply w-full py-3 px-4 rounded-2xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 backdrop-blur-lg shadow-inner shadow-black/5 dark:shadow-black/20 text-neutral-900 dark:text-white placeholder:text-neutral-500 dark:placeholder:text-gray-400 outline-none focus:border-blue-500/60 dark:focus:border-blue-400/60 transition-all duration-300;
+  @apply w-full py-3 px-4 rounded-2xl bg-transparent bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 backdrop-blur-lg shadow-inner shadow-black/5 dark:shadow-black/20 text-neutral-900 dark:text-white placeholder:text-neutral-500 dark:placeholder:text-gray-400 outline-none focus:border-blue-500/60 dark:focus:border-blue-400/60 transition-all duration-300;
 }
 </style>
