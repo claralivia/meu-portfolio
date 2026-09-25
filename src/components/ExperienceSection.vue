@@ -1,136 +1,83 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { computed, ref, onMounted } from 'vue'
-import { useIntersectionObserver } from '@vueuse/core'
-import { BriefcaseIcon } from '@heroicons/vue/24/solid'
-import { CalendarIcon, BuildingOfficeIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
+import { computed } from 'vue'
 
-interface ExperienceJob {
+interface ExperienceRole {
   title: string
-  company: string
   date: string
   points: string[]
+  // Optional impact numbers, e.g. { value: "-80%", label: "tempo de resposta" }.
+  metrics?: { value: string; label: string }[]
 }
 
 const { t, tm } = useI18n()
 
-const experienceJobs = computed((): ExperienceJob[] => {
-  return (tm('experience.jobs') as ExperienceJob[]) || []
-})
-
-const gridRef = ref<HTMLElement | null>(null)
-
-const handleMouseMove = (e: MouseEvent) => {
-  if (!gridRef.value) return
-  const cards = gridRef.value.querySelectorAll('.card-glass')
-  for (const card of Array.from(cards)) {
-    const htmlCard = card as HTMLElement
-    const rect = htmlCard.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    htmlCard.style.setProperty('--mouse-x', `${x}px`)
-    htmlCard.style.setProperty('--mouse-y', `${y}px`)
-  }
-}
-
-const isVisible = ref(false)
-const hasAnimated = ref(false)
-
-onMounted(() => {
-  useIntersectionObserver(gridRef, ([{ isIntersecting }]) => {
-    if (isIntersecting && !isVisible.value) {
-      isVisible.value = true
-      setTimeout(() => {
-        hasAnimated.value = true
-      }, 1000)
-    }
-  }, { threshold: 0.15 })
-})
+// Newest first; all roles belong to the same company, grouped under one header.
+const roles = computed((): ExperienceRole[] => (tm('experience.jobs') as ExperienceRole[]) || [])
 </script>
 
 <template>
   <section id="experience" class="py-16 sm:py-24 relative z-10">
-    <h2 class="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-16 text-center">
+    <h2 class="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-12 text-center">
       {{ t('experience.title') }}
     </h2>
 
-    <div ref="gridRef" class="relative border-l border-gray-300 dark:border-gray-700 ml-10 experience-grid" @mousemove="handleMouseMove">
-      <div 
-        v-for="(job, index) in experienceJobs" 
-        :key="job.title" 
-        class="mb-16 relative group transition-all duration-700 ease-out"
-        :class="!isVisible ? 'opacity-0 translate-x-12' : ''"
-        :style="!hasAnimated ? { transitionDelay: `${index * 200}ms` } : {}"
-      >
-        <div
-          class="absolute -left-5 top-0 w-10 h-10 rounded-full bg-white/40 dark:bg-neutral-800/80 backdrop-blur-2xl flex items-center justify-center z-20 shadow-md shadow-black/5 dark:shadow-black/20 border border-white/50 dark:border-neutral-700/50 transition-all duration-500 group-hover:scale-110"
-        >
-          <BriefcaseIcon class="w-5 h-5 text-neutral-800 dark:text-gray-300" />
+    <article v-reveal class="card-glass hover:!translate-y-0 p-5 sm:p-8 md:p-10">
+      <header class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 pb-6 mb-6 border-b border-neutral-900/10 dark:border-white/10">
+        <div class="min-w-0">
+          <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white">{{ t('experience.companyName') }}</h3>
+          <p class="text-sm text-neutral-500 dark:text-gray-400">{{ t('experience.companyLegal') }}</p>
         </div>
+        <span class="text-sm font-semibold text-neutral-600 dark:text-gray-300 whitespace-nowrap">{{ t('experience.companyPeriod') }}</span>
+      </header>
 
-        <div
-          class="relative z-10 p-8 ml-8 card-glass transform origin-top-left"
-        >
-          <div class="relative z-10">
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">
-              <div>
-                <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-2">
-                  {{ job.title }}
-                </h3>
-                <div class="flex items-center gap-2 text-neutral-700 dark:text-neutral-300 font-medium">
-                  <BuildingOfficeIcon class="w-5 h-5 flex-shrink-0" />
-                  <span>{{ job.company }}</span>
-                </div>
-              </div>
-              <span class="inline-flex items-center gap-1.5 py-1.5 px-3.5 rounded-full text-xs font-semibold bg-white/10 dark:bg-white/5 text-neutral-700 dark:text-neutral-300 border border-white/20 dark:border-white/10 shadow-sm shadow-black/5 hover:scale-105 hover:shadow-md hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 shrink-0 cursor-default">
-                <CalendarIcon class="w-4 h-4" />
-                {{ job.date }}
-              </span>
-            </div>
-  
-            <ul class="space-y-3">
-              <li
-                v-for="point in job.points"
-                :key="point"
-                class="flex items-start gap-3 text-gray-700 dark:text-gray-300 leading-relaxed"
-              >
-                <ChevronRightIcon class="w-5 h-5 mt-0.5 text-neutral-400 dark:text-neutral-500 flex-shrink-0" />
-                <span>{{ point }}</span>
-              </li>
-            </ul>
+      <ol class="relative">
+        <li v-for="(role, index) in roles" :key="role.title" class="relative pl-7 sm:pl-9 pb-8 last:pb-0">
+          <!-- Progression rail: current role highlighted, earlier ones muted. -->
+          <span
+            v-if="index < roles.length - 1"
+            class="absolute left-[5px] sm:left-[7px] top-4 bottom-0 w-px bg-neutral-900/10 dark:bg-white/15"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="absolute left-0 top-1.5 w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 border-white dark:border-neutral-900"
+            :class="index === 0 ? 'bg-emerald-500 ring-4 ring-emerald-500/20' : 'bg-neutral-300 dark:bg-neutral-600'"
+            aria-hidden="true"
+          ></span>
+
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <h4 class="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white">{{ role.title }}</h4>
+            <span
+              v-if="index === 0"
+              class="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-500/25 dark:text-emerald-300"
+            >
+              {{ t('experience.current') }}
+            </span>
           </div>
-        </div>
-      </div>
-    </div>
+          <p class="mt-0.5 text-sm text-neutral-500 dark:text-gray-400">{{ role.date }}</p>
+
+          <div v-if="role.metrics?.length" class="flex flex-wrap gap-3 mt-4">
+            <div
+              v-for="metric in role.metrics"
+              :key="metric.label"
+              class="px-4 py-2.5 rounded-2xl bg-white/30 dark:bg-white/5 ring-1 ring-inset ring-white/40 dark:ring-white/10"
+            >
+              <p class="text-xl font-extrabold tracking-tight text-neutral-900 dark:text-white">{{ metric.value }}</p>
+              <p class="text-xs font-medium text-neutral-600 dark:text-gray-400">{{ metric.label }}</p>
+            </div>
+          </div>
+
+          <ul class="mt-3 space-y-2">
+            <li
+              v-for="point in role.points"
+              :key="point"
+              class="relative pl-4 text-[15px] leading-relaxed text-gray-700 dark:text-gray-300 before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-neutral-400 dark:before:bg-neutral-500"
+            >
+              {{ point }}
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </article>
   </section>
 </template>
-
-<style scoped>
-.card-glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    800px circle at var(--mouse-x, 0) var(--mouse-y, 0),
-    rgba(255, 255, 255, 0.4),
-    transparent 40%
-  );
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-  z-index: 0;
-}
-:global(.dark) .card-glass::before {
-  background: radial-gradient(
-    800px circle at var(--mouse-x, 0) var(--mouse-y, 0),
-    rgba(255, 255, 255, 0.08),
-    transparent 40%
-  );
-}
-@media (hover: hover) {
-  .experience-grid:hover .card-glass::before {
-    opacity: 1;
-  }
-}
-</style>
