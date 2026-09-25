@@ -1,19 +1,24 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useDark, useToggle, useScrollLock, useWindowSize } from '@vueuse/core'
-import { SunIcon, MoonIcon, LanguageIcon, Bars3Icon, XMarkIcon } from '@heroicons/vue/24/solid'
+import { useScrollLock, useWindowSize } from '@vueuse/core'
+import { SunIcon, MoonIcon, LanguageIcon, Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { useScroll } from '../composables/useScroll'
 import { useAnalytics } from '../composables/useAnalytics'
+import { useTheme } from '../composables/useTheme'
+import { useCommandPalette } from '../composables/useCommandPalette'
 
 const { t, locale } = useI18n()
 const { trackClick } = useAnalytics()
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+const { isDark, toggleDark } = useTheme()
+const palette = useCommandPalette()
+const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
 const isMobileMenuOpen = ref(false)
-const navLinks = ['about', 'projects', 'education', 'experience', 'contact']
+const navLinks = ['about', 'projects', 'skills', 'education', 'experience', 'contact']
 
-const { isScrolled } = useScroll()
+const { isScrolled, y } = useScroll()
+// Like iOS large titles: the name folds into the monogram once you scroll.
+const isCollapsed = computed(() => y.value > 120 && !isMobileMenuOpen.value)
 
 const isLocked = useScrollLock(typeof document !== 'undefined' ? document.body : null)
 const { width } = useWindowSize()
@@ -23,7 +28,7 @@ watch(isMobileMenuOpen, (val) => {
 })
 
 watch(width, (newWidth) => {
-  if (newWidth >= 768 && isMobileMenuOpen.value) {
+  if (newWidth >= 1024 && isMobileMenuOpen.value) {
     closeMobileMenu()
   }
 })
@@ -34,6 +39,12 @@ const closeMobileMenu = () => {
 const toggleLocale = () => {
   locale.value = locale.value === 'pt' ? 'en' : 'pt'
   trackClick('click_toggle_locale', { locale: locale.value })
+}
+
+const openPalette = () => {
+  closeMobileMenu()
+  palette.open()
+  trackClick('open_command_palette', { source: 'navbar' })
 }
 
 const trackNavClick = (link: string) => {
@@ -52,27 +63,48 @@ const trackNavClick = (link: string) => {
     }"
   >
     <div class="relative z-30 max-w-4xl mx-auto flex justify-between items-center px-4 sm:px-0">
-      <a
-        href="#about"
-        class="text-2xl font-extrabold tracking-tighter text-neutral-900 dark:text-white"
+      <RouterLink
+        to="/#about"
+        class="group flex items-center text-neutral-900 dark:text-white"
+        aria-label="Clara Lívia"
         @click="() => trackNavClick('about')"
       >
-        Clara Lívia
-      </a>
+        <span
+          class="relative flex items-center justify-center w-10 h-10 shrink-0 rounded-[28%] bg-gradient-to-br from-white/80 to-white/30 dark:from-white/15 dark:to-white/5 border border-white/60 dark:border-white/15 shadow-md shadow-black/5 dark:shadow-black/30 transition-transform duration-300 group-hover:scale-105"
+        >
+          <span class="text-[15px] font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-blue-600 via-purple-500 to-emerald-500 dark:from-blue-400 dark:via-purple-400 dark:to-emerald-400">CL</span>
+          <span
+            class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-neutral-900"
+            :title="t('about.available')"
+          ></span>
+        </span>
+        <span
+          class="overflow-hidden whitespace-nowrap text-xl font-extrabold tracking-tighter transition-all duration-500 ease-out"
+          :class="isCollapsed ? 'max-w-0 opacity-0 ml-0' : 'max-w-[10rem] opacity-100 ml-3'"
+          aria-hidden="true"
+        >
+          Clara Lívia
+        </span>
+      </RouterLink>
 
-      <nav class="hidden md:flex gap-6">
-        <a
+      <nav class="hidden lg:flex gap-6">
+        <RouterLink
           v-for="link in navLinks"
           :key="link"
-          :href="`#${link}`"
+          :to="`/#${link}`"
           class="nav-link"
           @click="() => trackNavClick(link)"
         >
           {{ t(`navbar.${link}`) }}
-        </a>
+        </RouterLink>
       </nav>
 
-      <div class="hidden md:flex items-center gap-3">
+      <div class="hidden lg:flex items-center gap-2">
+        <button class="icon-btn flex items-center gap-1.5" :aria-label="t('navbar.search')" @click="openPalette">
+          <MagnifyingGlassIcon class="w-5 h-5" />
+          <kbd class="hidden lg:inline text-[11px] font-semibold font-sans px-1.5 py-0.5 rounded-md border border-black/10 dark:border-white/15">{{ isMac ? '⌘K' : 'Ctrl K' }}</kbd>
+        </button>
+
         <button
           class="icon-btn"
           :aria-label="t('navbar.toggleTheme')"
@@ -93,7 +125,10 @@ const trackNavClick = (link: string) => {
         </button>
       </div>
 
-      <div class="flex md:hidden items-center gap-3">
+      <div class="flex lg:hidden items-center gap-1">
+        <button class="icon-btn" :aria-label="t('navbar.search')" @click="openPalette">
+          <MagnifyingGlassIcon class="w-6 h-6" />
+        </button>
         <button class="icon-btn flex gap-1 items-center" :aria-label="t('navbar.changeLanguage')" @click="toggleLocale">
           <LanguageIcon class="w-6 h-6" />
           <span class="font-medium">{{ locale.toUpperCase() }}</span>
@@ -112,17 +147,17 @@ const trackNavClick = (link: string) => {
     <transition name="mobile-menu">
       <div
         v-if="isMobileMenuOpen"
-        class="md:hidden fixed inset-0 z-20 flex flex-col items-center justify-center gap-8 p-6 min-h-screen bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-3xl"
+        class="lg:hidden fixed inset-0 z-20 flex flex-col items-center justify-center gap-8 p-6 min-h-screen bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-3xl"
       >
-        <a
+        <RouterLink
           v-for="link in navLinks"
           :key="link"
-          :href="`#${link}`"
+          :to="`/#${link}`"
           class="text-3xl font-semibold tracking-tight text-neutral-800 dark:text-white hover:text-blue-600 transition-colors"
           @click="() => trackNavClick(link)"
         >
           {{ t(`navbar.${link}`) }}
-        </a>
+        </RouterLink>
 
         <div class="w-12 h-1 bg-gray-300/50 dark:bg-gray-700/50 rounded-full my-2"></div>
 
