@@ -13,7 +13,7 @@ const { t } = useI18n()
 
 usePageMeta(() => ({
   title: `Clara Lívia | ${t('about.title')}`,
-  description: t('about.description'),
+  description: t('seo.description'),
 }))
 </script>
 

@@ -1,4 +1,5 @@
 {
+  "seo": { "description": "Mid-level Fullstack Developer in Fortaleza, Brazil. I build B2B products from the database to the interface, with a focus on performance and security." },
   "about": {
     "title": "Fullstack Developer",
     "description": "Developer with over 3 years of experience in B2B startups, specializing in the JavaScript and TypeScript ecosystem with Vue.js and Node.js. I focus on creating elegant interfaces, high performance architectures and system optimization. I have strong expertise in cybersecurity, adapting systems to PCI DSS standards and refactoring legacy code, always raising the technical quality bar through best practices and mentoring new talents.",
