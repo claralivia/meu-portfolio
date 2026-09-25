@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
-import { EnvelopeIcon } from '@heroicons/vue/24/solid'
+import { EnvelopeIcon } from '@heroicons/vue/24/outline'
 import GithubIcon from './icons/GithubIcon.vue'
 import LinkedinIcon from './icons/LinkedinIcon.vue'
 import ContactForm from './ContactForm.vue'
@@ -39,25 +39,32 @@ const contactInfo = computed((): ContactInfo => (tm('contact') as ContactInfo) |
 
     <ContactForm />
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a :href="contactInfo.linkedinUrl" target="_blank" rel="noopener noreferrer" class="contact-btn w-full sm:w-auto" @click="() => trackClick('click_linkedin', { section: 'contact' })">
-        <LinkedinIcon class="w-6 h-6" />
-        <span>LinkedIn</span>
+    <!-- Share-sheet style: three equal glass tiles, brand-tinted glyph over a soft disc. -->
+    <nav class="grid grid-cols-3 gap-3 sm:gap-4 max-w-md mx-auto" :aria-label="t('contact.title')">
+      <a :href="contactInfo.linkedinUrl" target="_blank" rel="noopener noreferrer" class="contact-tile group" @click="() => trackClick('click_linkedin', { section: 'contact' })">
+        <span class="contact-disc text-[#0A66C2] dark:text-[#4c9be8]"><LinkedinIcon class="w-6 h-6" /></span>
+        <span class="contact-label">LinkedIn</span>
       </a>
-      <a :href="contactInfo.githubUrl" target="_blank" rel="noopener noreferrer" class="contact-btn w-full sm:w-auto" @click="() => trackClick('click_github', { section: 'contact' })">
-        <GithubIcon class="w-6 h-6" />
-        <span>GitHub</span>
+      <a :href="contactInfo.githubUrl" target="_blank" rel="noopener noreferrer" class="contact-tile group" @click="() => trackClick('click_github', { section: 'contact' })">
+        <span class="contact-disc text-neutral-900 dark:text-white"><GithubIcon class="w-6 h-6" /></span>
+        <span class="contact-label">GitHub</span>
       </a>
-      <a :href="`mailto:${contactInfo.email}`" class="contact-btn w-full sm:w-auto" @click="() => trackClick('click_email')">
-        <EnvelopeIcon class="w-6 h-6" />
-        <span>E-mail</span>
+      <a :href="`mailto:${contactInfo.email}`" class="contact-tile group" @click="() => trackClick('click_email')">
+        <span class="contact-disc text-rose-500 dark:text-rose-400"><EnvelopeIcon class="w-6 h-6" /></span>
+        <span class="contact-label">E-mail</span>
       </a>
-    </div>
+    </nav>
   </section>
 </template>
 
 <style scoped>
-.contact-btn {
-  @apply flex items-center justify-center gap-2 font-medium py-3 px-6 rounded-2xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 backdrop-blur-lg shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:from-white/60 hover:to-white/30 dark:hover:from-white/20 dark:hover:to-white/10 hover:-translate-y-1 transition-all duration-300 text-neutral-900 dark:text-white;
+.contact-tile {
+  @apply flex flex-col items-center gap-2.5 py-4 px-2 rounded-3xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:from-white/70 hover:to-white/30 dark:hover:from-white/15 dark:hover:to-white/5 hover:-translate-y-1 transition-all duration-300 md:backdrop-blur-lg;
+}
+.contact-disc {
+  @apply flex items-center justify-center w-12 h-12 rounded-full bg-white/80 dark:bg-white/10 shadow-sm ring-1 ring-inset ring-black/5 dark:ring-white/10 transition-transform duration-300 group-hover:scale-110;
+}
+.contact-label {
+  @apply text-sm font-semibold text-neutral-800 dark:text-gray-200;
 }
 </style>
