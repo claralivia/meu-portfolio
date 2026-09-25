@@ -45,6 +45,16 @@ const currentYear = new Date().getFullYear()
       {{ t('footer.credit') }}
     </p>
     <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+      {{ t('footer.colophon') }} ·
+      <a
+        href="https://github.com/claralivia/meu-portfolio"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline decoration-gray-300 dark:decoration-gray-600 underline-offset-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        @click="() => trackClick('click_source_code', { section: 'footer' })"
+      >{{ t('footer.source') }}</a>
+    </p>
+    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">
       &copy; {{ currentYear }} Clara Lívia. {{ t('footer.rights') }}
     </p>
   </footer>
