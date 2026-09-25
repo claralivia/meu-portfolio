@@ -3,35 +3,40 @@ import { useI18n } from 'vue-i18n'
 import { computed, ref, onMounted, watch } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import GithubIcon from './icons/GithubIcon.vue'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/outline'
+import { ArrowTopRightOnSquareIcon, ArrowRightIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import TechIcon from './icons/TechIcon.vue'
+import { techKey } from './icons/techIcons'
 import { useAnalytics } from '../composables/useAnalytics'
+import { useProjects } from '../composables/useProjects'
 
-interface Project {
-  title: string
-  description: string
-  tags: string[]
-  githubUrl?: string
-  githubUrls?: { label: string; url: string }[]
-  liveUrl?: string
-  category: string
-  key: string
-}
+// Cards show the main stack only; the case study page lists everything.
+const MAX_CARD_TAGS = 5
 
-const { t, tm } = useI18n()
+const { t } = useI18n()
 const { trackClick } = useAnalytics()
+const { projects, selectedTech, usesTech } = useProjects()
 
 const filters = ['all', 'frontend', 'fullstack']
 const activeFilter = ref('all')
 
-const projects = computed((): Project[] => {
-  return (tm('projects.items') as Project[]) || []
+const selectedTechName = computed(() => {
+  if (!selectedTech.value) return ''
+  const key = selectedTech.value
+  const tag = projects.value.flatMap(p => p.tags).find(tag => techKey(tag) === key)
+  return tag?.replace(/\s+\d+$/, '') ?? key
 })
 
 const filteredProjects = computed(() => {
-  if (activeFilter.value === 'all') return projects.value
-  return projects.value.filter(p => p.category === activeFilter.value)
+  let list = projects.value
+  if (activeFilter.value !== 'all') list = list.filter(p => p.category === activeFilter.value)
+  if (selectedTech.value) list = list.filter(p => usesTech(p, selectedTech.value as string))
+  return list
 })
+
+const setCategory = (filter: string) => {
+  activeFilter.value = filter
+  selectedTech.value = null
+}
 
 const displayProjects = computed(() => {
   if (filteredProjects.value.length >= 3) {
@@ -65,17 +70,26 @@ function getColorAnimation(index: number): string {
   return `${colorClasses[i]} ${positionClasses[i]} animate-blob`
 }
 
-function getDemoImage(key: string): string {
-  try {
-    return new URL(`../assets/${key}.png`, import.meta.url).href
-  } catch {
-    return new URL('../assets/project-placeholder.jpg', import.meta.url).href
-  }
+const demoImages = import.meta.glob<string>('../assets/*.webp', { eager: true, import: 'default' })
+
+function getDemoImage(key: string): string | undefined {
+  return demoImages[`../assets/${key}.webp`]
 }
 
 const sectionRef = ref<HTMLElement | null>(null)
 const gridRef = ref<any>(null)
 const isDragging = ref(false)
+// Set once a mouse drag actually moves the carousel, so releasing it doesn't
+// also count as a click on the case-study link underneath.
+let dragMoved = false
+let dragStartX = 0
+
+const onGridClickCapture = (e: MouseEvent) => {
+  if (!dragMoved) return
+  e.preventDefault()
+  e.stopPropagation()
+  dragMoved = false
+}
 const lastX = ref(0)
 
 const onMouseDown = (e: MouseEvent) => {
@@ -85,6 +99,8 @@ const onMouseDown = (e: MouseEvent) => {
   gridEl.classList.add('cursor-grabbing')
   gridEl.classList.remove('snap-x', 'snap-mandatory', 'scroll-smooth')
   lastX.value = e.pageX
+  dragStartX = e.pageX
+  dragMoved = false
 }
 
 const onMouseLeave = () => {
@@ -121,6 +137,7 @@ const onMouseMove = (e: MouseEvent) => {
   if (!isDragging.value) return
   e.preventDefault()
 
+  if (Math.abs(e.pageX - dragStartX) > 6) dragMoved = true
   const walk = (e.pageX - lastX.value) * 2
   gridEl.scrollLeft -= walk
   lastX.value = e.pageX
@@ -205,10 +222,10 @@ onMounted(() => {
         hasAnimated.value = true
       }, 1000)
     }
-  }, { threshold: 0.15 })
+  }, { threshold: 0 })
 })
 
-watch(activeFilter, () => setTimeout(centerCarousel, 100))
+watch([activeFilter, selectedTech], () => setTimeout(centerCarousel, 100))
 </script>
 
 <template>
@@ -226,12 +243,27 @@ watch(activeFilter, () => setTimeout(centerCarousel, 100))
           :class="activeFilter === filter
             ? 'bg-white/50 dark:bg-white/10 border border-white/40 dark:border-white/10 text-neutral-900 dark:text-white shadow-md shadow-black/5 dark:shadow-black/20'
             : 'border border-transparent text-neutral-600 dark:text-gray-400 hover:bg-white/30 dark:hover:bg-white/5 hover:text-neutral-900 dark:hover:text-white'"
-          @click="activeFilter = filter"
+          @click="setCategory(filter)"
         >
           {{ t(`projects.filters.${filter}`) }}
         </button>
       </div>
     </div>
+
+    <transition
+      enter-active-class="transition duration-300 ease-out"
+      enter-from-class="opacity-0 -translate-y-2"
+      leave-active-class="transition duration-200 ease-in"
+      leave-to-class="opacity-0 -translate-y-2"
+    >
+      <div v-if="selectedTech" class="flex justify-center -mt-6 mb-2">
+        <button class="tech-chip !text-sm !py-2 !px-4 !cursor-pointer" @click="selectedTech = null">
+          <TechIcon :name="selectedTechName" />
+          {{ t('projects.filteringBy', { tech: selectedTechName }) }}
+          <XMarkIcon class="w-4 h-4" :aria-label="t('projects.clearFilter')" />
+        </button>
+      </div>
+    </transition>
 
     <transition-group
       ref="gridRef"
@@ -243,6 +275,7 @@ watch(activeFilter, () => setTimeout(centerCarousel, 100))
       @mouseup="onMouseUp"
       @mousemove="onMouseMove"
       @scroll="onScroll"
+      @click.capture="onGridClickCapture"
     >
       <div
         v-for="(project, index) in displayProjects"
@@ -254,16 +287,16 @@ watch(activeFilter, () => setTimeout(centerCarousel, 100))
       >
         <div
           :class="getColorAnimation(index)"
-          class="absolute w-64 h-64 rounded-full blur-3xl -z-10 transition-all duration-500 mix-blend-soft-light"
+          class="hidden md:block absolute w-64 h-64 rounded-full blur-3xl -z-10 transition-all duration-500 mix-blend-soft-light"
           :style="{ animationDelay: `${index * 1.2}s` }"
         ></div>
 
         <div class="relative z-10 flex flex-col h-full">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="text-xl font-semibold text-neutral-900 dark:text-white">
+          <div class="flex flex-wrap justify-between items-center gap-x-3 gap-y-2 mb-4">
+            <h3 class="min-w-0 text-xl font-semibold text-neutral-900 dark:text-white">
               {{ project.title }}
             </h3>
-            <div class="flex items-center gap-3">
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5">
               <a
                 v-if="project.liveUrl"
                 :href="project.liveUrl"
@@ -274,7 +307,7 @@ watch(activeFilter, () => setTimeout(centerCarousel, 100))
                 @dragstart.prevent
                 @click="() => trackClick('click_project_live', { project_title: project.title })"
               >
-                <span class="leading-none pt-[1px]">{{ t('buttons.live') }}</span>
+                <span class="leading-none pt-[1px] whitespace-nowrap">{{ t('buttons.live') }}</span>
                 <ArrowTopRightOnSquareIcon class="w-4 h-4" />
               </a>
 
@@ -288,7 +321,7 @@ watch(activeFilter, () => setTimeout(centerCarousel, 100))
                   target="_blank"
                   rel="noopener noreferrer"
                   draggable="false"
-                  class="flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                  class="flex items-center gap-1.5 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
                   @dragstart.prevent
                   @click="() => trackClick('click_project_github', { project_title: project.title, link_label: link.label })"
                 >
@@ -319,6 +352,9 @@ watch(activeFilter, () => setTimeout(centerCarousel, 100))
               :src="getDemoImage(project.key)"
               :alt="`Demo do projeto ${project.title}`"
               loading="lazy"
+              decoding="async"
+              width="960"
+              height="540"
               draggable="false"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] select-none pointer-events-none"
               @dragstart.prevent
@@ -329,16 +365,31 @@ watch(activeFilter, () => setTimeout(centerCarousel, 100))
             {{ project.description }}
           </p>
 
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap gap-3 mb-6">
             <span
-              v-for="tag in project.tags"
+              v-for="tag in project.tags.slice(0, MAX_CARD_TAGS)"
               :key="tag"
-              class="flex items-center gap-2 text-xs font-semibold tracking-wide py-1.5 px-3.5 rounded-full bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-sm text-neutral-700 dark:text-gray-300 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:bg-white/20 dark:hover:bg-white/10 cursor-default"
+              class="tech-chip"
             >
               <TechIcon :name="tag" />
               {{ tag }}
             </span>
+            <span v-if="project.tags.length > MAX_CARD_TAGS" class="tech-chip" :title="project.tags.slice(MAX_CARD_TAGS).join(', ')">
+              +{{ project.tags.length - MAX_CARD_TAGS }}
+            </span>
           </div>
+
+          <RouterLink
+            :to="`/projetos/${project.slug}`"
+            draggable="false"
+            :tabindex="project.isClone ? -1 : undefined"
+            class="group/link mt-auto inline-flex items-center gap-2 self-start text-sm font-semibold text-neutral-800 dark:text-gray-100 py-2 px-4 rounded-full bg-white/40 dark:bg-white/10 border border-white/50 dark:border-white/10 shadow-sm hover:bg-white/60 dark:hover:bg-white/15 hover:shadow-md transition-all duration-300"
+            @dragstart.prevent
+            @click="() => trackClick('click_case_study', { project_title: project.title })"
+          >
+            {{ t('projects.caseStudy') }}
+            <ArrowRightIcon class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-0.5" />
+          </RouterLink>
         </div>
       </div>
     </transition-group>
@@ -379,7 +430,7 @@ watch(activeFilter, () => setTimeout(centerCarousel, 100))
   pointer-events: none;
   z-index: 0;
 }
-:global(.dark) .card-glass::before {
+:global(.dark .project-grid .card-glass::before) {
   background: radial-gradient(
     600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
     rgba(255, 255, 255, 0.08),
