@@ -2,8 +2,14 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,20 +26,67 @@
       />
     </noscript>
 
+    <!-- Static tags on purpose: WhatsApp, LinkedIn and most crawlers never run JavaScript. -->
     <title>Clara Lívia | Desenvolvedora Fullstack</title>
     <meta
       name="description"
-      content="Portfólio de Clara Lívia, Desenvolvedora Fullstack Pleno com mais de 3 anos de experiência em JavaScript, Node.js (NestJS), Vue.js e Cloud (AWS/GCP)."
+      content="Desenvolvedora Fullstack Pleno em Fortaleza. Construo produtos B2B do banco de dados à interface, com foco em performance e segurança."
     />
+    <meta name="author" content="Clara Lívia" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://claralivia.dev/" />
 
-    <meta property="og:title" content="Clara Lívia | Portfólio Fullstack" />
-    <meta
-      property="og:description"
-      content="Portfólio de Clara Lívia, Desenvolvedora Fullstack Pleno com mais de 3 anos de experiência em JavaScript, Node.js (NestJS), Vue.js e Cloud (AWS/GCP)."
-    />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="%VITE_BASE_URL%" />
-    <meta property="og:image" content="%VITE_BASE_URL%/og-image.png" />
+    <meta property="og:site_name" content="Clara Lívia" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:url" content="https://claralivia.dev/" />
+    <meta property="og:title" content="Clara Lívia · Desenvolvedora Fullstack" />
+    <meta property="og:description" content="Produtos B2B do banco de dados à interface, com foco em performance e segurança." />
+    <meta property="og:image" content="https://claralivia.dev/og-image.png" />
+    <meta property="og:image:secure_url" content="https://claralivia.dev/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Clara Lívia, Desenvolvedora Fullstack Pleno" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Clara Lívia · Desenvolvedora Fullstack" />
+    <meta name="twitter:description" content="Produtos B2B do banco de dados à interface, com foco em performance e segurança." />
+    <meta name="twitter:image" content="https://claralivia.dev/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://claralivia.dev/#person",
+            "name": "Clara Lívia",
+            "alternateName": ["Clara Livia", "Clara Lívia Moura de Oliveira"],
+            "url": "https://claralivia.dev/",
+            "image": "https://claralivia.dev/og-image.png",
+            "jobTitle": "Desenvolvedora Fullstack Pleno",
+            "worksFor": { "@type": "Organization", "name": "Cotabox" },
+            "address": { "@type": "PostalAddress", "addressLocality": "Fortaleza", "addressRegion": "CE", "addressCountry": "BR" },
+            "alumniOf": [
+              { "@type": "EducationalOrganization", "name": "Instituto Federal do Ceará (IFCE)" },
+              { "@type": "CollegeOrUniversity", "name": "Universidade Estácio de Sá" }
+            ],
+            "knowsAbout": ["Vue.js", "Node.js", "TypeScript", "NestJS", "MongoDB", "AWS", "PCI DSS"],
+            "sameAs": ["https://www.linkedin.com/in/claralivia", "https://github.com/claralivia"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://claralivia.dev/#website",
+            "url": "https://claralivia.dev/",
+            "name": "Clara Lívia",
+            "inLanguage": "pt-BR",
+            "publisher": { "@id": "https://claralivia.dev/#person" }
+          }
+        ]
+      }
+    </script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_ID%"></script>
     <script>
@@ -47,6 +100,11 @@
   </head>
   <body>
     <div id="app"></div>
+    <noscript>
+      <h1>Clara Lívia</h1>
+      <p>Desenvolvedora Fullstack Pleno em Fortaleza. Construo produtos B2B do banco de dados à interface, com foco em performance e segurança.</p>
+      <p><a href="https://www.linkedin.com/in/claralivia">LinkedIn</a> · <a href="https://github.com/claralivia">GitHub</a> · <a href="mailto:contato@claralivia.dev">contato@claralivia.dev</a></p>
+    </noscript>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
