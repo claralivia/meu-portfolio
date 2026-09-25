@@ -1,7 +1,19 @@
 {
   "about": {
     "title": "Desenvolvedora Fullstack",
-    "description": "Desenvolvedora com mais de 2 anos de experiência em startups B2B, especialista no ecossistema JavaScript e TypeScript com Vue.js e Node.js. Foco na criação de interfaces elegantes, arquiteturas de alta performance e otimização de sistemas. Possuo forte atuação em cibersegurança, adequação a normas PCI DSS e refatoração de código legado, sempre elevando a qualidade técnica através de boas práticas e mentoria de novos talentos."
+    "description": "Desenvolvedora com mais de 3 anos de experiência em startups B2B, especialista no ecossistema JavaScript e TypeScript com Vue.js e Node.js. Foco na criação de interfaces elegantes, arquiteturas de alta performance e otimização de sistemas. Possuo forte atuação em cibersegurança, adequação a normas PCI DSS e refatoração de código legado, sempre elevando a qualidade técnica através de boas práticas e mentoria de novos talentos.",
+    "role": "Desenvolvedora Fullstack Pleno",
+    "company": "Cotabox",
+    "location": "Fortaleza, CE",
+    "tagline": "Construo produtos B2B de ponta a ponta, do banco de dados à interface, com atenção a performance e segurança.",
+    "specs": [
+      { "icon": "calendar", "value": "3+ anos", "label": "de experiência" },
+      { "icon": "shield", "value": "PCI DSS", "label": "senhas e MFA" },
+      { "icon": "mentor", "value": "Mentoria", "label": "de novos devs" },
+      { "icon": "code", "value": "Vue + Node", "label": "stack principal" }
+    ],
+    "more": "Mais sobre mim",
+    "available": "Disponível para projetos freelance"
   },
   "buttons": {
     "linkedin": "LinkedIn",
@@ -11,45 +23,50 @@
   },
   "education": {
     "title": "Formação e Certificações",
-    "items": [
+    "degreesTitle": "Formação acadêmica",
+    "certificationsTitle": "Certificações",
+    "certificationDone": "Concluída",
+    "degrees": [
       {
-        "title": "Análise e Desenvolvimento de Sistemas (ADS)",
+        "kind": "Tecnólogo",
+        "title": "Análise e Desenvolvimento de Sistemas",
         "institution": "Universidade Estácio de Sá (UNESA)",
-        "date": "Cursando (5º Semestre de 5) | Previsão de Conclusão: Dez/2026",
-        "type": "degree"
+        "period": "Previsão de conclusão: Dez/2026",
+        "status": "progress",
+        "statusLabel": "Cursando · 5º de 5 semestres"
       },
       {
-        "title": "Boas Práticas em Segurança da Informação e Cyber",
-        "institution": "Udemy",
-        "date": "Certificação Concluída",
-        "type": "certification"
+        "kind": "Bacharelado",
+        "title": "Sistemas e Mídias Digitais",
+        "institution": "Universidade Federal do Ceará (UFC)",
+        "period": "Ago/2023 – Abr/2025",
+        "status": "paused",
+        "statusLabel": "Trancado no 4º semestre"
       },
       {
-        "title": "OWASP top 10 Web Application Security for Absolute Beginners",
-        "institution": "Udemy",
-        "date": "Certificação Concluída",
-        "type": "certification"
-      },
-      {
-        "title": "Fundamentos do Design da Experiência do Usuário",
-        "institution": "Coursera + Google",
-        "date": "Certificação Concluída",
-        "type": "certification"
-      },
-      {
+        "kind": "Técnico",
         "title": "Técnico em Informática",
         "institution": "Instituto Federal do Ceará (IFCE)",
-        "date": "2018 - 2022 (Completo)",
-        "type": "technical"
+        "period": "2018 – 2022",
+        "status": "done",
+        "statusLabel": "Concluído"
       }
+    ],
+    "certifications": [
+      { "title": "Boas Práticas em Segurança da Informação e Cyber", "issuer": "Udemy" },
+      { "title": "OWASP Top 10 Web Application Security for Absolute Beginners", "issuer": "Udemy" },
+      { "title": "Fundamentos do Design da Experiência do Usuário", "issuer": "Coursera + Google" }
     ]
   },
   "experience": {
     "title": "Experiência Profissional",
+    "current": "Atual",
+    "companyName": "Cotabox",
+    "companyLegal": "Cotabox Tecnologia e Software LTDA",
+    "companyPeriod": "Nov/2023 – hoje",
     "jobs": [
       {
         "title": "Desenvolvedora Fullstack Pleno",
-        "company": "COTABOX TECNOLOGIA E SOFTWARE LTDA",
         "date": "Novembro/2025 - Presente",
         "points": [
           "Liderança técnica de projetos de desenvolvimento.",
@@ -59,17 +76,15 @@
       },
       {
         "title": "Desenvolvedora Fullstack Jr.",
-        "company": "COTABOX TECNOLOGIA E SOFTWARE LTDA",
         "date": "Julho/2024 - Novembro/2025",
         "points": [
           "Liderei a otimização de performance da aplicação, reestruturando queries lentas em MongoDB e refatorando gargalos no código.",
           "Responsável pela mentoria técnica e processo de onboarding de novos estagiários na stack da empresa.",
-          "Participação ativa no processo de certificação de segurança PCI DSS, adequando componentes do sistema aos padrões exigidos."
+          "Atuei na adequação do sistema aos requisitos do PCI DSS, com foco em segurança de autenticação: políticas de senha e autenticação multifator (MFA)."
         ]
       },
       {
         "title": "Estagiária em Desenvolvimento Fullstack",
-        "company": "COTABOX TECNOLOGIA E SOFTWARE LTDA",
         "date": "Novembro/2023 - Julho/2024",
         "points": ["Criação de componentes de interface responsivos com Vue.js e colaboração em metodologias ágeis."]
       }
@@ -84,7 +99,47 @@
     },
     "items": [
       {
+        "title": "Sinc",
+        "slug": "sinc",
+        "description": "App full-stack de finanças para casais: divide despesas, controla cartões, parcelamentos, gastos fixos e metas, e mostra quem deve quanto a quem. Com IA (Gemini), escrever \"almoço 25 pix\" já preenche o lançamento, e dá para registrar gastos pelo WhatsApp.",
+        "tags": [
+          "Vue.js 3",
+          "TypeScript",
+          "Node.js",
+          "Express",
+          "MongoDB",
+          "Supabase",
+          "Gemini",
+          "Pinia",
+          "ApexCharts",
+          "Tailwind CSS",
+          "Vercel"
+        ],
+        "githubUrls": [
+          { "label": "Front", "url": "https://github.com/claralivia/sinc-web" },
+          { "label": "API", "url": "https://github.com/claralivia/sinc-api" }
+        ],
+        "liveUrl": "https://sinc-web-nu.vercel.app/",
+        "category": "fullstack",
+        "key": "sinc",
+        "challenge": "Organizar as finanças a dois exige saber, a cada gasto, quem pagou, como dividir e quanto cada um deve ao outro. Planilhas não acompanhavam esse dia a dia.",
+        "solution": "Uma API em Node.js/Express com MongoDB e um front em Vue 3 que centralizam lançamentos, cartões, parcelamentos, metas e gastos fixos, com um painel de saldo entre o casal e lançamento por linguagem natural via Gemini.",
+        "decisions": [
+          "Supabase apenas para autenticação: a API valida o token e mantém um espelho do usuário no MongoDB, onde ficam todos os dados de negócio.",
+          "Isolamento por casal (household): todo registro é gravado com o household de quem o criou e as consultas só retornam dados do próprio casal, permitindo vários casais na mesma base.",
+          "Divisão de gastos modelada no domínio (individual, 50/50 ou personalizada), com validação no backend de que o parceiro pertence ao mesmo casal.",
+          "Gastos fixos como moldes recorrentes: lançar o mês gera uma transação real, mantendo o histórico fiel ao que aconteceu."
+        ],
+        "highlights": [
+          "Lançamento com IA (Gemini): escrever \"almoço 25 pix\" já preenche o formulário, é só confirmar.",
+          "Registro de gastos por mensagem no WhatsApp, via WhatsApp Cloud API.",
+          "Painel com receitas x despesas, gastos por categoria e quem deve quanto a quem.",
+          "Cartões de crédito, parcelamentos em aberto e metas de economia com aportes e retiradas."
+        ]
+      },
+      {
         "title": "Minhas Finanças",
+        "slug": "minhas-financas",
         "description": "App full-stack para gestão financeira pessoal feito para substituir o uso de planilhas no dia a dia.",
         "challenge": "Planilhas de Excel não eram mais suficientes para um controle financeiro eficaz e para o acompanhamento de metas pessoais.",
         "solution": "Desenvolvi uma aplicação full-stack com backend em NestJS/GraphQL e frontend em Vue.js 3, criando dashboards interativos para um gerenciamento visual.",
@@ -92,19 +147,44 @@
         "githubUrl": "https://github.com/claralivia/financial-app",
         "liveUrl": "https://minhasfinancas-controle.vercel.app/",
         "category": "fullstack",
-        "key": "minhas-financas"
+        "key": "minhas-financas",
+        "decisions": [
+          "API GraphQL com NestJS e Apollo Server, consumida no front via Apollo Client.",
+          "Autenticação com JWT via Passport.js e fluxo de redefinição de senha por e-mail com Nodemailer.",
+          "Rotinas automáticas no backend: geração das transações de gastos fixos, fechamento de faturas e lembretes de contas a vencer."
+        ],
+        "highlights": [
+          "Dashboard com gráficos reativos e filtros por período, categoria e descrição.",
+          "Cartões de crédito com faturas mensais geradas e fechadas automaticamente.",
+          "Metas de economia e exportação das transações filtradas para CSV."
+        ]
       },
       {
         "title": "Portfólio",
+        "slug": "portfolio",
         "description": "Este portfólio dinâmico, desenvolvido com Vue 3, TypeScript e Tailwind CSS, utiliza princípios de Glassmorphism.",
         "tags": ["Vue.js 3", "TypeScript", "Tailwind CSS", "Glassmorphism", "UI/UX", "Vercel"],
         "githubUrl": "https://github.com/claralivia/meu-portfolio",
         "liveUrl": "https://claralivia.dev/",
         "category": "frontend",
-        "key": "meu-portfolio-pessoal"
+        "key": "meu-portfolio-pessoal",
+        "challenge": "Ter um portfólio que refletisse meu gosto por design (glassmorphism, dark mode e a estética da Apple) sem abrir mão de performance, principalmente no celular.",
+        "solution": "Uma aplicação em Vue 3, TypeScript e Tailwind CSS com PT/EN, páginas de estudo de caso, busca por atalho (⌘K) e efeitos de vidro que se adaptam ao dispositivo.",
+        "decisions": [
+          "Vidro adaptativo: backdrop-filter só no desktop. No celular os cards usam uma translucidez mais opaca, porque desfocar o fundo de cada card durante o scroll travava a renderização.",
+          "Blobs de fundo feitos com gradientes radiais em vez de filter: blur, com o mesmo visual e um custo de GPU bem menor.",
+          "Imagens em WebP (de ~550 KB para ~70 KB) e ícones de marca embutidos como SVG, sem dependência extra em tempo de execução.",
+          "Todo o conteúdo vive nos arquivos de tradução: adicionar um projeto ou um idioma não exige mexer em componente."
+        ],
+        "highlights": [
+          "Paleta de comandos (⌘K / Ctrl K) para navegar, trocar tema e idioma ou copiar o e-mail.",
+          "Dock de tecnologias que filtra os projetos por stack.",
+          "Indicador da seção atual e do progresso de leitura no topo da página."
+        ]
       },
       {
         "title": "Beauty Manager",
+        "slug": "beauty-manager",
         "description": "Aplicação acadêmica para agendamento em salão de beleza. O projeto também incluiu protótipos de baixa, média e alta fidelidade e um Design System adaptado.",
         "challenge": "O salão de beleza da minha mãe tinha dificuldades com agendamentos manuais, o que causava erros como marcações duplicadas ou esquecimentos.",
         "solution": "Criei uma aplicação de agendamento com uma API REST (Python/FastAPI) e um frontend em React, permitindo que clientes e administradores gerenciem horários.",
@@ -114,10 +194,18 @@
           { "label": "API", "url": "https://github.com/afonsomateus21/bm-api" }
         ],
         "category": "fullstack",
-        "key": "beauty-manager"
+        "key": "beauty-manager",
+        "decisions": [
+          "API REST em Python/FastAPI separada do front em React, com perfis ADMIN e CLIENTE e permissões distintas: administradores gerenciam serviços e profissionais, clientes agendam e cancelam horários."
+        ],
+        "highlights": [
+          "Desenvolvido em dupla na disciplina Projeto Integrado I da UFC, com 100% dos requisitos implementados.",
+          "Processo de UX completo: protótipos de baixa, média e alta fidelidade e um Design System adaptado."
+        ]
       },
       {
         "title": "CV Studio",
+        "slug": "cv-studio",
         "description": "Aplicação full-stack para gerenciamento e criação de currículos profissionais.",
         "challenge": "Facilitar a criação, o armazenamento e a formatação de currículos de maneira centralizada.",
         "solution": "Desenvolvimento de um ecossistema completo, contando com uma API robusta e um front-end interativo para a construção visual dos currículos.",
@@ -130,22 +218,39 @@
         "category": "fullstack",
         "key": "gerenciador-curriculos"
       }
-    ]
+    ],
+    "caseStudy": "Ver estudo de caso",
+    "filteringBy": "Projetos com {tech}",
+    "clearFilter": "Limpar filtro"
   },
   "skills": {
     "title": "Habilidades Técnicas",
     "categories": [
       {
+        "icon": "backend",
         "name": "Back-end",
         "items": ["Node.js", "NestJS", "Express", "GraphQL", "Serverless"]
       },
       {
+        "icon": "frontend",
         "name": "Front-end",
-        "items": ["Vue.js", "React", "Nuxt.js", "HTML5", "CSS3", "Tailwind CSS"]
+        "items": ["Vue.js", "React", "Nuxt.js", "HTML5", "CSS3", "Tailwind CSS", "Design Systems"]
       },
-      { "name": "Banco de Dados", "items": ["MongoDB", "MySQL"] },
-      { "name": "Cloud & DevOps", "items": ["AWS", "GCP", "Docker", "Git", "Grafana", "Datadog", "Percona"] },
-      { "name": "Ferramentas", "items": ["Jira", "Figma", "Claude Code", "GitHub Copilot", "Gemini", "Codex"] }
+      {
+        "icon": "database",
+        "name": "Banco de Dados",
+        "items": ["MongoDB", "MySQL", "PostgreSQL"]
+      },
+      {
+        "icon": "cloud",
+        "name": "Cloud & DevOps",
+        "items": ["AWS", "GCP", "Docker", "Git", "Grafana", "Datadog", "Percona"]
+      },
+      {
+        "icon": "tools",
+        "name": "Ferramentas",
+        "items": ["Jira", "Figma", "Claude Code", "GitHub Copilot", "Gemini", "Codex"]
+      }
     ]
   },
   "contact": {
@@ -174,10 +279,116 @@
     "toggleTheme": "Mudar Tema",
     "changeLanguage": "Mudar idioma",
     "openMenu": "Abrir menu",
-    "closeMenu": "Fechar menu"
+    "closeMenu": "Fechar menu",
+    "skills": "Habilidades",
+    "search": "Buscar"
   },
   "footer": {
     "credit": "Projetado & Construído por Clara Lívia",
-    "rights": "Todos os direitos reservados."
+    "rights": "Todos os direitos reservados.",
+    "colophon": "Feito com Vue 3, TypeScript e Tailwind CSS",
+    "source": "Código aberto no GitHub"
+  },
+  "palette": {
+    "placeholder": "Buscar seções, projetos ou ações…",
+    "groups": {
+      "navigation": "Navegação",
+      "projects": "Projetos",
+      "actions": "Ações"
+    },
+    "actions": {
+      "copyEmail": "Copiar e-mail",
+      "toggleTheme": "Alternar tema",
+      "toggleLanguage": "Mudar idioma",
+      "openGithub": "Abrir GitHub",
+      "openLinkedin": "Abrir LinkedIn"
+    },
+    "copied": "E-mail copiado!",
+    "empty": "Nada encontrado.",
+    "hint": "navegar",
+    "select": "abrir"
+  },
+  "dock": {
+    "hint": "Escolha uma tecnologia para filtrar os projetos",
+    "filterBy": "Filtrar projetos por {tech}",
+    "projects": "{n} projeto | {n} projetos"
+  },
+  "caseStudy": {
+    "back": "Todos os projetos",
+    "challenge": "O desafio",
+    "solution": "A solução",
+    "decisions": "Decisões técnicas",
+    "highlights": "Destaques",
+    "stack": "Stack completa",
+    "prev": "Anterior",
+    "next": "Próximo",
+    "more": "Mais projetos",
+    "code": "Código",
+    "screenshot": "Tela do projeto"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "O endereço que você acessou não existe ou foi movido.",
+    "back": "Voltar ao início"
+  },
+  "aboutPage": {
+    "title": "Sobre mim",
+    "back": "Voltar ao início",
+    "lead": "Desenvolvedora fullstack que gosta de resolver problemas com programação: os meus e, principalmente, os das pessoas ao meu redor.",
+    "traits": ["Resoluta", "Centrada", "Um pouco tímida", "Sempre estudando"],
+    "stat": {
+      "value": "3+",
+      "label": "anos construindo software"
+    },
+    "journeyTitle": "Trajetória",
+    "journey": [
+      { "period": "2018 – 2022", "title": "Técnico em Informática", "place": "Instituto Federal do Ceará (IFCE)", "type": "education" },
+      {
+        "period": "Set/2022 – Nov/2023",
+        "title": "Auxiliar Pedagógica · Salas de Inovação",
+        "place": "SME Fortaleza · Escola Municipal Creusa do Carmo Rocha",
+        "note": "Voluntariado com ajuda de custo",
+        "type": "volunteer"
+      },
+      {
+        "period": "Ago/2023 – Abr/2025",
+        "title": "Sistemas e Mídias Digitais (Bacharelado)",
+        "place": "Universidade Federal do Ceará (UFC)",
+        "note": "Trancado no 4º semestre",
+        "type": "paused"
+      },
+      { "period": "Nov/2023", "title": "Estagiária em Desenvolvimento Fullstack", "place": "Cotabox", "type": "work" },
+      { "period": "Jul/2024", "title": "Desenvolvedora Fullstack Jr.", "place": "Cotabox", "type": "work" },
+      { "period": "Nov/2025 – hoje", "title": "Desenvolvedora Fullstack Pleno", "place": "Cotabox", "type": "work", "current": true },
+      {
+        "period": "Dez/2026 · previsão",
+        "title": "Análise e Desenvolvimento de Sistemas",
+        "place": "Universidade Estácio de Sá",
+        "type": "education"
+      }
+    ],
+    "howTitle": "Como eu trabalho",
+    "how": [
+      {
+        "icon": "solve",
+        "title": "Resolver o problema de verdade",
+        "text": "Entendo a causa antes de propor a solução, seja um bug crítico ou uma query lenta."
+      },
+      { "icon": "help", "title": "Ajudar quem está do lado", "text": "Mentoria e onboarding de novos devs fazem parte da minha rotina." },
+      { "icon": "focus", "title": "Foco até o fim", "text": "Quando assumo uma tarefa, levo até ela estar pronta, testada e no ar." }
+    ],
+    "nowTitle": "Agora",
+    "now": "Concluindo Análise e Desenvolvimento de Sistemas e aprofundando segurança de aplicações e UX.",
+    "hobbiesTitle": "Fora do código",
+    "hobbies": [
+      { "icon": "games", "title": "Videogame", "text": "Gosto muito de jogar." },
+      { "icon": "pets", "title": "Pets", "text": "Sou doida por bichinhos." },
+      { "icon": "coffee", "title": "Café", "text": "Muito, muito café." },
+      { "icon": "beach", "title": "Praia", "text": "De preferência com água de coco." },
+      { "icon": "family", "title": "Família", "text": "Sou muito família." },
+      { "icon": "study", "title": "Estudar", "text": "Sempre tem algo novo pra aprender." }
+    ],
+    "ctaText": "Freelance, vaga ou só um café virtual: me chama.",
+    "ctaButton": "Entrar em contato"
   }
 }
