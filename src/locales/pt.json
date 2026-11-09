@@ -1,5 +1,7 @@
 {
-  "seo": { "description": "Desenvolvedora Fullstack Pleno em Fortaleza. Construo produtos B2B do banco de dados à interface, com foco em performance e segurança." },
+  "seo": {
+    "description": "Desenvolvedora Fullstack Pleno em Fortaleza. Construo produtos B2B do banco de dados à interface, com foco em performance e segurança."
+  },
   "about": {
     "title": "Desenvolvedora Fullstack",
     "description": "Desenvolvedora com mais de 3 anos de experiência em startups B2B, especialista no ecossistema JavaScript e TypeScript com Vue.js e Node.js. Foco na criação de interfaces elegantes, arquiteturas de alta performance e otimização de sistemas. Possuo forte atuação em cibersegurança, adequação a normas PCI DSS e refatoração de código legado, sempre elevando a qualidade técnica através de boas práticas e mentoria de novos talentos.",
@@ -8,13 +10,30 @@
     "location": "Fortaleza, CE",
     "tagline": "Construo produtos B2B de ponta a ponta, do banco de dados à interface, com atenção a performance e segurança.",
     "specs": [
-      { "icon": "calendar", "value": "3+ anos", "label": "de experiência" },
-      { "icon": "shield", "value": "PCI DSS", "label": "senhas e MFA" },
-      { "icon": "mentor", "value": "Mentoria", "label": "de novos devs" },
-      { "icon": "code", "value": "Vue + Node", "label": "stack principal" }
+      {
+        "icon": "calendar",
+        "value": "3+ anos",
+        "label": "de experiência"
+      },
+      {
+        "icon": "shield",
+        "value": "PCI DSS",
+        "label": "senhas e MFA"
+      },
+      {
+        "icon": "mentor",
+        "value": "Mentoria",
+        "label": "de novos devs"
+      },
+      {
+        "icon": "code",
+        "value": "Vue + Node",
+        "label": "stack principal"
+      }
     ],
     "more": "Mais sobre mim",
-    "available": "Disponível para projetos freelance"
+    "available": "Disponível para projetos freelance",
+    "cta": "Ver projetos"
   },
   "buttons": {
     "linkedin": "LinkedIn",
@@ -54,9 +73,18 @@
       }
     ],
     "certifications": [
-      { "title": "Boas Práticas em Segurança da Informação e Cyber", "issuer": "Udemy" },
-      { "title": "OWASP Top 10 Web Application Security for Absolute Beginners", "issuer": "Udemy" },
-      { "title": "Fundamentos do Design da Experiência do Usuário", "issuer": "Coursera + Google" }
+      {
+        "title": "Boas Práticas em Segurança da Informação e Cyber",
+        "issuer": "Udemy"
+      },
+      {
+        "title": "OWASP Top 10 Web Application Security for Absolute Beginners",
+        "issuer": "Udemy"
+      },
+      {
+        "title": "Fundamentos do Design da Experiência do Usuário",
+        "issuer": "Coursera + Google"
+      }
     ]
   },
   "experience": {
@@ -73,7 +101,8 @@
           "Liderança técnica de projetos de desenvolvimento.",
           "Responsável pela mentoria de novos talentos e organização da área de desenvolvimento.",
           "Atuação direta na resolução de bugs críticos e implementação de melhorias complexas no sistema."
-        ]
+        ],
+        "summary": "Liderança técnica e mentoria."
       },
       {
         "title": "Desenvolvedora Fullstack Jr.",
@@ -82,12 +111,16 @@
           "Liderei a otimização de performance da aplicação, reestruturando queries lentas em MongoDB e refatorando gargalos no código.",
           "Responsável pela mentoria técnica e processo de onboarding de novos estagiários na stack da empresa.",
           "Atuei na adequação do sistema aos requisitos do PCI DSS, com foco em segurança de autenticação: políticas de senha e autenticação multifator (MFA)."
-        ]
+        ],
+        "summary": "Performance, segurança e mentoria."
       },
       {
         "title": "Estagiária em Desenvolvimento Fullstack",
         "date": "Novembro/2023 - Julho/2024",
-        "points": ["Criação de componentes de interface responsivos com Vue.js e colaboração em metodologias ágeis."]
+        "points": [
+          "Criação de componentes de interface responsivos com Vue.js e colaboração em metodologias ágeis."
+        ],
+        "summary": "Primeiros passos com Vue.js."
       }
     ]
   },
@@ -99,6 +132,71 @@
       "fullstack": "Full-stack"
     },
     "items": [
+      {
+        "title": "Portfólio",
+        "slug": "portfolio",
+        "description": "Este portfólio dinâmico, desenvolvido com Vue 3, TypeScript e Tailwind CSS, utiliza princípios de Glassmorphism.",
+        "tags": [
+          "Vue.js 3",
+          "TypeScript",
+          "Tailwind CSS",
+          "Glassmorphism",
+          "UI/UX",
+          "Vercel"
+        ],
+        "githubUrl": "https://github.com/claralivia/meu-portfolio",
+        "liveUrl": "https://claralivia.dev/",
+        "category": "frontend",
+        "key": "meu-portfolio-pessoal",
+        "challenge": "Ter um portfólio que refletisse meu gosto por design (glassmorphism, dark mode e a estética da Apple) sem abrir mão de performance, principalmente no celular.",
+        "solution": "Uma aplicação em Vue 3, TypeScript e Tailwind CSS com PT/EN, páginas de estudo de caso, busca por atalho (⌘K) e efeitos de vidro que se adaptam ao dispositivo.",
+        "decisions": [
+          "Vidro adaptativo: backdrop-filter só no desktop. No celular os cards usam uma translucidez mais opaca, porque desfocar o fundo de cada card durante o scroll travava a renderização.",
+          "Blobs de fundo feitos com gradientes radiais em vez de filter: blur, com o mesmo visual e um custo de GPU bem menor.",
+          "Imagens em WebP (de ~550 KB para ~70 KB) e ícones de marca embutidos como SVG, sem dependência extra em tempo de execução.",
+          "Todo o conteúdo vive nos arquivos de tradução: adicionar um projeto ou um idioma não exige mexer em componente."
+        ],
+        "highlights": [
+          "Paleta de comandos (⌘K / Ctrl K) para navegar, trocar tema e idioma ou copiar o e-mail.",
+          "Dock de tecnologias que filtra os projetos por stack.",
+          "Indicador da seção atual e do progresso de leitura no topo da página."
+        ],
+        "tagline": "Este site: Vue 3, vidro adaptativo e estudos de caso."
+      },
+      {
+        "title": "House Pink",
+        "slug": "house-pink",
+        "description": "Site e sistema de agendamento online do salão da minha mãe: página inicial, agendamento com ou sem conta, painel das profissionais com agenda, clientes e ganhos, e aulas em vídeo para aprender a usar tudo.",
+        "tags": [
+          "React",
+          "Vite",
+          "Supabase",
+          "PostgreSQL",
+          "Vercel",
+          "UI/UX",
+          "Design System"
+        ],
+        "githubUrl": "https://github.com/claralivia/house-pink",
+        "liveUrl": "https://housepinknl.vercel.app/",
+        "category": "fullstack",
+        "key": "house-pink",
+        "challenge": "O salão marcava tudo pelo WhatsApp, à mão, sem controle dos ganhos. As profissionais e muitas clientes têm pouca familiaridade com tecnologia, então cada tela precisava ser simples e falar a língua do salão.",
+        "solution": "Um site em React com agendamento em poucos toques, com ou sem conta, e um painel para cada profissional gerir agenda, clientes, serviços e ganhos, sobre o Supabase (PostgreSQL com políticas de acesso e funções no banco).",
+        "decisions": [
+          "Regras no banco, não só na tela: Row Level Security e funções no PostgreSQL decidem quem lê e quem agenda, e uma restrição de exclusão impede dois horários da mesma profissional se sobreporem, mesmo com duas pessoas marcando ao mesmo tempo.",
+          "Um só login para os dois papéis: o vínculo da conta com uma profissional decide se a pessoa vai para o painel ou para a conta de cliente, sem tela de escolha.",
+          "Privacidade por política de acesso: os valores só aparecem para quem entrou na conta e os ganhos de cada profissional são só dela.",
+          "Tudo pode ser corrigido, com confirmação: desfazer, apagar e excluir. Serviço ou cliente com histórico não é apagado sem aviso, para não perder ganhos antigos.",
+          "Mesmo visual da página inicial em todas as telas, pensado primeiro para o celular, com alvos de toque de 48 px."
+        ],
+        "highlights": [
+          "Agendamento sem conta (só nome e WhatsApp) ou com conta, com horários calculados a partir da agenda, das folgas e do prazo de cada profissional.",
+          "Painel da profissional: agenda por dia e por semana, clientes com importação de planilha, ganhos com fechamento por período e edição de serviços, fotos e perfil.",
+          "Central de aulas com 21 vídeos curtos narrados, com círculo de toque e legenda, gerados por uma ferramenta própria a partir de prints do app.",
+          "Conta da cliente com saudação, foto, avaliação do atendimento e o feed das profissionais."
+        ],
+        "tagline": "Site e agendamento online do salão da minha mãe, com painel para as profissionais."
+      },
       {
         "title": "Sinc",
         "slug": "sinc",
@@ -117,8 +215,14 @@
           "Vercel"
         ],
         "githubUrls": [
-          { "label": "Front", "url": "https://github.com/claralivia/sinc-web" },
-          { "label": "API", "url": "https://github.com/claralivia/sinc-api" }
+          {
+            "label": "Front",
+            "url": "https://github.com/claralivia/sinc-web"
+          },
+          {
+            "label": "API",
+            "url": "https://github.com/claralivia/sinc-api"
+          }
         ],
         "liveUrl": "https://sinc-web-nu.vercel.app/",
         "category": "fullstack",
@@ -136,7 +240,8 @@
           "Registro de gastos por mensagem no WhatsApp, via WhatsApp Cloud API.",
           "Painel com receitas x despesas, gastos por categoria e quem deve quanto a quem.",
           "Cartões de crédito, parcelamentos em aberto e metas de economia com aportes e retiradas."
-        ]
+        ],
+        "tagline": "Finanças para casais, com lançamento por IA e pelo WhatsApp."
       },
       {
         "title": "Minhas Finanças",
@@ -144,7 +249,17 @@
         "description": "App full-stack para gestão financeira pessoal feito para substituir o uso de planilhas no dia a dia.",
         "challenge": "Planilhas de Excel não eram mais suficientes para um controle financeiro eficaz e para o acompanhamento de metas pessoais.",
         "solution": "Desenvolvi uma aplicação full-stack com backend em NestJS/GraphQL e frontend em Vue.js 3, criando dashboards interativos para um gerenciamento visual.",
-        "tags": ["Vue.js 3", "NestJS", "GraphQL", "MongoDB", "TypeScript", "Tailwind CSS", "Vercel", "Render", "Monorepo"],
+        "tags": [
+          "Vue.js 3",
+          "NestJS",
+          "GraphQL",
+          "MongoDB",
+          "TypeScript",
+          "Tailwind CSS",
+          "Vercel",
+          "Render",
+          "Monorepo"
+        ],
         "githubUrl": "https://github.com/claralivia/financial-app",
         "liveUrl": "https://minhasfinancas-controle.vercel.app/",
         "category": "fullstack",
@@ -158,30 +273,8 @@
           "Dashboard com gráficos reativos e filtros por período, categoria e descrição.",
           "Cartões de crédito com faturas mensais geradas e fechadas automaticamente.",
           "Metas de economia e exportação das transações filtradas para CSV."
-        ]
-      },
-      {
-        "title": "Portfólio",
-        "slug": "portfolio",
-        "description": "Este portfólio dinâmico, desenvolvido com Vue 3, TypeScript e Tailwind CSS, utiliza princípios de Glassmorphism.",
-        "tags": ["Vue.js 3", "TypeScript", "Tailwind CSS", "Glassmorphism", "UI/UX", "Vercel"],
-        "githubUrl": "https://github.com/claralivia/meu-portfolio",
-        "liveUrl": "https://claralivia.dev/",
-        "category": "frontend",
-        "key": "meu-portfolio-pessoal",
-        "challenge": "Ter um portfólio que refletisse meu gosto por design (glassmorphism, dark mode e a estética da Apple) sem abrir mão de performance, principalmente no celular.",
-        "solution": "Uma aplicação em Vue 3, TypeScript e Tailwind CSS com PT/EN, páginas de estudo de caso, busca por atalho (⌘K) e efeitos de vidro que se adaptam ao dispositivo.",
-        "decisions": [
-          "Vidro adaptativo: backdrop-filter só no desktop. No celular os cards usam uma translucidez mais opaca, porque desfocar o fundo de cada card durante o scroll travava a renderização.",
-          "Blobs de fundo feitos com gradientes radiais em vez de filter: blur, com o mesmo visual e um custo de GPU bem menor.",
-          "Imagens em WebP (de ~550 KB para ~70 KB) e ícones de marca embutidos como SVG, sem dependência extra em tempo de execução.",
-          "Todo o conteúdo vive nos arquivos de tradução: adicionar um projeto ou um idioma não exige mexer em componente."
         ],
-        "highlights": [
-          "Paleta de comandos (⌘K / Ctrl K) para navegar, trocar tema e idioma ou copiar o e-mail.",
-          "Dock de tecnologias que filtra os projetos por stack.",
-          "Indicador da seção atual e do progresso de leitura no topo da página."
-        ]
+        "tagline": "Gestão financeira pessoal com dashboards, cartões e metas."
       },
       {
         "title": "Beauty Manager",
@@ -189,10 +282,26 @@
         "description": "Aplicação acadêmica para agendamento em salão de beleza. O projeto também incluiu protótipos de baixa, média e alta fidelidade e um Design System adaptado.",
         "challenge": "O salão de beleza da minha mãe tinha dificuldades com agendamentos manuais, o que causava erros como marcações duplicadas ou esquecimentos.",
         "solution": "Criei uma aplicação de agendamento com uma API REST (Python/FastAPI) e um frontend em React, permitindo que clientes e administradores gerenciem horários.",
-        "tags": ["React", "Python", "FastAPI", "MongoDB", "Supabase", "Tailwind CSS", "Render", "UI/UX", "Design System"],
+        "tags": [
+          "React",
+          "Python",
+          "FastAPI",
+          "MongoDB",
+          "Supabase",
+          "Tailwind CSS",
+          "Render",
+          "UI/UX",
+          "Design System"
+        ],
         "githubUrls": [
-          { "label": "Front", "url": "https://github.com/afonsomateus21/bm-web" },
-          { "label": "API", "url": "https://github.com/afonsomateus21/bm-api" }
+          {
+            "label": "Front",
+            "url": "https://github.com/afonsomateus21/bm-web"
+          },
+          {
+            "label": "API",
+            "url": "https://github.com/afonsomateus21/bm-api"
+          }
         ],
         "category": "fullstack",
         "key": "beauty-manager",
@@ -202,7 +311,8 @@
         "highlights": [
           "Desenvolvido em dupla na disciplina Projeto Integrado I da UFC, com 100% dos requisitos implementados.",
           "Processo de UX completo: protótipos de baixa, média e alta fidelidade e um Design System adaptado."
-        ]
+        ],
+        "tagline": "Agendamento para salão de beleza, com API em FastAPI."
       },
       {
         "title": "CV Studio",
@@ -210,14 +320,30 @@
         "description": "Aplicação full-stack para gerenciamento e criação de currículos profissionais.",
         "challenge": "Facilitar a criação, o armazenamento e a formatação de currículos de maneira centralizada.",
         "solution": "Desenvolvimento de um ecossistema completo, contando com uma API robusta e um front-end interativo para a construção visual dos currículos.",
-        "tags": ["Vue.js 3", "Node.js", "TypeScript", "MongoDB", "Supabase", "Tailwind CSS", "Vercel", "Render"],
+        "tags": [
+          "Vue.js 3",
+          "Node.js",
+          "TypeScript",
+          "MongoDB",
+          "Supabase",
+          "Tailwind CSS",
+          "Vercel",
+          "Render"
+        ],
         "githubUrls": [
-          { "label": "Front", "url": "https://github.com/claralivia/curriculos-frontend" },
-          { "label": "API", "url": "https://github.com/claralivia/curriculos-backend" }
+          {
+            "label": "Front",
+            "url": "https://github.com/claralivia/curriculos-frontend"
+          },
+          {
+            "label": "API",
+            "url": "https://github.com/claralivia/curriculos-backend"
+          }
         ],
         "liveUrl": "https://cv-studio-beta.vercel.app/",
         "category": "fullstack",
-        "key": "gerenciador-curriculos"
+        "key": "gerenciador-curriculos",
+        "tagline": "Criação e gerenciamento de currículos profissionais."
       }
     ],
     "caseStudy": "Ver estudo de caso",
@@ -230,27 +356,60 @@
       {
         "icon": "backend",
         "name": "Back-end",
-        "items": ["Node.js", "NestJS", "Express", "GraphQL", "Serverless"]
+        "items": [
+          "Node.js",
+          "NestJS",
+          "Express",
+          "GraphQL",
+          "Serverless"
+        ]
       },
       {
         "icon": "frontend",
         "name": "Front-end",
-        "items": ["Vue.js", "React", "Nuxt.js", "HTML5", "CSS3", "Tailwind CSS", "Design Systems"]
+        "items": [
+          "Vue.js",
+          "React",
+          "Nuxt.js",
+          "HTML5",
+          "CSS3",
+          "Tailwind CSS",
+          "Design Systems"
+        ]
       },
       {
         "icon": "database",
         "name": "Banco de Dados",
-        "items": ["MongoDB", "MySQL", "PostgreSQL"]
+        "items": [
+          "MongoDB",
+          "MySQL",
+          "PostgreSQL"
+        ]
       },
       {
         "icon": "cloud",
         "name": "Cloud & DevOps",
-        "items": ["AWS", "GCP", "Docker", "Git", "Grafana", "Datadog", "Percona"]
+        "items": [
+          "AWS",
+          "GCP",
+          "Docker",
+          "Git",
+          "Grafana",
+          "Datadog",
+          "Percona"
+        ]
       },
       {
         "icon": "tools",
         "name": "Ferramentas",
-        "items": ["Jira", "Figma", "Claude Code", "GitHub Copilot", "Gemini", "Codex"]
+        "items": [
+          "Jira",
+          "Figma",
+          "Claude Code",
+          "GitHub Copilot",
+          "Gemini",
+          "Codex"
+        ]
       }
     ]
   },
@@ -282,7 +441,8 @@
     "openMenu": "Abrir menu",
     "closeMenu": "Fechar menu",
     "skills": "Habilidades",
-    "search": "Buscar"
+    "search": "Buscar",
+    "menu": "Menu principal"
   },
   "footer": {
     "credit": "Projetado & Construído por Clara Lívia",
@@ -336,14 +496,24 @@
     "title": "Sobre mim",
     "back": "Voltar ao início",
     "lead": "Desenvolvedora fullstack que gosta de resolver problemas com programação: os meus e, principalmente, os das pessoas ao meu redor.",
-    "traits": ["Resoluta", "Centrada", "Um pouco tímida", "Sempre estudando"],
+    "traits": [
+      "Resoluta",
+      "Centrada",
+      "Um pouco tímida",
+      "Sempre estudando"
+    ],
     "stat": {
       "value": "3+",
       "label": "anos construindo software"
     },
     "journeyTitle": "Trajetória",
     "journey": [
-      { "period": "2018 – 2022", "title": "Técnico em Informática", "place": "Instituto Federal do Ceará (IFCE)", "type": "education" },
+      {
+        "period": "2018 – 2022",
+        "title": "Técnico em Informática",
+        "place": "Instituto Federal do Ceará (IFCE)",
+        "type": "education"
+      },
       {
         "period": "Set/2022 – Nov/2023",
         "title": "Auxiliar Pedagógica · Salas de Inovação",
@@ -358,9 +528,25 @@
         "note": "Trancado no 4º semestre",
         "type": "paused"
       },
-      { "period": "Nov/2023", "title": "Estagiária em Desenvolvimento Fullstack", "place": "Cotabox", "type": "work" },
-      { "period": "Jul/2024", "title": "Desenvolvedora Fullstack Jr.", "place": "Cotabox", "type": "work" },
-      { "period": "Nov/2025 – hoje", "title": "Desenvolvedora Fullstack Pleno", "place": "Cotabox", "type": "work", "current": true },
+      {
+        "period": "Nov/2023",
+        "title": "Estagiária em Desenvolvimento Fullstack",
+        "place": "Cotabox",
+        "type": "work"
+      },
+      {
+        "period": "Jul/2024",
+        "title": "Desenvolvedora Fullstack Jr.",
+        "place": "Cotabox",
+        "type": "work"
+      },
+      {
+        "period": "Nov/2025 – hoje",
+        "title": "Desenvolvedora Fullstack Pleno",
+        "place": "Cotabox",
+        "type": "work",
+        "current": true
+      },
       {
         "period": "Dez/2026 · previsão",
         "title": "Análise e Desenvolvimento de Sistemas",
@@ -375,19 +561,51 @@
         "title": "Resolver o problema de verdade",
         "text": "Entendo a causa antes de propor a solução, seja um bug crítico ou uma query lenta."
       },
-      { "icon": "help", "title": "Ajudar quem está do lado", "text": "Mentoria e onboarding de novos devs fazem parte da minha rotina." },
-      { "icon": "focus", "title": "Foco até o fim", "text": "Quando assumo uma tarefa, levo até ela estar pronta, testada e no ar." }
+      {
+        "icon": "help",
+        "title": "Ajudar quem está do lado",
+        "text": "Mentoria e onboarding de novos devs fazem parte da minha rotina."
+      },
+      {
+        "icon": "focus",
+        "title": "Foco até o fim",
+        "text": "Quando assumo uma tarefa, levo até ela estar pronta, testada e no ar."
+      }
     ],
     "nowTitle": "Agora",
     "now": "Concluindo Análise e Desenvolvimento de Sistemas e aprofundando segurança de aplicações e UX.",
     "hobbiesTitle": "Fora do código",
     "hobbies": [
-      { "icon": "games", "title": "Videogame", "text": "Gosto muito de jogar." },
-      { "icon": "pets", "title": "Pets", "text": "Sou doida por bichinhos." },
-      { "icon": "coffee", "title": "Café", "text": "Muito, muito café." },
-      { "icon": "beach", "title": "Praia", "text": "De preferência com água de coco." },
-      { "icon": "family", "title": "Família", "text": "Sou muito família." },
-      { "icon": "study", "title": "Estudar", "text": "Sempre tem algo novo pra aprender." }
+      {
+        "icon": "games",
+        "title": "Videogame",
+        "text": "Gosto muito de jogar."
+      },
+      {
+        "icon": "pets",
+        "title": "Pets",
+        "text": "Sou doida por bichinhos."
+      },
+      {
+        "icon": "coffee",
+        "title": "Café",
+        "text": "Muito, muito café."
+      },
+      {
+        "icon": "beach",
+        "title": "Praia",
+        "text": "De preferência com água de coco."
+      },
+      {
+        "icon": "family",
+        "title": "Família",
+        "text": "Sou muito família."
+      },
+      {
+        "icon": "study",
+        "title": "Estudar",
+        "text": "Sempre tem algo novo pra aprender."
+      }
     ],
     "ctaText": "Freelance, vaga ou só um café virtual: me chama.",
     "ctaButton": "Entrar em contato"

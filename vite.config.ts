@@ -10,7 +10,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules')) {
+          if (id.includes('node_modules')) {
             if (id.includes('vue') || id.includes('vue-i18n') || id.includes('@vueuse')) {
               return 'vendor-core'
             }

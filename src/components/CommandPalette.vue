@@ -43,7 +43,7 @@ let previousFocus: HTMLElement | null = null
 
 const isLocked = useScrollLock(typeof document !== 'undefined' ? document.body : null)
 
-const sections = ['about', 'projects', 'skills', 'education', 'experience', 'contact']
+const sections = ['projects', 'experience', 'contact']
 
 const contact = computed(() => tm('contact') as { email: string; githubUrl: string; linkedinUrl: string })
 
@@ -210,7 +210,7 @@ onKeyStroke('Escape', () => {
           role="dialog"
           aria-modal="true"
           :aria-label="t('navbar.search')"
-          class="palette w-full max-w-xl overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-white/80 to-white/60 dark:from-neutral-800/80 dark:to-neutral-900/70 backdrop-blur-3xl border border-white/60 dark:border-neutral-700/50 shadow-2xl shadow-black/20 dark:shadow-black/50"
+          class="palette w-full max-w-xl overflow-hidden rounded-2xl glass !bg-white/85 dark:!bg-neutral-900/80 shadow-2xl"
         >
           <div class="flex items-center gap-3 px-5 border-b border-black/5 dark:border-white/10">
             <MagnifyingGlassIcon class="w-5 h-5 shrink-0 text-neutral-500 dark:text-gray-400" />

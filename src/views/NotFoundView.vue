@@ -14,20 +14,15 @@ if (route.name === 'not-found') {
 </script>
 
 <template>
-  <section class="min-h-[60vh] flex items-center justify-center py-16">
-    <div class="card-glass p-8 sm:p-12 text-center max-w-lg">
-      <div class="relative z-10">
-        <p class="text-6xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-500 to-emerald-500 dark:from-blue-400 dark:via-purple-400 dark:to-emerald-400 mb-4">404</p>
-        <h1 class="text-2xl font-bold text-neutral-900 dark:text-white mb-3">{{ t('notFound.title') }}</h1>
-        <p class="text-gray-600 dark:text-gray-300 mb-8">{{ t('notFound.description') }}</p>
-        <RouterLink
-          to="/"
-          class="inline-flex items-center gap-2 font-medium py-3 px-6 rounded-2xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 shadow-lg shadow-black/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 text-neutral-900 dark:text-white"
-        >
-          <ArrowLeftIcon class="w-4 h-4" />
-          {{ t('notFound.back') }}
-        </RouterLink>
-      </div>
+  <section class="flex min-h-[100svh] items-center py-28">
+    <div>
+      <p class="text-[clamp(5rem,18vw,10rem)] font-semibold leading-none text-ink/15" style="letter-spacing: -0.05em">404</p>
+      <h1 class="mt-4 text-3xl font-semibold text-ink" style="letter-spacing: -0.03em">{{ t('notFound.title') }}</h1>
+      <p class="mt-3 max-w-[40ch] text-muted">{{ t('notFound.description') }}</p>
+      <RouterLink to="/" class="pill-glass mt-8">
+        <ArrowLeftIcon class="h-4 w-4" />
+        {{ t('notFound.back') }}
+      </RouterLink>
     </div>
   </section>
 </template>

@@ -1,445 +1,208 @@
 <script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { computed, ref, onMounted, watch } from 'vue'
-import { useIntersectionObserver } from '@vueuse/core'
-import GithubIcon from './icons/GithubIcon.vue'
-import { ArrowTopRightOnSquareIcon, ArrowRightIcon, XMarkIcon } from '@heroicons/vue/24/outline'
-import TechIcon from './icons/TechIcon.vue'
-import { techKey } from './icons/techIcons'
+import { ArrowUpRightIcon } from '@heroicons/vue/24/outline'
 import { useAnalytics } from '../composables/useAnalytics'
-import { useProjects } from '../composables/useProjects'
+import { useProjects, type Project } from '../composables/useProjects'
+import { useShowcase } from '../composables/useShowcase'
 
-// Cards show the main stack only; the case study page lists everything.
-const MAX_CARD_TAGS = 5
+// Screens of scrolling each project gets while the showcase is pinned.
+const SCROLL_PER_PROJECT = 70
+const MAX_STACK = 6
 
 const { t } = useI18n()
 const { trackClick } = useAnalytics()
-const { projects, selectedTech, usesTech } = useProjects()
+const { projects } = useProjects()
+const { activeIndex } = useShowcase()
 
-const filters = ['all', 'frontend', 'fullstack']
-const activeFilter = ref('all')
+const section = ref<HTMLElement | null>(null)
+const height = computed(() => `${projects.value.length * SCROLL_PER_PROJECT + 100}svh`)
 
-const selectedTechName = computed(() => {
-  if (!selectedTech.value) return ''
-  const key = selectedTech.value
-  const tag = projects.value.flatMap(p => p.tags).find(tag => techKey(tag) === key)
-  return tag?.replace(/\s+\d+$/, '') ?? key
+// The technologies a project shares with the previous one lead the list and are
+// highlighted: they are the words that connect the two projects.
+const sharedWithPrevious = computed(() => {
+  const i = activeIndex.value
+  if (i === 0) return new Set<string>()
+  const before = new Set(projects.value[i - 1]?.tags ?? [])
+  return new Set((projects.value[i]?.tags ?? []).filter((tag) => before.has(tag)))
+})
+const stack = computed(() => {
+  const tags = projects.value[activeIndex.value]?.tags ?? []
+  const shared = tags.filter((tag) => sharedWithPrevious.value.has(tag))
+  const rest = tags.filter((tag) => !sharedWithPrevious.value.has(tag))
+  return [...shared, ...rest].slice(0, MAX_STACK)
 })
 
-const filteredProjects = computed(() => {
-  let list = projects.value
-  if (activeFilter.value !== 'all') list = list.filter(p => p.category === activeFilter.value)
-  if (selectedTech.value) list = list.filter(p => usesTech(p, selectedTech.value as string))
-  return list
-})
-
-const setCategory = (filter: string) => {
-  activeFilter.value = filter
-  selectedTech.value = null
+const codeLinks = (project: Project) => {
+  if (project.githubUrls) return project.githubUrls
+  return project.githubUrl ? [{ label: t('caseStudy.code'), url: project.githubUrl }] : []
 }
 
-const displayProjects = computed(() => {
-  if (filteredProjects.value.length >= 3) {
-    return [
-      ...filteredProjects.value.map(p => ({ ...p, uniqueKey: p.key + '-p2', isClone: true })),
-      ...filteredProjects.value.map(p => ({ ...p, uniqueKey: p.key + '-p1', isClone: true })),
-      ...filteredProjects.value.map(p => ({ ...p, uniqueKey: p.key + '-curr', isClone: false })),
-      ...filteredProjects.value.map(p => ({ ...p, uniqueKey: p.key + '-n1', isClone: true })),
-      ...filteredProjects.value.map(p => ({ ...p, uniqueKey: p.key + '-n2', isClone: true }))
-    ]
-  }
-  return filteredProjects.value.map(p => ({ ...p, uniqueKey: p.key + '-curr', isClone: false }))
-})
-
-function getColorAnimation(index: number): string {
-  const colorClasses: string[] = [
-    'bg-blue-300/30 dark:bg-blue-600/30',
-    'bg-pink-300/30 dark:bg-pink-600/30',
-    'bg-green-300/30 dark:bg-green-600/30',
-    'bg-amber-300/30 dark:bg-amber-600/30',
-  ]
-
-  const positionClasses: string[] = [
-    'top-1/3 -left-20',
-    'top-2/3 -right-20',
-    'bottom-0 -left-10',
-    'bottom-1/4 right-1/4',
-  ]
-
-  const i = index % colorClasses.length
-  return `${colorClasses[i]} ${positionClasses[i]} animate-blob`
+// Which project is pinned follows how far the section has scrolled.
+const update = () => {
+  const el = section.value
+  if (!el) return
+  const rect = el.getBoundingClientRect()
+  const range = rect.height - window.innerHeight
+  const progress = range > 0 ? Math.min(Math.max(-rect.top / range, 0), 0.9999) : 0
+  activeIndex.value = Math.floor(progress * projects.value.length)
 }
-
-const demoImages = import.meta.glob<string>('../assets/*.webp', { eager: true, import: 'default' })
-
-function getDemoImage(key: string): string | undefined {
-  return demoImages[`../assets/${key}.webp`]
-}
-
-const sectionRef = ref<HTMLElement | null>(null)
-const gridRef = ref<any>(null)
-const isDragging = ref(false)
-// Set once a mouse drag actually moves the carousel, so releasing it doesn't
-// also count as a click on the case-study link underneath.
-let dragMoved = false
-let dragStartX = 0
-
-const onGridClickCapture = (e: MouseEvent) => {
-  if (!dragMoved) return
-  e.preventDefault()
-  e.stopPropagation()
-  dragMoved = false
-}
-const lastX = ref(0)
-
-const onMouseDown = (e: MouseEvent) => {
-  const gridEl = gridRef.value?.$el || gridRef.value
-  if (!gridEl) return
-  isDragging.value = true
-  gridEl.classList.add('cursor-grabbing')
-  gridEl.classList.remove('snap-x', 'snap-mandatory', 'scroll-smooth')
-  lastX.value = e.pageX
-  dragStartX = e.pageX
-  dragMoved = false
-}
-
-const onMouseLeave = () => {
-  isDragging.value = false
-  const gridEl = gridRef.value?.$el || gridRef.value
-  if (gridEl) {
-    gridEl.classList.remove('cursor-grabbing')
-    gridEl.classList.add('snap-x', 'snap-mandatory', 'scroll-smooth')
-  }
-}
-
-const onMouseUp = () => {
-  isDragging.value = false
-  const gridEl = gridRef.value?.$el || gridRef.value
-  if (gridEl) {
-    gridEl.classList.remove('cursor-grabbing')
-    gridEl.classList.add('snap-x', 'snap-mandatory', 'scroll-smooth')
-  }
-}
-
-const onMouseMove = (e: MouseEvent) => {
-  const gridEl = gridRef.value?.$el || gridRef.value
-  if (!gridEl) return
-
-  for (const card of gridEl.children) {
-    const htmlCard = card as HTMLElement
-    const rect = htmlCard.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    htmlCard.style.setProperty('--mouse-x', `${x}px`)
-    htmlCard.style.setProperty('--mouse-y', `${y}px`)
-  }
-
-  if (!isDragging.value) return
-  e.preventDefault()
-
-  if (Math.abs(e.pageX - dragStartX) > 6) dragMoved = true
-  const walk = (e.pageX - lastX.value) * 2
-  gridEl.scrollLeft -= walk
-  lastX.value = e.pageX
-}
-
-let isJumping = false
-let scrollTimeout: any = null
-
-const onScroll = () => {
-  if (scrollTimeout) clearTimeout(scrollTimeout)
-  
-  scrollTimeout = setTimeout(() => {
-    const len = filteredProjects.value.length
-    if (len < 3 || isJumping || isDragging.value) return
-    
-    const gridEl = gridRef.value?.$el || gridRef.value
-    if (!gridEl || gridEl.children.length === 0) return
-
-    const firstSetStart = (gridEl.children[0] as HTMLElement).offsetLeft
-    const secondSetStart = (gridEl.children[len] as HTMLElement).offsetLeft
-    const W = secondSetStart - firstSetStart
-
-    if (W === 0) return
-
-    const scrollPos = gridEl.scrollLeft
-
-    if (scrollPos < W * 1.5) {
-      isJumping = true
-      gridEl.classList.remove('scroll-smooth', 'snap-x', 'snap-mandatory')
-      gridEl.scrollLeft += W
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        if (!isDragging.value) gridEl.classList.add('scroll-smooth', 'snap-x', 'snap-mandatory')
-        isJumping = false
-      }))
-    } else if (scrollPos > W * 2.5) {
-      isJumping = true
-      gridEl.classList.remove('scroll-smooth', 'snap-x', 'snap-mandatory')
-      gridEl.scrollLeft -= W
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        if (!isDragging.value) gridEl.classList.add('scroll-smooth', 'snap-x', 'snap-mandatory')
-        isJumping = false
-      }))
-    }
-  }, 150)
-}
-
-const centerCarousel = () => {
-  const gridEl = gridRef.value?.$el || gridRef.value
-  if (!gridEl || gridEl.children.length === 0) return
-  
-  gridEl.classList.remove('scroll-smooth')
-  
-  let targetIndex = 0
-  const len = filteredProjects.value.length
-  if (len >= 3) {
-    targetIndex = len * 2 + 1
-  } else if (len > 1) {
-    targetIndex = 1
-  }
-  
-  if (gridEl.children[targetIndex]) {
-    const targetCard = gridEl.children[targetIndex] as HTMLElement
-    const scrollPos = targetCard.offsetLeft - gridEl.offsetWidth / 2 + targetCard.offsetWidth / 2
-    gridEl.scrollLeft = scrollPos
-  }
-  
-  requestAnimationFrame(() => {
-    if (!isDragging.value) gridEl.classList.add('scroll-smooth')
-  })
-}
-
-const isVisible = ref(false)
-const hasAnimated = ref(false)
 
 onMounted(() => {
-  setTimeout(centerCarousel, 100)
-
-  useIntersectionObserver(sectionRef, ([{ isIntersecting }]) => {
-    if (isIntersecting && !isVisible.value) {
-      isVisible.value = true
-      setTimeout(() => {
-        hasAnimated.value = true
-      }, 1000)
-    }
-  }, { threshold: 0 })
+  window.addEventListener('scroll', update, { passive: true })
+  window.addEventListener('resize', update)
+  update()
 })
-
-watch([activeFilter, selectedTech], () => setTimeout(centerCarousel, 100))
+onUnmounted(() => {
+  window.removeEventListener('scroll', update)
+  window.removeEventListener('resize', update)
+  activeIndex.value = 0
+})
+watch(projects, update)
 </script>
 
 <template>
-  <section id="projects" ref="sectionRef" class="py-16 sm:py-24">
-    <h2 class="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-12 text-center">
-      {{ t('projects.title') }}
-    </h2>
+  <section id="projects" ref="section" class="relative" :style="{ height }" :aria-label="t('projects.title')">
+    <div class="sticky top-0 flex h-[100svh] flex-col gap-6 pb-8 pt-24 md:grid md:grid-cols-[1fr_1.2fr] md:items-center md:gap-14 md:pt-20">
+      <!-- The StageFrame (App level) is drawn over this slot. -->
+      <div id="showcase-slot" class="aspect-[16/10] w-full shrink-0 md:order-2 md:max-h-[68svh]" aria-hidden="true"></div>
 
-    <div class="flex justify-center mb-12">
-      <div class="inline-flex flex-wrap justify-center gap-1.5 p-1.5 bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10 rounded-[2rem] shadow-inner shadow-black/5 dark:shadow-black/20">
-        <button
-          v-for="filter in filters"
-          :key="filter"
-          class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 outline-none"
-          :class="activeFilter === filter
-            ? 'bg-white/50 dark:bg-white/10 border border-white/40 dark:border-white/10 text-neutral-900 dark:text-white shadow-md shadow-black/5 dark:shadow-black/20'
-            : 'border border-transparent text-neutral-600 dark:text-gray-400 hover:bg-white/30 dark:hover:bg-white/5 hover:text-neutral-900 dark:hover:text-white'"
-          @click="setCategory(filter)"
-        >
-          {{ t(`projects.filters.${filter}`) }}
-        </button>
-      </div>
-    </div>
+      <div class="min-w-0 md:order-1">
+        <h2 class="mb-4 text-sm font-medium text-muted md:mb-8">{{ t('projects.title') }}</h2>
 
-    <transition
-      enter-active-class="transition duration-300 ease-out"
-      enter-from-class="opacity-0 -translate-y-2"
-      leave-active-class="transition duration-200 ease-in"
-      leave-to-class="opacity-0 -translate-y-2"
-    >
-      <div v-if="selectedTech" class="flex justify-center -mt-6 mb-2">
-        <button class="tech-chip !text-sm !py-2 !px-4 !cursor-pointer" @click="selectedTech = null">
-          <TechIcon :name="selectedTechName" />
-          {{ t('projects.filteringBy', { tech: selectedTechName }) }}
-          <XMarkIcon class="w-4 h-4" :aria-label="t('projects.clearFilter')" />
-        </button>
-      </div>
-    </transition>
-
-    <transition-group
-      ref="gridRef"
-      name="project-list"
-      tag="div"
-      class="flex overflow-x-auto gap-4 sm:gap-8 py-16 md:py-20 px-[calc(50%-37.5vw)] sm:px-[calc(50%-11rem)] md:px-[calc(50%-12rem)] snap-x snap-mandatory hide-scrollbar project-grid scroll-smooth cursor-grab"
-      @mousedown="onMouseDown"
-      @mouseleave="onMouseLeave"
-      @mouseup="onMouseUp"
-      @mousemove="onMouseMove"
-      @scroll="onScroll"
-      @click.capture="onGridClickCapture"
-    >
-      <div
-        v-for="(project, index) in displayProjects"
-        :key="project.uniqueKey"
-        :aria-hidden="project.isClone ? 'true' : undefined"
-        class="relative card-glass group p-6 sm:p-8 flex flex-col overflow-visible flex-none w-[75vw] sm:w-[22rem] md:w-[24rem] snap-center select-none"
-        :class="!isVisible ? 'opacity-0 translate-y-16' : ''"
-        :style="!hasAnimated ? { transitionDelay: `${(index % (filteredProjects.length || 1)) * 150}ms` } : {}"
-      >
-        <div
-          :class="getColorAnimation(index)"
-          class="hidden md:block absolute w-64 h-64 rounded-full blur-3xl -z-10 transition-all duration-500 mix-blend-soft-light"
-          :style="{ animationDelay: `${index * 1.2}s` }"
-        ></div>
-
-        <div class="relative z-10 flex flex-col h-full">
-          <div class="flex flex-wrap justify-between items-center gap-x-3 gap-y-2 mb-4">
-            <h3 class="min-w-0 text-xl font-semibold text-neutral-900 dark:text-white">
+        <div class="grid">
+          <article
+            v-for="(project, index) in projects"
+            :key="project.slug"
+            class="caption"
+            :class="{ 'is-active': index === activeIndex }"
+            :aria-hidden="index === activeIndex ? undefined : 'true'"
+          >
+            <h3 class="text-[clamp(2.25rem,6vw,4.5rem)] font-semibold leading-none text-ink" style="letter-spacing: -0.04em">
               {{ project.title }}
             </h3>
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-              <a
-                v-if="project.liveUrl"
-                :href="project.liveUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                draggable="false"
-                class="flex items-center justify-center gap-1.5 text-sm font-medium py-1.5 px-3 rounded-full bg-white/10 border border-white/20 shadow-sm dark:bg-white/5 dark:border-white/10 dark:shadow-black/20 text-neutral-800 dark:text-gray-200 hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 hover:scale-105"
-                @dragstart.prevent
-                @click="() => trackClick('click_project_live', { project_title: project.title })"
-              >
-                <span class="leading-none pt-[1px] whitespace-nowrap">{{ t('buttons.live') }}</span>
-                <ArrowTopRightOnSquareIcon class="w-4 h-4" />
-              </a>
+            <p class="mt-4 max-w-[36ch] text-base leading-relaxed text-muted sm:text-lg">{{ project.tagline || project.description }}</p>
+          </article>
+        </div>
 
-              <div v-if="project.liveUrl && (project.githubUrls || project.githubUrl)" class="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+        <TransitionGroup tag="ul" name="word" class="words mt-5" :aria-label="t('caseStudy.stack')">
+          <li v-for="word in stack" :key="word" :class="sharedWithPrevious.has(word) ? 'text-accent' : 'text-ink/65'">{{ word }}</li>
+        </TransitionGroup>
 
-              <template v-if="project.githubUrls">
+        <div class="mt-6 grid">
+          <div
+            v-for="(project, index) in projects"
+            :key="project.slug"
+            class="caption"
+            :class="{ 'is-active': index === activeIndex }"
+            :aria-hidden="index === activeIndex ? undefined : 'true'"
+          >
+              <div class="mt-6 flex flex-wrap items-center gap-2.5">
+                <RouterLink
+                  :to="`/projetos/${project.slug}`"
+                  class="pill-solid"
+                  :tabindex="index === activeIndex ? 0 : -1"
+                  @click="() => trackClick('click_case_study', { project_title: project.title })"
+                >
+                  {{ t('projects.caseStudy') }}
+                </RouterLink>
                 <a
-                  v-for="link in project.githubUrls"
+                  v-if="project.liveUrl"
+                  :href="project.liveUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="pill-glass"
+                  :tabindex="index === activeIndex ? 0 : -1"
+                  @click="() => trackClick('click_project_live', { project_title: project.title })"
+                >
+                  {{ t('buttons.live') }}
+                  <ArrowUpRightIcon class="h-3.5 w-3.5" />
+                </a>
+                <a
+                  v-for="link in codeLinks(project)"
                   :key="link.url"
                   :href="link.url"
                   target="_blank"
                   rel="noopener noreferrer"
-                  draggable="false"
-                  class="flex items-center gap-1.5 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
-                  @dragstart.prevent
+                  class="px-2 py-2 text-sm font-medium text-muted transition-colors hover:text-ink"
+                  :tabindex="index === activeIndex ? 0 : -1"
                   @click="() => trackClick('click_project_github', { project_title: project.title, link_label: link.label })"
                 >
-                  <span>{{ link.label }}</span>
-                  <div class="w-5 h-5"><GithubIcon /></div>
+                  {{ link.label }}
                 </a>
-              </template>
-              <template v-else-if="project.githubUrl">
-                <a
-                  :href="project.githubUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  draggable="false"
-                  class="text-gray-500 dark:text-gray-400 hover:text-neutral-900 dark:hover:text-white transition-colors w-6 h-6"
-                  @dragstart.prevent
-                  @click="() => trackClick('click_project_github', { project_title: project.title })"
-                >
-                  <GithubIcon />
-                </a>
-              </template>
-            </div>
+              </div>
           </div>
+        </div>
 
-          <div
-            class="mb-4 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 aspect-w-16 aspect-h-9 group relative"
-          >
-            <img
-              :src="getDemoImage(project.key)"
-              :alt="`Demo do projeto ${project.title}`"
-              loading="lazy"
-              decoding="async"
-              width="960"
-              height="540"
-              draggable="false"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] select-none pointer-events-none"
-              @dragstart.prevent
-            />
-          </div>
-
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            {{ project.description }}
-          </p>
-
-          <div class="flex flex-wrap gap-3 mb-6">
-            <span
-              v-for="tag in project.tags.slice(0, MAX_CARD_TAGS)"
-              :key="tag"
-              class="tech-chip"
-            >
-              <TechIcon :name="tag" />
-              {{ tag }}
-            </span>
-            <span v-if="project.tags.length > MAX_CARD_TAGS" class="tech-chip" :title="project.tags.slice(MAX_CARD_TAGS).join(', ')">
-              +{{ project.tags.length - MAX_CARD_TAGS }}
-            </span>
-          </div>
-
-          <RouterLink
-            :to="`/projetos/${project.slug}`"
-            draggable="false"
-            :tabindex="project.isClone ? -1 : undefined"
-            class="group/link mt-auto inline-flex items-center gap-2 self-start text-sm font-semibold text-neutral-800 dark:text-gray-100 py-2 px-4 rounded-full bg-white/40 dark:bg-white/10 border border-white/50 dark:border-white/10 shadow-sm hover:bg-white/60 dark:hover:bg-white/15 hover:shadow-md transition-all duration-300"
-            @dragstart.prevent
-            @click="() => trackClick('click_case_study', { project_title: project.title })"
-          >
-            {{ t('projects.caseStudy') }}
-            <ArrowRightIcon class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-0.5" />
-          </RouterLink>
+        <div class="mt-8 flex items-center gap-1.5 md:mt-10" aria-hidden="true">
+          <span
+            v-for="(project, index) in projects"
+            :key="project.slug"
+            class="h-1 rounded-full bg-ink transition-all duration-500 ease-out"
+            :class="index === activeIndex ? 'w-8 opacity-80' : 'w-2 opacity-20'"
+          ></span>
         </div>
       </div>
-    </transition-group>
+    </div>
   </section>
 </template>
 
 <style scoped>
-.project-list-enter-active,
-.project-list-leave-active {
-  transition: all 0.4s ease;
-}
-.project-list-enter-from,
-.project-list-leave-to {
+/* Every caption sits in the same grid cell; only the active one is shown. */
+.caption {
+  grid-area: 1 / 1;
   opacity: 0;
-  transform: scale(0.95);
-}
-
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.card-glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
-    rgba(255, 255, 255, 0.4),
-    transparent 40%
-  );
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  transform: translateY(24px);
+  visibility: hidden;
   pointer-events: none;
-  z-index: 0;
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s 0.5s;
 }
-:global(.dark .project-grid .card-glass::before) {
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
-    rgba(255, 255, 255, 0.08),
-    transparent 40%
-  );
+.caption.is-active {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0.12s, 0.12s, 0s;
 }
-@media (hover: hover) {
-  .project-grid:hover .card-glass::before {
-    opacity: 1;
+/* Technology words: shared ones stay put and glide into place, the rest swap. */
+.words {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.9rem;
+  min-height: 3.25rem;
+  align-content: flex-start;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+.words li {
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease,
+    color 0.5s ease;
+}
+.word-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.word-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.word-leave-active {
+  position: absolute;
+}
+@media (prefers-reduced-motion: reduce) {
+  .words li {
+    transition: none;
+  }
+  .caption,
+  .caption.is-active {
+    transition: none;
+    transform: none;
   }
 }
 </style>

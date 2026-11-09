@@ -53,62 +53,37 @@ const submit = async () => {
 </script>
 
 <template>
-  <form class="w-full max-w-xl mx-auto mb-10 flex flex-col gap-4 text-left" @submit.prevent="submit">
-    <div>
-      <label for="contact-name" class="sr-only">{{ t('contact.form.name') }}</label>
-      <input
-        id="contact-name"
-        v-model="name"
-        type="text"
-        required
-        :placeholder="t('contact.form.name')"
-        class="form-input"
-      />
+  <form class="flex w-full flex-col gap-3 text-left" @submit.prevent="submit">
+    <label for="contact-name" class="sr-only">{{ t('contact.form.name') }}</label>
+    <input id="contact-name" v-model="name" type="text" required autocomplete="name" :placeholder="t('contact.form.name')" class="field" />
+
+    <label for="contact-email" class="sr-only">{{ t('contact.form.email') }}</label>
+    <input id="contact-email" v-model="email" type="email" required autocomplete="email" :placeholder="t('contact.form.email')" class="field" />
+
+    <label for="contact-message" class="sr-only">{{ t('contact.form.message') }}</label>
+    <textarea id="contact-message" v-model="message" required rows="5" :placeholder="t('contact.form.message')" class="field resize-none"></textarea>
+
+    <div class="mt-2 flex flex-wrap items-center gap-4">
+      <button type="submit" :disabled="status === 'sending'" class="pill-solid disabled:pointer-events-none disabled:opacity-60">
+        {{ status === 'sending' ? t('contact.form.sending') : t('contact.form.send') }}
+      </button>
+      <p v-if="status === 'success'" role="status" class="text-sm text-emerald-700 dark:text-emerald-400">{{ t('contact.form.success') }}</p>
+      <p v-if="status === 'error'" role="alert" class="text-sm text-red-700 dark:text-red-400">{{ t('contact.form.error') }}</p>
     </div>
-
-    <div>
-      <label for="contact-email" class="sr-only">{{ t('contact.form.email') }}</label>
-      <input
-        id="contact-email"
-        v-model="email"
-        type="email"
-        required
-        :placeholder="t('contact.form.email')"
-        class="form-input"
-      />
-    </div>
-
-    <div>
-      <label for="contact-message" class="sr-only">{{ t('contact.form.message') }}</label>
-      <textarea
-        id="contact-message"
-        v-model="message"
-        required
-        rows="5"
-        :placeholder="t('contact.form.message')"
-        class="form-input resize-none"
-      ></textarea>
-    </div>
-
-    <button
-      type="submit"
-      :disabled="status === 'sending'"
-      class="flex items-center justify-center gap-2 font-medium py-3 px-6 rounded-2xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 backdrop-blur-lg shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:from-white/60 hover:to-white/30 dark:hover:from-white/20 dark:hover:to-white/10 hover:-translate-y-1 transition-all duration-300 text-neutral-900 dark:text-white disabled:opacity-60 disabled:pointer-events-none disabled:translate-y-0"
-    >
-      {{ status === 'sending' ? t('contact.form.sending') : t('contact.form.send') }}
-    </button>
-
-    <p v-if="status === 'success'" class="text-emerald-600 dark:text-emerald-400 text-sm text-center">
-      {{ t('contact.form.success') }}
-    </p>
-    <p v-if="status === 'error'" class="text-red-600 dark:text-red-400 text-sm text-center">
-      {{ t('contact.form.error') }}
-    </p>
   </form>
 </template>
 
 <style scoped>
-.form-input {
-  @apply w-full py-3 px-4 rounded-2xl bg-transparent bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 backdrop-blur-lg shadow-inner shadow-black/5 dark:shadow-black/20 text-neutral-900 dark:text-white placeholder:text-neutral-500 dark:placeholder:text-gray-400 outline-none focus:border-blue-500/60 dark:focus:border-blue-400/60 transition-all duration-300;
+.field {
+  @apply w-full rounded-xl px-4 py-3 text-[15px] text-ink outline-none transition duration-300 placeholder:text-muted;
+  background: rgb(var(--ink) / 0.05);
+  box-shadow: inset 0 0 0 1px transparent;
+}
+.field:hover {
+  background: rgb(var(--ink) / 0.07);
+}
+.field:focus {
+  background: rgb(var(--ink) / 0.04);
+  box-shadow: inset 0 0 0 1.5px rgb(var(--accent));
 }
 </style>

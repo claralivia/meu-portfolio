@@ -2,19 +2,9 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ArrowTopRightOnSquareIcon,
-  ChevronRightIcon,
-  LightBulbIcon,
-  PuzzlePieceIcon,
-} from '@heroicons/vue/24/outline'
-import GithubIcon from '../components/icons/GithubIcon.vue'
-import TechIcon from '../components/icons/TechIcon.vue'
+import { ArrowRightIcon, ArrowUpRightIcon } from '@heroicons/vue/24/outline'
 import NotFoundView from './NotFoundView.vue'
 import BackLink from '../components/BackLink.vue'
-import IconTile from '../components/IconTile.vue'
 import { useProjects } from '../composables/useProjects'
 import { usePageMeta } from '../composables/usePageMeta'
 import { useAnalytics } from '../composables/useAnalytics'
@@ -26,14 +16,11 @@ const { trackClick } = useAnalytics()
 
 const project = computed(() => findBySlug(String(route.params.slug)))
 
-const neighbours = computed(() => {
+const next = computed(() => {
   const list = projects.value
   const index = list.findIndex((p) => p.slug === project.value?.slug)
   if (index === -1 || list.length < 2) return null
-  return {
-    prev: list[(index - 1 + list.length) % list.length],
-    next: list[(index + 1) % list.length],
-  }
+  return list[(index + 1) % list.length]
 })
 
 const githubLinks = computed(() => {
@@ -56,127 +43,78 @@ usePageMeta(() => ({
 <template>
   <NotFoundView v-if="!project" />
 
-  <article v-else :key="project.slug" class="py-10 sm:py-16">
+  <article v-else :key="project.slug" class="pb-20 pt-28 sm:pt-36">
     <BackLink to="/#projects" :label="t('caseStudy.back')" />
 
-    <header v-reveal class="card-glass p-6 sm:p-10 mb-8">
-      <div class="relative z-10">
-        <span class="tech-chip !inline-flex mb-5">{{ t(`projects.filters.${project.category}`) }}</span>
+    <header>
+      <h1 class="text-[clamp(2.75rem,8vw,5rem)] font-semibold leading-none text-ink" style="letter-spacing: -0.04em">{{ project.title }}</h1>
+      <p class="mt-6 max-w-[56ch] text-lg leading-relaxed text-muted sm:text-xl">{{ project.description }}</p>
 
-        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white mb-5">
-          {{ project.title }}
-        </h1>
-
-        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mb-8">
-          {{ project.description }}
-        </p>
-
-        <div class="flex flex-wrap items-center gap-3">
-          <a
-            v-if="project.liveUrl"
-            :href="project.liveUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="glass-btn"
-            @click="() => trackClick('click_project_live', { project_title: project?.title, section: 'case_study' })"
-          >
-            {{ t('buttons.live') }}
-            <ArrowTopRightOnSquareIcon class="w-4 h-4" />
-          </a>
-          <a
-            v-for="link in githubLinks"
-            :key="link.url"
-            :href="link.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="glass-btn"
-            @click="() => trackClick('click_project_github', { project_title: project?.title, link_label: link.label, section: 'case_study' })"
-          >
-            <GithubIcon class="w-5 h-5" />
-            {{ link.label }}
-          </a>
-        </div>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a
+          v-if="project.liveUrl"
+          :href="project.liveUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pill-solid"
+          @click="() => trackClick('click_project_live', { project_title: project?.title, section: 'case_study' })"
+        >
+          {{ t('buttons.live') }}
+          <ArrowUpRightIcon class="h-4 w-4" />
+        </a>
+        <a
+          v-for="link in githubLinks"
+          :key="link.url"
+          :href="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pill-glass"
+          @click="() => trackClick('click_project_github', { project_title: project?.title, link_label: link.label, section: 'case_study' })"
+        >
+          {{ link.label }}
+        </a>
       </div>
     </header>
 
-    <div v-if="image" v-reveal class="card-glass p-3 sm:p-4 mb-8">
-      <img
-        :src="image"
-        :alt="`${t('caseStudy.screenshot')} ${project.title}`"
-        width="960"
-        height="540"
-        class="relative z-10 w-full rounded-[1.5rem] border border-gray-200 dark:border-gray-700"
-      />
+    <div v-if="image" v-reveal class="glass mt-12 p-2 sm:mt-16 sm:p-3">
+      <img :src="image" :alt="`${t('caseStudy.screenshot')} ${project.title}`" width="960" height="540" class="w-full rounded-lg" />
     </div>
 
-    <div v-if="project.challenge || project.solution" class="grid md:grid-cols-2 gap-6 mb-8">
-      <section v-if="project.challenge" v-reveal class="card-glass p-6 sm:p-8">
-        <div class="relative z-10">
-          <h2 class="flex items-center gap-3 text-xl font-bold text-neutral-900 dark:text-white mb-4">
-            <IconTile :icon="PuzzlePieceIcon" color="pink" size="sm" />
-            {{ t('caseStudy.challenge') }}
-          </h2>
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ project.challenge }}</p>
-        </div>
+    <div class="mt-16 grid gap-12 sm:mt-24 md:grid-cols-2 md:gap-16">
+      <section v-if="project.challenge" v-reveal>
+        <h2 class="mb-3 text-sm font-medium text-muted">{{ t('caseStudy.challenge') }}</h2>
+        <p class="text-lg leading-relaxed text-ink">{{ project.challenge }}</p>
       </section>
-      <section v-if="project.solution" v-reveal="150" class="card-glass p-6 sm:p-8">
-        <div class="relative z-10">
-          <h2 class="flex items-center gap-3 text-xl font-bold text-neutral-900 dark:text-white mb-4">
-            <IconTile :icon="LightBulbIcon" color="amber" size="sm" />
-            {{ t('caseStudy.solution') }}
-          </h2>
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ project.solution }}</p>
-        </div>
+      <section v-if="project.solution" v-reveal="120">
+        <h2 class="mb-3 text-sm font-medium text-muted">{{ t('caseStudy.solution') }}</h2>
+        <p class="text-lg leading-relaxed text-ink">{{ project.solution }}</p>
       </section>
     </div>
 
-    <section v-for="block in (['decisions', 'highlights'] as const)" :key="block">
-      <div v-if="project[block]?.length" v-reveal class="card-glass p-6 sm:p-8 mb-8">
-        <div class="relative z-10">
-          <h2 class="text-xl font-bold text-neutral-900 dark:text-white mb-5">{{ t(`caseStudy.${block}`) }}</h2>
-          <ul class="space-y-3">
-            <li v-for="item in project[block]" :key="item" class="flex items-start gap-3 text-gray-700 dark:text-gray-300 leading-relaxed">
-              <ChevronRightIcon class="w-5 h-5 mt-0.5 text-neutral-400 dark:text-neutral-500 flex-shrink-0" />
-              <span>{{ item }}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <template v-for="block in (['decisions', 'highlights'] as const)" :key="block">
+      <section v-if="project[block]?.length" v-reveal class="mt-16 sm:mt-24">
+        <h2 class="section-title mb-6 !text-2xl sm:!text-3xl">{{ t(`caseStudy.${block}`) }}</h2>
+        <ul class="divide-y divide-ink/10 border-y border-ink/10">
+          <li v-for="item in project[block]" :key="item" class="py-4 text-[17px] leading-relaxed text-ink/85">{{ item }}</li>
+        </ul>
+      </section>
+    </template>
+
+    <section v-reveal class="mt-16 sm:mt-24">
+      <h2 class="mb-4 text-sm font-medium text-muted">{{ t('caseStudy.stack') }}</h2>
+      <ul class="flex flex-wrap gap-2">
+        <li v-for="tag in project.tags" :key="tag" class="tag !text-sm">{{ tag }}</li>
+      </ul>
     </section>
 
-    <section v-reveal class="card-glass p-6 sm:p-8 mb-12">
-      <div class="relative z-10">
-        <h2 class="text-xl font-bold text-neutral-900 dark:text-white mb-5">{{ t('caseStudy.stack') }}</h2>
-        <div class="flex flex-wrap gap-3">
-          <span v-for="tag in project.tags" :key="tag" class="tech-chip">
-            <TechIcon :name="tag" />
-            {{ tag }}
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <nav v-if="neighbours" v-reveal class="grid grid-cols-2 gap-4 sm:gap-6" :aria-label="t('caseStudy.more')">
-      <RouterLink :to="`/projetos/${neighbours.prev.slug}`" class="card-glass group p-5 sm:p-6">
-        <span class="relative z-10 flex items-center gap-1.5 text-xs font-semibold text-neutral-500 dark:text-gray-400 mb-1.5">
-          <ArrowLeftIcon class="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-0.5" />
-          {{ t('caseStudy.prev') }}
+    <nav v-if="next" v-reveal class="mt-20 border-t border-ink/10 pt-10 sm:mt-28" :aria-label="t('caseStudy.more')">
+      <RouterLink :to="`/projetos/${next.slug}`" class="group block">
+        <span class="text-sm text-muted">{{ t('caseStudy.next') }}</span>
+        <span class="mt-2 flex items-center justify-between gap-4 text-3xl font-semibold text-ink sm:text-5xl" style="letter-spacing: -0.03em">
+          {{ next.title }}
+          <ArrowRightIcon class="h-7 w-7 shrink-0 text-muted transition duration-500 group-hover:translate-x-2 group-hover:text-ink" />
         </span>
-        <span class="relative z-10 block text-lg font-bold text-neutral-900 dark:text-white truncate">{{ neighbours.prev.title }}</span>
-      </RouterLink>
-      <RouterLink :to="`/projetos/${neighbours.next.slug}`" class="card-glass group p-5 sm:p-6 text-right">
-        <span class="relative z-10 flex items-center justify-end gap-1.5 text-xs font-semibold text-neutral-500 dark:text-gray-400 mb-1.5">
-          {{ t('caseStudy.next') }}
-          <ArrowRightIcon class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-        </span>
-        <span class="relative z-10 block text-lg font-bold text-neutral-900 dark:text-white truncate">{{ neighbours.next.title }}</span>
       </RouterLink>
     </nav>
   </article>
 </template>
-
-<style scoped>
-.glass-btn {
-  @apply flex items-center justify-center gap-2 font-medium text-sm sm:text-base py-2.5 px-5 rounded-2xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 border border-white/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:from-white/60 hover:to-white/30 dark:hover:from-white/20 dark:hover:to-white/10 hover:-translate-y-1 transition-all duration-300 text-neutral-900 dark:text-white;
-}
-</style>

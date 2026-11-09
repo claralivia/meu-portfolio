@@ -1,5 +1,7 @@
 {
-  "seo": { "description": "Mid-level Fullstack Developer in Fortaleza, Brazil. I build B2B products from the database to the interface, with a focus on performance and security." },
+  "seo": {
+    "description": "Mid-level Fullstack Developer in Fortaleza, Brazil. I build B2B products from the database to the interface, with a focus on performance and security."
+  },
   "about": {
     "title": "Fullstack Developer",
     "description": "Developer with over 3 years of experience in B2B startups, specializing in the JavaScript and TypeScript ecosystem with Vue.js and Node.js. I focus on creating elegant interfaces, high performance architectures and system optimization. I have strong expertise in cybersecurity, adapting systems to PCI DSS standards and refactoring legacy code, always raising the technical quality bar through best practices and mentoring new talents.",
@@ -8,13 +10,30 @@
     "location": "Fortaleza, Brazil",
     "tagline": "I build B2B products end to end, from the database to the interface, with a focus on performance and security.",
     "specs": [
-      { "icon": "calendar", "value": "3+ years", "label": "of experience" },
-      { "icon": "shield", "value": "PCI DSS", "label": "passwords & MFA" },
-      { "icon": "mentor", "value": "Mentoring", "label": "new developers" },
-      { "icon": "code", "value": "Vue + Node", "label": "main stack" }
+      {
+        "icon": "calendar",
+        "value": "3+ years",
+        "label": "of experience"
+      },
+      {
+        "icon": "shield",
+        "value": "PCI DSS",
+        "label": "passwords & MFA"
+      },
+      {
+        "icon": "mentor",
+        "value": "Mentoring",
+        "label": "new developers"
+      },
+      {
+        "icon": "code",
+        "value": "Vue + Node",
+        "label": "main stack"
+      }
     ],
     "more": "More about me",
-    "available": "Available for freelance projects"
+    "available": "Available for freelance projects",
+    "cta": "View projects"
   },
   "buttons": {
     "linkedin": "LinkedIn",
@@ -54,9 +73,18 @@
       }
     ],
     "certifications": [
-      { "title": "Information Security and Cyber Best Practices", "issuer": "Udemy" },
-      { "title": "OWASP Top 10 Web Application Security for Absolute Beginners", "issuer": "Udemy" },
-      { "title": "Foundations of User Experience (UX) Design", "issuer": "Coursera + Google" }
+      {
+        "title": "Information Security and Cyber Best Practices",
+        "issuer": "Udemy"
+      },
+      {
+        "title": "OWASP Top 10 Web Application Security for Absolute Beginners",
+        "issuer": "Udemy"
+      },
+      {
+        "title": "Foundations of User Experience (UX) Design",
+        "issuer": "Coursera + Google"
+      }
     ]
   },
   "experience": {
@@ -73,7 +101,8 @@
           "Technical leadership of development projects.",
           "Responsible for mentoring new talent and organizing the development area.",
           "Direct involvement in resolving critical bugs and implementing complex system improvements."
-        ]
+        ],
+        "summary": "Technical leadership and mentoring."
       },
       {
         "title": "Fullstack Developer (Jr)",
@@ -82,12 +111,16 @@
           "Led application performance optimization, restructuring slow MongoDB queries and refactoring code bottlenecks.",
           "Responsible for technical mentoring and onboarding new interns to the company's stack.",
           "Brought the system in line with PCI DSS requirements, focusing on authentication security: password policies and multi-factor authentication (MFA)."
-        ]
+        ],
+        "summary": "Performance, security and mentoring."
       },
       {
         "title": "Fullstack Development Intern",
         "date": "November/2023 - July/2024",
-        "points": ["Creation of responsive UI components with Vue.js and collaboration in agile methodologies."]
+        "points": [
+          "Creation of responsive UI components with Vue.js and collaboration in agile methodologies."
+        ],
+        "summary": "First steps with Vue.js."
       }
     ]
   },
@@ -99,6 +132,71 @@
       "fullstack": "Full-stack"
     },
     "items": [
+      {
+        "title": "Portfolio",
+        "slug": "portfolio",
+        "description": "This dynamic portfolio, built with Vue 3, TypeScript, and Tailwind CSS, employs Glassmorphism principle.",
+        "tags": [
+          "Vue 3",
+          "TypeScript",
+          "Tailwind CSS",
+          "Glassmorphism",
+          "UI/UX",
+          "Vercel"
+        ],
+        "githubUrl": "https://github.com/claralivia/meu-portfolio",
+        "liveUrl": "https://claralivia.dev/",
+        "category": "frontend",
+        "key": "meu-portfolio-pessoal",
+        "challenge": "Build a portfolio that reflects my taste in design (glassmorphism, dark mode and Apple's aesthetic) without giving up performance, especially on phones.",
+        "solution": "A Vue 3, TypeScript and Tailwind CSS app with PT/EN, case study pages, a keyboard-driven search (⌘K) and glass effects that adapt to the device.",
+        "decisions": [
+          "Adaptive glass: backdrop-filter on desktop only. On phones the cards use a more opaque tint, because blurring behind every card while scrolling stalled rendering.",
+          "Background blobs built with radial gradients instead of filter: blur, with the same look at a fraction of the GPU cost.",
+          "WebP images (from ~550 KB to ~70 KB) and brand icons inlined as SVG, with no extra runtime dependency.",
+          "All content lives in the translation files: adding a project or a language never touches a component."
+        ],
+        "highlights": [
+          "Command palette (⌘K / Ctrl K) to navigate, switch theme and language or copy the e-mail.",
+          "Technology dock that filters projects by stack.",
+          "Current section and reading progress indicator at the top of the page."
+        ],
+        "tagline": "This site: Vue 3, adaptive glass and case studies."
+      },
+      {
+        "title": "House Pink",
+        "slug": "house-pink",
+        "description": "Website and online booking system for my mother's beauty salon: landing page, booking with or without an account, a professional dashboard with schedule, clients and earnings, and video lessons on how to use it all.",
+        "tags": [
+          "React",
+          "Vite",
+          "Supabase",
+          "PostgreSQL",
+          "Vercel",
+          "UI/UX",
+          "Design System"
+        ],
+        "githubUrl": "https://github.com/claralivia/house-pink",
+        "liveUrl": "https://housepinknl.vercel.app/",
+        "category": "fullstack",
+        "key": "house-pink",
+        "challenge": "The salon booked everything by hand over WhatsApp, with no way to track earnings. The professionals and many clients are not comfortable with technology, so every screen had to be simple and speak the salon's own language.",
+        "solution": "A React site with booking in a few taps, with or without an account, and a dashboard for each professional to manage schedule, clients, services and earnings, on top of Supabase (PostgreSQL with access policies and database functions).",
+        "decisions": [
+          "Rules live in the database, not just on screen: Row Level Security and PostgreSQL functions decide who reads and who books, and an exclusion constraint stops two appointments of the same professional from overlapping, even when two people book at the same moment.",
+          "One login for both roles: whether an account is linked to a professional decides if the person lands on the dashboard or on the client account, with no choice screen.",
+          "Privacy through access policies: prices only show for signed-in people and each professional's earnings are visible only to her.",
+          "Everything can be corrected, with confirmation: undo, delete and remove. A service or client with history is never deleted without warning, so past earnings are not lost.",
+          "The same look as the landing page on every screen, designed mobile-first, with 48 px touch targets."
+        ],
+        "highlights": [
+          "Booking without an account (just name and WhatsApp) or with one, with slots computed from each professional's schedule, days off and booking window.",
+          "Professional dashboard: day and week schedule, clients with spreadsheet import, earnings with period closing, and editing of services, photos and profile.",
+          "Lesson center with 21 short narrated videos, with tap circles and captions, generated by an in-house tool from screenshots of the app.",
+          "Client account with a greeting, photo, appointment reviews and a feed of the professionals."
+        ],
+        "tagline": "Website and online booking for my mother's salon, with a dashboard for the professionals."
+      },
       {
         "title": "Sinc",
         "slug": "sinc",
@@ -117,8 +215,14 @@
           "Vercel"
         ],
         "githubUrls": [
-          { "label": "Front", "url": "https://github.com/claralivia/sinc-web" },
-          { "label": "API", "url": "https://github.com/claralivia/sinc-api" }
+          {
+            "label": "Front",
+            "url": "https://github.com/claralivia/sinc-web"
+          },
+          {
+            "label": "API",
+            "url": "https://github.com/claralivia/sinc-api"
+          }
         ],
         "liveUrl": "https://sinc-web-nu.vercel.app/",
         "category": "fullstack",
@@ -136,7 +240,8 @@
           "Expense logging by WhatsApp message, via the WhatsApp Cloud API.",
           "Dashboard with income vs. expenses, spending by category and who owes whom.",
           "Credit cards, open installments and savings goals with deposits and withdrawals."
-        ]
+        ],
+        "tagline": "Finances for couples, with AI and WhatsApp expense entry."
       },
       {
         "title": "My Finances",
@@ -144,7 +249,17 @@
         "description": "Full-stack app for personal financial management.",
         "challenge": "Excel spreadsheets were no longer sufficient for effective financial control and tracking personal goals.",
         "solution": "I developed a full-stack application with a NestJS/GraphQL backend and a Vue.js 3 frontend, creating interactive dashboards for visual management.",
-        "tags": ["Vue.js 3", "NestJS", "GraphQL", "MongoDB", "TypeScript", "Tailwind CSS", "Vercel", "Render", "Monorepo"],
+        "tags": [
+          "Vue.js 3",
+          "NestJS",
+          "GraphQL",
+          "MongoDB",
+          "TypeScript",
+          "Tailwind CSS",
+          "Vercel",
+          "Render",
+          "Monorepo"
+        ],
         "githubUrl": "https://github.com/claralivia/financial-app",
         "liveUrl": "https://minhasfinancas-controle.vercel.app/",
         "category": "fullstack",
@@ -158,30 +273,8 @@
           "Dashboard with reactive charts and filters by period, category and description.",
           "Credit cards with monthly statements generated and closed automatically.",
           "Savings goals and CSV export of filtered transactions."
-        ]
-      },
-      {
-        "title": "Portfolio",
-        "slug": "portfolio",
-        "description": "This dynamic portfolio, built with Vue 3, TypeScript, and Tailwind CSS, employs Glassmorphism principle.",
-        "tags": ["Vue 3", "TypeScript", "Tailwind CSS", "Glassmorphism", "UI/UX", "Vercel"],
-        "githubUrl": "https://github.com/claralivia/meu-portfolio",
-        "liveUrl": "https://claralivia.dev/",
-        "category": "frontend",
-        "key": "meu-portfolio-pessoal",
-        "challenge": "Build a portfolio that reflects my taste in design (glassmorphism, dark mode and Apple's aesthetic) without giving up performance, especially on phones.",
-        "solution": "A Vue 3, TypeScript and Tailwind CSS app with PT/EN, case study pages, a keyboard-driven search (⌘K) and glass effects that adapt to the device.",
-        "decisions": [
-          "Adaptive glass: backdrop-filter on desktop only. On phones the cards use a more opaque tint, because blurring behind every card while scrolling stalled rendering.",
-          "Background blobs built with radial gradients instead of filter: blur, with the same look at a fraction of the GPU cost.",
-          "WebP images (from ~550 KB to ~70 KB) and brand icons inlined as SVG, with no extra runtime dependency.",
-          "All content lives in the translation files: adding a project or a language never touches a component."
         ],
-        "highlights": [
-          "Command palette (⌘K / Ctrl K) to navigate, switch theme and language or copy the e-mail.",
-          "Technology dock that filters projects by stack.",
-          "Current section and reading progress indicator at the top of the page."
-        ]
+        "tagline": "Personal finance with dashboards, cards and savings goals."
       },
       {
         "title": "Beauty Manager",
@@ -189,10 +282,26 @@
         "description": "Academic application for beauty salon scheduling. The project also included low, medium, and high-fidelity prototypes and an adapted Design System.",
         "challenge": "My mother's beauty salon struggled with manual scheduling, which caused errors like double bookings or forgotten appointments.",
         "solution": "I created a scheduling application with a REST API (Python/FastAPI) and a React frontend, allowing clients and administrators to manage schedules.",
-        "tags": ["React", "Python", "FastAPI", "MongoDB", "Supabase", "Tailwind CSS", "Render", "UI/UX", "Design System"],
+        "tags": [
+          "React",
+          "Python",
+          "FastAPI",
+          "MongoDB",
+          "Supabase",
+          "Tailwind CSS",
+          "Render",
+          "UI/UX",
+          "Design System"
+        ],
         "githubUrls": [
-          { "label": "Front", "url": "https://github.com/afonsomateus21/bm-web" },
-          { "label": "API", "url": "https://github.com/afonsomateus21/bm-api" }
+          {
+            "label": "Front",
+            "url": "https://github.com/afonsomateus21/bm-web"
+          },
+          {
+            "label": "API",
+            "url": "https://github.com/afonsomateus21/bm-api"
+          }
         ],
         "category": "fullstack",
         "key": "beauty-manager",
@@ -202,7 +311,8 @@
         "highlights": [
           "Built as a pair for the Integrated Project I course at UFC, with 100% of the requirements implemented.",
           "Full UX process: low, mid and high-fidelity prototypes and an adapted Design System."
-        ]
+        ],
+        "tagline": "Booking for a beauty salon, with a FastAPI backend."
       },
       {
         "title": "CV Studio",
@@ -210,14 +320,30 @@
         "description": "Full-stack application for managing and creating professional resumes.",
         "challenge": "Facilitate the creation, storage, and formatting of resumes in a centralized way.",
         "solution": "Developed a complete ecosystem featuring a robust API and an interactive front-end for visual resume building.",
-        "tags": ["Vue.js 3", "Node.js", "TypeScript", "MongoDB", "Supabase", "Tailwind CSS", "Vercel", "Render"],
+        "tags": [
+          "Vue.js 3",
+          "Node.js",
+          "TypeScript",
+          "MongoDB",
+          "Supabase",
+          "Tailwind CSS",
+          "Vercel",
+          "Render"
+        ],
         "githubUrls": [
-          { "label": "Front", "url": "https://github.com/claralivia/curriculos-frontend" },
-          { "label": "API", "url": "https://github.com/claralivia/curriculos-backend" }
+          {
+            "label": "Front",
+            "url": "https://github.com/claralivia/curriculos-frontend"
+          },
+          {
+            "label": "API",
+            "url": "https://github.com/claralivia/curriculos-backend"
+          }
         ],
         "liveUrl": "https://cv-studio-beta.vercel.app/",
         "category": "fullstack",
-        "key": "gerenciador-curriculos"
+        "key": "gerenciador-curriculos",
+        "tagline": "Create and manage professional resumes."
       }
     ],
     "caseStudy": "Read the case study",
@@ -230,27 +356,60 @@
       {
         "icon": "backend",
         "name": "Back-end",
-        "items": ["Node.js", "NestJS", "Express", "GraphQL", "Serverless"]
+        "items": [
+          "Node.js",
+          "NestJS",
+          "Express",
+          "GraphQL",
+          "Serverless"
+        ]
       },
       {
         "icon": "frontend",
         "name": "Front-end",
-        "items": ["Vue.js", "React", "Nuxt.js", "HTML5", "CSS3", "Tailwind CSS", "Design Systems"]
+        "items": [
+          "Vue.js",
+          "React",
+          "Nuxt.js",
+          "HTML5",
+          "CSS3",
+          "Tailwind CSS",
+          "Design Systems"
+        ]
       },
       {
         "icon": "database",
         "name": "Database",
-        "items": ["MongoDB", "MySQL", "PostgreSQL"]
+        "items": [
+          "MongoDB",
+          "MySQL",
+          "PostgreSQL"
+        ]
       },
       {
         "icon": "cloud",
         "name": "Cloud & DevOps",
-        "items": ["AWS", "GCP", "Docker", "Git", "Grafana", "Datadog", "Percona"]
+        "items": [
+          "AWS",
+          "GCP",
+          "Docker",
+          "Git",
+          "Grafana",
+          "Datadog",
+          "Percona"
+        ]
       },
       {
         "icon": "tools",
         "name": "Tools",
-        "items": ["Jira", "Figma", "Claude Code", "GitHub Copilot", "Gemini", "Codex"]
+        "items": [
+          "Jira",
+          "Figma",
+          "Claude Code",
+          "GitHub Copilot",
+          "Gemini",
+          "Codex"
+        ]
       }
     ]
   },
@@ -282,7 +441,8 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "skills": "Skills",
-    "search": "Search"
+    "search": "Search",
+    "menu": "Main menu"
   },
   "footer": {
     "credit": "Designed & Built by Clara Lívia",
@@ -336,7 +496,12 @@
     "title": "About me",
     "back": "Back to home",
     "lead": "Fullstack developer who likes solving problems with code: my own and, above all, those of the people around me.",
-    "traits": ["Determined", "Focused", "A bit shy", "Always learning"],
+    "traits": [
+      "Determined",
+      "Focused",
+      "A bit shy",
+      "Always learning"
+    ],
     "stat": {
       "value": "3+",
       "label": "years building software"
@@ -363,9 +528,25 @@
         "note": "Paused in the 4th semester",
         "type": "paused"
       },
-      { "period": "Nov/2023", "title": "Fullstack Development Intern", "place": "Cotabox", "type": "work" },
-      { "period": "Jul/2024", "title": "Junior Fullstack Developer", "place": "Cotabox", "type": "work" },
-      { "period": "Nov/2025 – now", "title": "Mid-level Fullstack Developer", "place": "Cotabox", "type": "work", "current": true },
+      {
+        "period": "Nov/2023",
+        "title": "Fullstack Development Intern",
+        "place": "Cotabox",
+        "type": "work"
+      },
+      {
+        "period": "Jul/2024",
+        "title": "Junior Fullstack Developer",
+        "place": "Cotabox",
+        "type": "work"
+      },
+      {
+        "period": "Nov/2025 – now",
+        "title": "Mid-level Fullstack Developer",
+        "place": "Cotabox",
+        "type": "work",
+        "current": true
+      },
       {
         "period": "Dec/2026 · expected",
         "title": "Systems Analysis and Development",
@@ -380,19 +561,51 @@
         "title": "Fix the real problem",
         "text": "I find the root cause before proposing a fix, whether it is a critical bug or a slow query."
       },
-      { "icon": "help", "title": "Help the people around me", "text": "Mentoring and onboarding new developers are part of my routine." },
-      { "icon": "focus", "title": "Focus until done", "text": "When I take on a task, I carry it until it is finished, tested and live." }
+      {
+        "icon": "help",
+        "title": "Help the people around me",
+        "text": "Mentoring and onboarding new developers are part of my routine."
+      },
+      {
+        "icon": "focus",
+        "title": "Focus until done",
+        "text": "When I take on a task, I carry it until it is finished, tested and live."
+      }
     ],
     "nowTitle": "Now",
     "now": "Finishing my degree in Systems Analysis and Development and going deeper into application security and UX.",
     "hobbiesTitle": "Outside of code",
     "hobbies": [
-      { "icon": "games", "title": "Video games", "text": "I really love playing." },
-      { "icon": "pets", "title": "Pets", "text": "I'm crazy about animals." },
-      { "icon": "coffee", "title": "Coffee", "text": "A lot of coffee." },
-      { "icon": "beach", "title": "Beach", "text": "Ideally with coconut water." },
-      { "icon": "family", "title": "Family", "text": "Family comes first." },
-      { "icon": "study", "title": "Studying", "text": "There is always something new to learn." }
+      {
+        "icon": "games",
+        "title": "Video games",
+        "text": "I really love playing."
+      },
+      {
+        "icon": "pets",
+        "title": "Pets",
+        "text": "I'm crazy about animals."
+      },
+      {
+        "icon": "coffee",
+        "title": "Coffee",
+        "text": "A lot of coffee."
+      },
+      {
+        "icon": "beach",
+        "title": "Beach",
+        "text": "Ideally with coconut water."
+      },
+      {
+        "icon": "family",
+        "title": "Family",
+        "text": "Family comes first."
+      },
+      {
+        "icon": "study",
+        "title": "Studying",
+        "text": "There is always something new to learn."
+      }
     ],
     "ctaText": "Freelance, a job opening or just a virtual coffee: reach out.",
     "ctaButton": "Get in touch"

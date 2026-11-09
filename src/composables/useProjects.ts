@@ -1,6 +1,5 @@
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { techKey } from '../components/icons/techIcons'
 
 export interface ProjectLink {
   label: string
@@ -12,6 +11,8 @@ export interface Project {
   slug: string
   key: string
   category: string
+  /** One short line for the card; `description` is the longer text for the case study. */
+  tagline?: string
   description: string
   challenge?: string
   solution?: string
@@ -23,9 +24,6 @@ export interface Project {
   liveUrl?: string
 }
 
-// Technology picked in the dock; ProjectsSection filters the carousel by it.
-const selectedTech = ref<string | null>(null)
-
 export function useProjects() {
   const { tm } = useI18n()
 
@@ -33,7 +31,5 @@ export function useProjects() {
 
   const findBySlug = (slug: string) => projects.value.find((p) => p.slug === slug)
 
-  const usesTech = (project: Project, key: string) => project.tags.some((tag) => techKey(tag) === key)
-
-  return { projects, findBySlug, usesTech, selectedTech }
+  return { projects, findBySlug }
 }
