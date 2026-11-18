@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 import { useAnalytics } from '../composables/useAnalytics'
 
 const { t } = useI18n()
+const route = useRoute()
 const { trackClick } = useAnalytics()
 const currentYear = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="relative z-10 mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 pb-10 pt-6 text-sm text-muted sm:px-8">
+  <footer :class="route.name === 'home' ? 'night' : ''" class="relative z-10 mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 pb-10 pt-6 text-sm text-muted sm:px-8">
     <p>&copy; {{ currentYear }} Clara Lívia</p>
     <p>
       {{ t('footer.colophon') }} ·

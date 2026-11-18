@@ -8,7 +8,7 @@
     "role": "Mid-level Fullstack Developer",
     "company": "Cotabox",
     "location": "Fortaleza, Brazil",
-    "tagline": "I build B2B products end to end, from the database to the interface, with a focus on performance and security.",
+    "tagline": "Fullstack developer in Fortaleza, Brazil. I solve real problems from the database to the screen, ideally with a coconut water nearby.",
     "specs": [
       {
         "icon": "calendar",
@@ -33,7 +33,33 @@
     ],
     "more": "More about me",
     "available": "Available for freelance projects",
-    "cta": "View projects"
+    "cta": "View projects",
+    "greeting": "Hi, I am",
+    "greetingName": "Clara.",
+    "nowIn": "Right now in Fortaleza",
+    "stickers": [
+      {
+        "icon": "coffee",
+        "label": "Coffee"
+      },
+      {
+        "icon": "beach",
+        "label": "Beach"
+      },
+      {
+        "icon": "games",
+        "label": "Video games"
+      },
+      {
+        "icon": "pets",
+        "label": "Pets"
+      },
+      {
+        "icon": "coconut",
+        "label": "Coconut water"
+      }
+    ],
+    "curious": "Want to know more about me?"
   },
   "buttons": {
     "linkedin": "LinkedIn",
@@ -88,7 +114,7 @@
     ]
   },
   "experience": {
-    "title": "Professional Experience",
+    "title": "Where I have been",
     "current": "Current",
     "companyName": "Cotabox",
     "companyLegal": "Cotabox Tecnologia e Software LTDA",
@@ -122,10 +148,11 @@
         ],
         "summary": "First steps with Vue.js."
       }
-    ]
+    ],
+    "details": "Details"
   },
   "projects": {
-    "title": "Personal Projects",
+    "title": "What I have built",
     "filters": {
       "all": "All",
       "frontend": "Front-end",
@@ -348,11 +375,23 @@
     ],
     "caseStudy": "Read the case study",
     "filteringBy": "Projects with {tech}",
-    "clearFilter": "Clear filter"
+    "clearFilter": "Clear filter",
+    "swipe": "Swipe",
+    "caseStudyShort": "Case study"
   },
   "skills": {
     "title": "Technical Skills",
     "categories": [
+      {
+        "icon": "code",
+        "name": "Languages",
+        "items": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "PHP"
+        ]
+      },
       {
         "icon": "backend",
         "name": "Back-end",
@@ -360,6 +399,7 @@
           "Node.js",
           "NestJS",
           "Express",
+          "FastAPI",
           "GraphQL",
           "Serverless"
         ]
@@ -370,7 +410,9 @@
         "items": [
           "Vue.js",
           "React",
+          "Next.js",
           "Nuxt.js",
+          "Vite",
           "HTML5",
           "CSS3",
           "Tailwind CSS",
@@ -379,11 +421,13 @@
       },
       {
         "icon": "database",
-        "name": "Database",
+        "name": "Databases & BaaS",
         "items": [
           "MongoDB",
           "MySQL",
-          "PostgreSQL"
+          "PostgreSQL",
+          "Supabase",
+          "Firebase"
         ]
       },
       {
@@ -392,6 +436,9 @@
         "items": [
           "AWS",
           "GCP",
+          "Cloudflare",
+          "Vercel",
+          "Render",
           "Docker",
           "Git",
           "Grafana",
@@ -414,8 +461,8 @@
     ]
   },
   "contact": {
-    "title": "Let's Talk?",
-    "description": "I'm open to new opportunities and connections. Feel free to get in touch via email or my social networks.",
+    "title": "Let's talk?",
+    "description": "I am open to roles, freelance projects and good conversations. Say hi by email, on social media or through the form.",
     "freelanceAvailability": "Available for freelance projects",
     "email": "contato@claralivia.dev",
     "linkedinUrl": "https://linkedin.com/in/claralivia",
@@ -426,8 +473,9 @@
       "message": "Message",
       "send": "Send message",
       "sending": "Sending...",
-      "success": "Message sent! I'll get back to you soon.",
-      "error": "Couldn't send it. Please try again or use the direct email."
+      "success": "Bottle cast into the sea! I will reply soon.",
+      "error": "Couldn't send it. Please try again or use the direct email.",
+      "hint": "Your message goes in a bottle, across the sea to me."
     }
   },
   "navbar": {
@@ -447,7 +495,7 @@
   "footer": {
     "credit": "Designed & Built by Clara Lívia",
     "rights": "All rights reserved.",
-    "colophon": "Built with Vue 3, TypeScript and Tailwind CSS",
+    "colophon": "Made in Fortaleza with Vue 3, TypeScript and Tailwind CSS",
     "source": "Open source on GitHub"
   },
   "palette": {
@@ -485,7 +533,19 @@
     "next": "Next",
     "more": "More projects",
     "code": "Code",
-    "screenshot": "Screenshot of"
+    "screenshot": "Screenshot of",
+    "type": "Type",
+    "mainStack": "Main stack",
+    "groups": {
+      "front": "Front-end",
+      "back": "Back-end",
+      "data": "Data",
+      "ai": "Artificial intelligence",
+      "infra": "Infrastructure",
+      "design": "Design",
+      "lang": "Language",
+      "other": "Other"
+    }
   },
   "notFound": {
     "title": "Page not found",

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BackLink from '../components/BackLink.vue'
+import HobbyIcon from '../components/icons/HobbyIcon.vue'
 import { usePageMeta } from '../composables/usePageMeta'
 import profilePicture from '../assets/minha-foto.webp'
 
@@ -13,6 +14,7 @@ interface JourneyStep {
   current?: boolean
 }
 interface TextCard {
+  icon?: string
   title: string
   text: string
 }
@@ -52,7 +54,7 @@ usePageMeta(() => ({
 
     <header class="grid items-end gap-10 md:grid-cols-[1fr_auto] md:gap-16">
       <div>
-        <h1 class="text-[clamp(2.75rem,8vw,5rem)] font-semibold leading-none text-ink" style="letter-spacing: -0.04em">{{ t('aboutPage.title') }}</h1>
+        <h1 class="font-display text-[clamp(2.75rem,8vw,5rem)] font-semibold leading-none text-ink" style="letter-spacing: -0.04em">{{ t('aboutPage.title') }}</h1>
         <p class="mt-6 max-w-[40ch] text-xl leading-relaxed text-muted sm:text-2xl">{{ t('aboutPage.lead') }}</p>
       </div>
       <div class="glass w-40 rounded-[1.75rem] p-1.5 md:w-56">
@@ -118,10 +120,15 @@ usePageMeta(() => ({
       </div>
       <div>
         <h2 class="section-title mb-6 !text-2xl sm:!text-3xl">{{ t('aboutPage.hobbiesTitle') }}</h2>
-        <ul class="grid gap-x-8 gap-y-5 sm:grid-cols-2">
-          <li v-for="hobby in hobbies" :key="hobby.title">
-            <p class="font-medium text-ink">{{ hobby.title }}</p>
-            <p class="text-sm text-muted">{{ hobby.text }}</p>
+        <ul class="grid gap-3 sm:grid-cols-2">
+          <li v-for="hobby in hobbies" :key="hobby.title" class="hobby glass-flat flex items-start gap-3 p-4">
+            <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sun/15 text-sun">
+              <HobbyIcon :name="hobby.icon ?? 'study'" class="h-5 w-5" />
+            </span>
+            <span>
+              <span class="block font-medium text-ink">{{ hobby.title }}</span>
+              <span class="block text-sm text-muted">{{ hobby.text }}</span>
+            </span>
           </li>
         </ul>
       </div>

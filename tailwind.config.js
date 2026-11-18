@@ -14,8 +14,10 @@ export default {
         ink: token('ink'),
         muted: token('muted'),
         accent: token('accent'),
+        sun: token('sun'),
       },
       fontFamily: {
+        display: ['Schibsted Grotesk', 'Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         sans: ['Geist', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
       },
       transitionTimingFunction: {

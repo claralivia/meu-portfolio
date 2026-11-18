@@ -33,6 +33,8 @@ Vue 3 + TypeScript + Tailwind 3 + Vite, publicado na Vercel em claralivia.dev. B
 
 Pedido explícito da Clara (2026-11-09): manter o glassmorphism, aproximar da estética Apple, ser mais minimalista, menos informação por tela e sem cara de feito por IA; página contínua, com animações suaves e aparência profissional.
 
+Direção visual pinada (2026-11-17): "Sol e mar de Fortaleza" — um dia em Fortaleza como fio condutor, vidro marinho, voz em primeira pessoa; gostos reais citados no site: café, praia, videogame, bichinhos, água de coco, família, estudar.
+
 ## Evidence on Hand
 
 Seis projetos com estudo de caso e captura de tela em src/assets (House Pink, Sinc, Minhas Finanças, Portfólio, Beauty Manager, CV Studio). Foto em src/assets/minha-foto.webp. Sem depoimentos nem métricas de impacto; não inventar.
