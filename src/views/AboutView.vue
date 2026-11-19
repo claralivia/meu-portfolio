@@ -1,23 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { ArrowRightIcon } from '@heroicons/vue/24/outline'
 import BackLink from '../components/BackLink.vue'
-import HobbyIcon from '../components/icons/HobbyIcon.vue'
 import { usePageMeta } from '../composables/usePageMeta'
 import profilePicture from '../assets/minha-foto.webp'
 
-interface JourneyStep {
-  period: string
-  title: string
-  place: string
-  note?: string
-  current?: boolean
-}
-interface TextCard {
-  icon?: string
-  title: string
-  text: string
-}
 interface Degree {
   title: string
   institution: string
@@ -34,9 +22,7 @@ interface SkillCategory {
 
 const { t, tm } = useI18n()
 
-const journey = computed(() => (tm('aboutPage.journey') as JourneyStep[]) || [])
-const how = computed(() => (tm('aboutPage.how') as TextCard[]) || [])
-const hobbies = computed(() => (tm('aboutPage.hobbies') as TextCard[]) || [])
+const story = computed(() => (tm('aboutPage.story') as string[]) || [])
 const degrees = computed(() => (tm('education.degrees') as Degree[]) || [])
 const certifications = computed(() => (tm('education.certifications') as Certification[]) || [])
 const skills = computed(() => (tm('skills.categories') as SkillCategory[]) || [])
@@ -52,91 +38,109 @@ usePageMeta(() => ({
   <article class="pb-20 pt-28 sm:pt-36">
     <BackLink to="/" :label="t('aboutPage.back')" />
 
-    <header class="grid items-end gap-10 md:grid-cols-[1fr_auto] md:gap-16">
-      <div>
-        <h1 class="font-display text-[clamp(2.75rem,8vw,5rem)] font-semibold leading-none text-ink" style="letter-spacing: -0.04em">{{ t('aboutPage.title') }}</h1>
-        <p class="mt-6 max-w-[40ch] text-xl leading-relaxed text-muted sm:text-2xl">{{ t('aboutPage.lead') }}</p>
-      </div>
-      <div class="glass w-40 rounded-[1.75rem] p-1.5 md:w-56">
-        <img :src="profilePicture" alt="Foto de Clara Lívia" width="512" height="512" class="aspect-square w-full rounded-[1.4rem] object-cover" />
-      </div>
-    </header>
-
-    <section v-reveal class="mt-24 grid gap-10 sm:mt-32 md:grid-cols-3">
-      <div v-for="card in how" :key="card.title">
-        <h2 class="text-lg font-medium text-ink">{{ card.title }}</h2>
-        <p class="mt-2 leading-relaxed text-muted">{{ card.text }}</p>
-      </div>
-    </section>
-
-    <section v-reveal class="mt-24 sm:mt-32">
-      <h2 class="section-title mb-8">{{ t('aboutPage.journeyTitle') }}</h2>
-      <ol class="divide-y divide-ink/10 border-y border-ink/10">
-        <li v-for="step in journey" :key="step.title" class="grid gap-1 py-5 sm:grid-cols-[13rem_1fr] sm:gap-8">
-          <span class="text-sm tabular-nums" :class="step.current ? 'text-accent' : 'text-muted'">{{ step.period }}</span>
-          <span>
-            <span class="block font-medium text-ink">{{ step.title }}</span>
-            <span class="block text-sm text-muted">{{ step.place }}<template v-if="step.note"> · {{ step.note }}</template></span>
-          </span>
-        </li>
-      </ol>
-    </section>
-
-    <section v-reveal class="mt-24 grid gap-14 sm:mt-32 md:grid-cols-2 md:gap-16">
-      <div>
-        <h2 class="section-title mb-8 !text-2xl sm:!text-3xl">{{ t('education.degreesTitle') }}</h2>
-        <ul class="space-y-6">
-          <li v-for="degree in degrees" :key="degree.title">
-            <p class="font-medium text-ink">{{ degree.title }}</p>
-            <p class="text-sm text-muted">{{ degree.institution }} · {{ degree.statusLabel }}</p>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="section-title mb-8 !text-2xl sm:!text-3xl">{{ t('education.certificationsTitle') }}</h2>
-        <ul class="space-y-6">
-          <li v-for="cert in certifications" :key="cert.title">
-            <p class="font-medium text-ink">{{ cert.title }}</p>
-            <p class="text-sm text-muted">{{ cert.issuer }}</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section v-reveal class="mt-24 sm:mt-32">
-      <h2 class="section-title mb-8">{{ t('skills.title') }}</h2>
-      <dl class="glass divide-y divide-ink/10 px-5 sm:px-8">
-        <div v-for="category in skills" :key="category.name" class="grid gap-1 py-5 sm:grid-cols-[13rem_1fr] sm:gap-8">
-          <dt class="text-sm text-muted">{{ category.name }}</dt>
-          <dd class="text-ink">{{ category.items.join(' · ') }}</dd>
+    <div class="grid gap-10 md:grid-cols-[1fr_17rem] md:gap-16">
+      <div class="order-2 md:order-1">
+        <h1 class="font-display text-[clamp(2.4rem,6vw,3.6rem)] font-bold leading-none text-ink" style="letter-spacing: -0.04em">{{ t('aboutPage.title') }}</h1>
+        <p class="mt-6 max-w-[30ch] font-display text-[clamp(1.5rem,3.4vw,2.1rem)] font-semibold leading-tight text-ink" style="letter-spacing: -0.025em; text-wrap: balance">
+          {{ t('aboutPage.lead') }}
+        </p>
+        <div class="mt-8 max-w-[58ch] space-y-5 text-lg leading-relaxed text-muted">
+          <p v-for="paragraph in story" :key="paragraph">{{ paragraph }}</p>
         </div>
-      </dl>
-    </section>
-
-    <section v-reveal class="mt-24 grid gap-10 sm:mt-32 md:grid-cols-[1fr_1.4fr] md:gap-16">
-      <div>
-        <h2 class="section-title !text-2xl sm:!text-3xl">{{ t('aboutPage.nowTitle') }}</h2>
-        <p class="mt-4 leading-relaxed text-muted">{{ t('aboutPage.now') }}</p>
+        <RouterLink to="/#experience" class="more mt-8">
+          {{ t('aboutPage.journeyLink') }}
+          <ArrowRightIcon class="h-4 w-4" aria-hidden="true" />
+        </RouterLink>
       </div>
-      <div>
-        <h2 class="section-title mb-6 !text-2xl sm:!text-3xl">{{ t('aboutPage.hobbiesTitle') }}</h2>
-        <ul class="grid gap-3 sm:grid-cols-2">
-          <li v-for="hobby in hobbies" :key="hobby.title" class="hobby glass-flat flex items-start gap-3 p-4">
-            <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sun/15 text-sun">
-              <HobbyIcon :name="hobby.icon ?? 'study'" class="h-5 w-5" />
-            </span>
-            <span>
-              <span class="block font-medium text-ink">{{ hobby.title }}</span>
-              <span class="block text-sm text-muted">{{ hobby.text }}</span>
-            </span>
-          </li>
-        </ul>
-      </div>
-    </section>
 
-    <section v-reveal class="mt-24 border-t border-ink/10 pt-12 sm:mt-32">
-      <p class="max-w-[24ch] text-3xl font-semibold text-ink sm:text-5xl" style="letter-spacing: -0.03em">{{ t('aboutPage.ctaText') }}</p>
-      <RouterLink to="/#contact" class="pill-solid mt-8">{{ t('aboutPage.ctaButton') }}</RouterLink>
-    </section>
+      <figure class="order-1 md:order-2 md:pt-2">
+        <img :src="profilePicture" alt="Foto de Clara Lívia" width="512" height="512" class="w-36 rounded-2xl object-cover md:w-full" style="aspect-ratio: 4 / 5; object-position: top" />
+        <figcaption class="mt-3 text-sm text-muted">{{ t('aboutPage.photoCaption') }}</figcaption>
+      </figure>
+    </div>
+
+    <!-- The rest is a plain list: a small label on the left, the facts on the right. -->
+    <dl v-reveal class="rows mt-20 sm:mt-28">
+      <div class="row">
+        <dt>{{ t('aboutPage.nowTitle') }}</dt>
+        <dd>{{ t('aboutPage.now') }}</dd>
+      </div>
+      <div class="row">
+        <dt>{{ t('education.degreesTitle') }}</dt>
+        <dd>
+          <p v-for="degree in degrees" :key="degree.title" class="item">
+            {{ degree.title }}
+            <span class="text-muted">· {{ degree.institution }} · {{ degree.statusLabel }}</span>
+          </p>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>{{ t('education.certificationsTitle') }}</dt>
+        <dd>
+          <p v-for="cert in certifications" :key="cert.title" class="item">
+            {{ cert.title }}
+            <span class="text-muted">· {{ cert.issuer }}</span>
+          </p>
+        </dd>
+      </div>
+      <div v-for="category in skills" :key="category.name" class="row">
+        <dt>{{ category.name }}</dt>
+        <dd>{{ category.items.join(' · ') }}</dd>
+      </div>
+    </dl>
+
+    <p v-reveal class="mt-20 max-w-[28ch] font-display text-3xl font-bold text-ink sm:mt-28 sm:text-4xl" style="letter-spacing: -0.03em; text-wrap: balance">
+      {{ t('aboutPage.closing') }}
+      <RouterLink to="/#contact" class="closing">{{ t('aboutPage.closingLink') }}</RouterLink>
+    </p>
   </article>
 </template>
+
+<style scoped>
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(var(--ink));
+}
+.more svg {
+  transition: transform 0.25s ease;
+}
+.more:hover svg {
+  transform: translateX(4px);
+}
+
+.rows {
+  border-top: 1px solid var(--line);
+}
+.row {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: 13rem 1fr;
+    gap: 2rem;
+  }
+}
+.row dt {
+  font-size: 0.9rem;
+  color: rgb(var(--muted));
+}
+.row dd {
+  color: rgb(var(--ink));
+}
+.item + .item {
+  margin-top: 0.5rem;
+}
+.closing {
+  color: rgb(var(--accent));
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+</style>

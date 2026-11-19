@@ -15,7 +15,6 @@ usePageMeta(() => ({
 </script>
 
 <template>
-  <!-- No reveal on the first screen: it must be visible immediately. -->
   <AboutSection />
   <ProjectsSection />
   <ExperienceSection />

@@ -59,7 +59,14 @@
         "label": "Coconut water"
       }
     ],
-    "curious": "Want to know more about me?"
+    "curious": "Want to know more about me?",
+    "intro": "Fullstack in Fortaleza, Brazil. I build systems end to end, from the database to the screen.",
+    "tapHint": "Tap to discover",
+    "bubbles": [
+      "Hi!",
+      "How are you?",
+      "Shall we talk?"
+    ]
   },
   "buttons": {
     "linkedin": "LinkedIn",
@@ -115,44 +122,94 @@
   },
   "experience": {
     "title": "Where I have been",
-    "current": "Current",
-    "companyName": "Cotabox",
-    "companyLegal": "Cotabox Tecnologia e Software LTDA",
-    "companyPeriod": "Nov/2023 – now",
-    "jobs": [
+    "scrub": "Slide the handle to travel in time",
+    "today": "today",
+    "lead": "From my technical course at IFCE to today.",
+    "grab": "Drag",
+    "prev": "Previous step",
+    "next": "Next step",
+    "alongside": "At the same time",
+    "path": [
       {
-        "title": "Fullstack Developer (Mid-level)",
-        "date": "November/2025 - Present",
-        "points": [
-          "Technical leadership of development projects.",
-          "Responsible for mentoring new talent and organizing the development area.",
-          "Direct involvement in resolving critical bugs and implementing complex system improvements."
-        ],
-        "summary": "Technical leadership and mentoring."
+        "kind": "education",
+        "start": "2018-02",
+        "end": "2022-12",
+        "date": "2018 – 2022",
+        "title": "Integrated Technical Course in Informatics",
+        "place": "Instituto Federal do Ceará (IFCE)",
+        "summary": "High school and the technical course together: this is where I started programming."
       },
       {
+        "kind": "volunteer",
+        "start": "2022-09",
+        "end": "2023-11",
+        "date": "Sep/2022 – Nov/2023",
+        "title": "Teaching Assistant in the Innovation Rooms",
+        "place": "Fortaleza Municipal Department of Education · Escola Municipal Creusa do Carmo Rocha",
+        "note": "Volunteer with a stipend"
+      },
+      {
+        "kind": "paused",
+        "start": "2023-08",
+        "end": "2025-04",
+        "date": "Aug/2023 – Apr/2025",
+        "title": "Digital Systems and Media",
+        "place": "Universidade Federal do Ceará (UFC)",
+        "note": "Bachelor's, paused in the 4th semester"
+      },
+      {
+        "kind": "work",
+        "start": "2023-11",
+        "end": "2024-07",
+        "date": "Nov/2023 – Jul/2024",
+        "title": "Fullstack Development Intern",
+        "place": "Cotabox",
+        "summary": "First steps with Vue.js.",
+        "points": [
+          "Creation of responsive UI components with Vue.js and collaboration in agile methodologies."
+        ]
+      },
+      {
+        "kind": "work",
+        "start": "2024-07",
+        "end": "2025-11",
+        "date": "Jul/2024 – Nov/2025",
         "title": "Fullstack Developer (Jr)",
-        "date": "July/2024 - November/2025",
+        "place": "Cotabox",
+        "summary": "Performance, security and mentoring.",
         "points": [
           "Led application performance optimization, restructuring slow MongoDB queries and refactoring code bottlenecks.",
           "Responsible for technical mentoring and onboarding new interns to the company's stack.",
           "Brought the system in line with PCI DSS requirements, focusing on authentication security: password policies and multi-factor authentication (MFA)."
-        ],
-        "summary": "Performance, security and mentoring."
+        ]
       },
       {
-        "title": "Fullstack Development Intern",
-        "date": "November/2023 - July/2024",
+        "kind": "education",
+        "start": "2024-08",
+        "end": "2026-12",
+        "date": "Aug/2024 – Dec/2026 (expected)",
+        "title": "Systems Analysis and Development",
+        "place": "Universidade Estácio de Sá (UNESA)",
+        "note": "Technologist degree, in the 5th of 5 semesters"
+      },
+      {
+        "kind": "work",
+        "start": "2025-11",
+        "end": null,
+        "date": "Nov/2025 – now",
+        "title": "Fullstack Developer (Mid-level)",
+        "place": "Cotabox",
+        "summary": "Technical leadership and mentoring.",
         "points": [
-          "Creation of responsive UI components with Vue.js and collaboration in agile methodologies."
-        ],
-        "summary": "First steps with Vue.js."
+          "Technical leadership of development projects.",
+          "Responsible for mentoring new talent and organizing the development area.",
+          "Direct involvement in resolving critical bugs and implementing complex system improvements."
+        ]
       }
-    ],
-    "details": "Details"
+    ]
   },
   "projects": {
-    "title": "What I have built",
+    "title": "Projects",
     "filters": {
       "all": "All",
       "frontend": "Front-end",
@@ -162,33 +219,33 @@
       {
         "title": "Portfolio",
         "slug": "portfolio",
-        "description": "This dynamic portfolio, built with Vue 3, TypeScript, and Tailwind CSS, employs Glassmorphism principle.",
+        "description": "This portfolio, built with Vue 3, TypeScript and Tailwind CSS: calm, fast on phones, with a few hidden surprises.",
         "tags": [
           "Vue 3",
           "TypeScript",
           "Tailwind CSS",
-          "Glassmorphism",
           "UI/UX",
           "Vercel"
         ],
         "githubUrl": "https://github.com/claralivia/meu-portfolio",
         "liveUrl": "https://claralivia.dev/",
         "category": "frontend",
-        "key": "meu-portfolio-pessoal",
-        "challenge": "Build a portfolio that reflects my taste in design (glassmorphism, dark mode and Apple's aesthetic) without giving up performance, especially on phones.",
-        "solution": "A Vue 3, TypeScript and Tailwind CSS app with PT/EN, case study pages, a keyboard-driven search (⌘K) and glass effects that adapt to the device.",
+        "key": "portfolio-novo",
+        "challenge": "A portfolio that feels like a polished product but stays light: the first version had too many effects and was heavy on phones.",
+        "solution": "A calm rebuild: one accent color, a single blur (the top bar), animations on opacity and transform only, and interactions that make you want to explore.",
         "decisions": [
-          "Adaptive glass: backdrop-filter on desktop only. On phones the cards use a more opaque tint, because blurring behind every card while scrolling stalled rendering.",
-          "Background blobs built with radial gradients instead of filter: blur, with the same look at a fraction of the GPU cost.",
+          "Less is faster: I removed glass on cards, SVG filters and continuous animations. The gain was felt right away on phones.",
+          "One typeface, one color: Schibsted Grotesk and a burnt orange. Hierarchy comes from size and space, not effects.",
           "WebP images (from ~550 KB to ~70 KB) and brand icons inlined as SVG, with no extra runtime dependency.",
           "All content lives in the translation files: adding a project or a language never touches a component."
         ],
         "highlights": [
+          "Draggable timeline: the whole journey, from IFCE to today, changes as you slide.",
+          "Tags that tell a story: each hobby reveals a line from me.",
           "Command palette (⌘K / Ctrl K) to navigate, switch theme and language or copy the e-mail.",
-          "Technology dock that filters projects by stack.",
-          "Current section and reading progress indicator at the top of the page."
+          "Hidden secrets for those who like to explore."
         ],
-        "tagline": "This site: Vue 3, adaptive glass and case studies."
+        "tagline": "This site: calm, fast and full of secrets."
       },
       {
         "title": "House Pink",
@@ -377,7 +434,9 @@
     "filteringBy": "Projects with {tech}",
     "clearFilter": "Clear filter",
     "swipe": "Swipe",
-    "caseStudyShort": "Case study"
+    "caseStudyShort": "Case study",
+    "filterLabel": "Technology",
+    "empty": "No project uses that technology."
   },
   "skills": {
     "title": "Technical Skills",
@@ -473,10 +532,12 @@
       "message": "Message",
       "send": "Send message",
       "sending": "Sending...",
-      "success": "Bottle cast into the sea! I will reply soon.",
+      "success": "Message sent! I will get back to you soon.",
       "error": "Couldn't send it. Please try again or use the direct email.",
-      "hint": "Your message goes in a bottle, across the sea to me."
-    }
+      "hint": "Or leave a message here:"
+    },
+    "copy": "Copy email",
+    "copied": "Copied!"
   },
   "navbar": {
     "about": "About",
@@ -495,7 +556,7 @@
   "footer": {
     "credit": "Designed & Built by Clara Lívia",
     "rights": "All rights reserved.",
-    "colophon": "Made in Fortaleza with Vue 3, TypeScript and Tailwind CSS",
+    "colophon": "Made in Fortaleza",
     "source": "Open source on GitHub"
   },
   "palette": {
@@ -556,82 +617,6 @@
     "title": "About me",
     "back": "Back to home",
     "lead": "Fullstack developer who likes solving problems with code: my own and, above all, those of the people around me.",
-    "traits": [
-      "Determined",
-      "Focused",
-      "A bit shy",
-      "Always learning"
-    ],
-    "stat": {
-      "value": "3+",
-      "label": "years building software"
-    },
-    "journeyTitle": "Journey",
-    "journey": [
-      {
-        "period": "2018 – 2022",
-        "title": "Technical Degree in Informatics",
-        "place": "Instituto Federal do Ceará (IFCE)",
-        "type": "education"
-      },
-      {
-        "period": "Sep/2022 – Nov/2023",
-        "title": "Teaching Assistant · Innovation Rooms",
-        "place": "Fortaleza Municipal Department of Education · Escola Municipal Creusa do Carmo Rocha",
-        "note": "Volunteer with a stipend",
-        "type": "volunteer"
-      },
-      {
-        "period": "Aug/2023 – Apr/2025",
-        "title": "Digital Systems and Media (Bachelor's)",
-        "place": "Universidade Federal do Ceará (UFC)",
-        "note": "Paused in the 4th semester",
-        "type": "paused"
-      },
-      {
-        "period": "Nov/2023",
-        "title": "Fullstack Development Intern",
-        "place": "Cotabox",
-        "type": "work"
-      },
-      {
-        "period": "Jul/2024",
-        "title": "Junior Fullstack Developer",
-        "place": "Cotabox",
-        "type": "work"
-      },
-      {
-        "period": "Nov/2025 – now",
-        "title": "Mid-level Fullstack Developer",
-        "place": "Cotabox",
-        "type": "work",
-        "current": true
-      },
-      {
-        "period": "Dec/2026 · expected",
-        "title": "Systems Analysis and Development",
-        "place": "Universidade Estácio de Sá",
-        "type": "education"
-      }
-    ],
-    "howTitle": "How I work",
-    "how": [
-      {
-        "icon": "solve",
-        "title": "Fix the real problem",
-        "text": "I find the root cause before proposing a fix, whether it is a critical bug or a slow query."
-      },
-      {
-        "icon": "help",
-        "title": "Help the people around me",
-        "text": "Mentoring and onboarding new developers are part of my routine."
-      },
-      {
-        "icon": "focus",
-        "title": "Focus until done",
-        "text": "When I take on a task, I carry it until it is finished, tested and live."
-      }
-    ],
     "nowTitle": "Now",
     "now": "Finishing my degree in Systems Analysis and Development and going deeper into application security and UX.",
     "hobbiesTitle": "Outside of code",
@@ -667,7 +652,23 @@
         "text": "There is always something new to learn."
       }
     ],
-    "ctaText": "Freelance, a job opening or just a virtual coffee: reach out.",
-    "ctaButton": "Get in touch"
+    "story": [
+      "I started in the integrated technical course in Informatics at IFCE, spent time at a municipal school helping in the innovation rooms, and today I am a mid-level fullstack developer at Cotabox, where I joined as an intern.",
+      "I like to understand the cause before proposing a fix, whether it is a critical bug or a slow query. Mentoring people who are just arriving is part of my routine, and when I take on a task I carry it until it is done, tested and live.",
+      "I am determined, focused, a bit shy and always studying. Outside of code: video games, pets, coffee, the beach (ideally with coconut water) and family."
+    ],
+    "journeyLink": "See the full journey",
+    "closing": "Freelance, a job opening or just a virtual coffee?",
+    "closingLink": "Get in touch.",
+    "photoCaption": "Fortaleza, CE"
+  },
+  "secrets": {
+    "sunset": "Sunset mode",
+    "coffee": "Coffee served. Good work!"
+  },
+  "compare": {
+    "before": "Before",
+    "after": "After",
+    "hint": "Drag to compare"
   }
 }

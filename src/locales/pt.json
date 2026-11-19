@@ -59,7 +59,14 @@
         "label": "Água de coco"
       }
     ],
-    "curious": "Quer saber mais sobre mim?"
+    "curious": "Quer saber mais sobre mim?",
+    "intro": "Fullstack em Fortaleza. Construo sistemas de ponta a ponta, do banco de dados à tela.",
+    "tapHint": "Toque para descobrir",
+    "bubbles": [
+      "Oi!",
+      "Tudo bem?",
+      "Bora conversar?"
+    ]
   },
   "buttons": {
     "linkedin": "LinkedIn",
@@ -115,44 +122,94 @@
   },
   "experience": {
     "title": "Por onde eu passei",
-    "current": "Atual",
-    "companyName": "Cotabox",
-    "companyLegal": "Cotabox Tecnologia e Software LTDA",
-    "companyPeriod": "Nov/2023 – hoje",
-    "jobs": [
+    "scrub": "Deslize a bolinha para viajar no tempo",
+    "today": "hoje",
+    "lead": "Do técnico no IFCE até hoje.",
+    "grab": "Arraste",
+    "prev": "Etapa anterior",
+    "next": "Próxima etapa",
+    "alongside": "Ao mesmo tempo",
+    "path": [
       {
-        "title": "Desenvolvedora Fullstack Pleno",
-        "date": "Novembro/2025 - Presente",
-        "points": [
-          "Liderança técnica de projetos de desenvolvimento.",
-          "Responsável pela mentoria de novos talentos e organização da área de desenvolvimento.",
-          "Atuação direta na resolução de bugs críticos e implementação de melhorias complexas no sistema."
-        ],
-        "summary": "Liderança técnica e mentoria."
+        "kind": "education",
+        "start": "2018-02",
+        "end": "2022-12",
+        "date": "2018 – 2022",
+        "title": "Técnico integrado em Informática",
+        "place": "Instituto Federal do Ceará (IFCE)",
+        "summary": "Ensino médio e curso técnico juntos: foi aqui que comecei na programação."
       },
       {
+        "kind": "volunteer",
+        "start": "2022-09",
+        "end": "2023-11",
+        "date": "Set/2022 – Nov/2023",
+        "title": "Auxiliar Pedagógica nas Salas de Inovação",
+        "place": "SME Fortaleza · Escola Municipal Creusa do Carmo Rocha",
+        "note": "Voluntariado com ajuda de custo"
+      },
+      {
+        "kind": "paused",
+        "start": "2023-08",
+        "end": "2025-04",
+        "date": "Ago/2023 – Abr/2025",
+        "title": "Sistemas e Mídias Digitais",
+        "place": "Universidade Federal do Ceará (UFC)",
+        "note": "Bacharelado, trancado no 4º semestre"
+      },
+      {
+        "kind": "work",
+        "start": "2023-11",
+        "end": "2024-07",
+        "date": "Nov/2023 – Jul/2024",
+        "title": "Estagiária em Desenvolvimento Fullstack",
+        "place": "Cotabox",
+        "summary": "Primeiros passos com Vue.js.",
+        "points": [
+          "Criação de componentes de interface responsivos com Vue.js e colaboração em metodologias ágeis."
+        ]
+      },
+      {
+        "kind": "work",
+        "start": "2024-07",
+        "end": "2025-11",
+        "date": "Jul/2024 – Nov/2025",
         "title": "Desenvolvedora Fullstack Jr.",
-        "date": "Julho/2024 - Novembro/2025",
+        "place": "Cotabox",
+        "summary": "Performance, segurança e mentoria.",
         "points": [
           "Liderei a otimização de performance da aplicação, reestruturando queries lentas em MongoDB e refatorando gargalos no código.",
           "Responsável pela mentoria técnica e processo de onboarding de novos estagiários na stack da empresa.",
           "Atuei na adequação do sistema aos requisitos do PCI DSS, com foco em segurança de autenticação: políticas de senha e autenticação multifator (MFA)."
-        ],
-        "summary": "Performance, segurança e mentoria."
+        ]
       },
       {
-        "title": "Estagiária em Desenvolvimento Fullstack",
-        "date": "Novembro/2023 - Julho/2024",
+        "kind": "education",
+        "start": "2024-08",
+        "end": "2026-12",
+        "date": "Ago/2024 – Dez/2026 (previsão)",
+        "title": "Análise e Desenvolvimento de Sistemas",
+        "place": "Universidade Estácio de Sá (UNESA)",
+        "note": "Tecnólogo, cursando o 5º de 5 semestres"
+      },
+      {
+        "kind": "work",
+        "start": "2025-11",
+        "end": null,
+        "date": "Nov/2025 – hoje",
+        "title": "Desenvolvedora Fullstack Pleno",
+        "place": "Cotabox",
+        "summary": "Liderança técnica e mentoria.",
         "points": [
-          "Criação de componentes de interface responsivos com Vue.js e colaboração em metodologias ágeis."
-        ],
-        "summary": "Primeiros passos com Vue.js."
+          "Liderança técnica de projetos de desenvolvimento.",
+          "Responsável pela mentoria de novos talentos e organização da área de desenvolvimento.",
+          "Atuação direta na resolução de bugs críticos e implementação de melhorias complexas no sistema."
+        ]
       }
-    ],
-    "details": "Ver detalhes"
+    ]
   },
   "projects": {
-    "title": "O que eu construí",
+    "title": "Projetos",
     "filters": {
       "all": "Todos",
       "frontend": "Front-end",
@@ -162,33 +219,33 @@
       {
         "title": "Portfólio",
         "slug": "portfolio",
-        "description": "Este portfólio dinâmico, desenvolvido com Vue 3, TypeScript e Tailwind CSS, utiliza princípios de Glassmorphism.",
+        "description": "Este portfólio, feito com Vue 3, TypeScript e Tailwind CSS: calmo, rápido no celular e com algumas surpresas escondidas.",
         "tags": [
           "Vue.js 3",
           "TypeScript",
           "Tailwind CSS",
-          "Glassmorphism",
           "UI/UX",
           "Vercel"
         ],
         "githubUrl": "https://github.com/claralivia/meu-portfolio",
         "liveUrl": "https://claralivia.dev/",
         "category": "frontend",
-        "key": "meu-portfolio-pessoal",
-        "challenge": "Ter um portfólio que refletisse meu gosto por design (glassmorphism, dark mode e a estética da Apple) sem abrir mão de performance, principalmente no celular.",
-        "solution": "Uma aplicação em Vue 3, TypeScript e Tailwind CSS com PT/EN, páginas de estudo de caso, busca por atalho (⌘K) e efeitos de vidro que se adaptam ao dispositivo.",
+        "key": "portfolio-novo",
+        "challenge": "Ter um portfólio com cara de produto bem acabado, mas leve: a primeira versão tinha efeitos demais e pesava no celular.",
+        "solution": "Uma reconstrução calma: uma cor de destaque, um único blur (a barra do topo), animações só de opacidade e transform, e interações que dão vontade de explorar.",
         "decisions": [
-          "Vidro adaptativo: backdrop-filter só no desktop. No celular os cards usam uma translucidez mais opaca, porque desfocar o fundo de cada card durante o scroll travava a renderização.",
-          "Blobs de fundo feitos com gradientes radiais em vez de filter: blur, com o mesmo visual e um custo de GPU bem menor.",
+          "Menos é mais rápido: tirei vidro nos cards, filtros SVG e animações contínuas. O ganho foi sentido logo no celular.",
+          "Uma fonte, uma cor: Schibsted Grotesk e um laranja queimado. A hierarquia vem do tamanho e do espaço, não de efeitos.",
           "Imagens em WebP (de ~550 KB para ~70 KB) e ícones de marca embutidos como SVG, sem dependência extra em tempo de execução.",
           "Todo o conteúdo vive nos arquivos de tradução: adicionar um projeto ou um idioma não exige mexer em componente."
         ],
         "highlights": [
+          "Linha do tempo arrastável: a trajetória inteira, do IFCE até hoje, muda conforme você desliza.",
+          "Tags que contam uma história: cada hobby revela uma frase minha.",
           "Paleta de comandos (⌘K / Ctrl K) para navegar, trocar tema e idioma ou copiar o e-mail.",
-          "Dock de tecnologias que filtra os projetos por stack.",
-          "Indicador da seção atual e do progresso de leitura no topo da página."
+          "Segredos escondidos para quem gosta de explorar."
         ],
-        "tagline": "Este site: Vue 3, vidro adaptativo e estudos de caso."
+        "tagline": "Este site: calmo, rápido e cheio de segredos."
       },
       {
         "title": "House Pink",
@@ -377,7 +434,9 @@
     "filteringBy": "Projetos com {tech}",
     "clearFilter": "Limpar filtro",
     "swipe": "Deslize",
-    "caseStudyShort": "Estudo de caso"
+    "caseStudyShort": "Estudo de caso",
+    "filterLabel": "Tecnologia",
+    "empty": "Nenhum projeto com essa tecnologia."
   },
   "skills": {
     "title": "Habilidades Técnicas",
@@ -473,10 +532,12 @@
       "message": "Mensagem",
       "send": "Enviar mensagem",
       "sending": "Enviando...",
-      "success": "Garrafa lançada ao mar! Eu respondo em breve.",
+      "success": "Mensagem enviada! Retorno em breve.",
       "error": "Não foi possível enviar. Tente novamente ou use o e-mail direto.",
-      "hint": "Sua mensagem vai numa garrafa, pelo mar até mim."
-    }
+      "hint": "Ou deixe uma mensagem aqui:"
+    },
+    "copy": "Copiar e-mail",
+    "copied": "Copiado!"
   },
   "navbar": {
     "about": "Sobre",
@@ -495,7 +556,7 @@
   "footer": {
     "credit": "Projetado & Construído por Clara Lívia",
     "rights": "Todos os direitos reservados.",
-    "colophon": "Feito em Fortaleza com Vue 3, TypeScript e Tailwind CSS",
+    "colophon": "Feito em Fortaleza",
     "source": "Código aberto no GitHub"
   },
   "palette": {
@@ -556,82 +617,6 @@
     "title": "Sobre mim",
     "back": "Voltar ao início",
     "lead": "Desenvolvedora fullstack que gosta de resolver problemas com programação: os meus e, principalmente, os das pessoas ao meu redor.",
-    "traits": [
-      "Resoluta",
-      "Centrada",
-      "Um pouco tímida",
-      "Sempre estudando"
-    ],
-    "stat": {
-      "value": "3+",
-      "label": "anos construindo software"
-    },
-    "journeyTitle": "Trajetória",
-    "journey": [
-      {
-        "period": "2018 – 2022",
-        "title": "Técnico em Informática",
-        "place": "Instituto Federal do Ceará (IFCE)",
-        "type": "education"
-      },
-      {
-        "period": "Set/2022 – Nov/2023",
-        "title": "Auxiliar Pedagógica · Salas de Inovação",
-        "place": "SME Fortaleza · Escola Municipal Creusa do Carmo Rocha",
-        "note": "Voluntariado com ajuda de custo",
-        "type": "volunteer"
-      },
-      {
-        "period": "Ago/2023 – Abr/2025",
-        "title": "Sistemas e Mídias Digitais (Bacharelado)",
-        "place": "Universidade Federal do Ceará (UFC)",
-        "note": "Trancado no 4º semestre",
-        "type": "paused"
-      },
-      {
-        "period": "Nov/2023",
-        "title": "Estagiária em Desenvolvimento Fullstack",
-        "place": "Cotabox",
-        "type": "work"
-      },
-      {
-        "period": "Jul/2024",
-        "title": "Desenvolvedora Fullstack Jr.",
-        "place": "Cotabox",
-        "type": "work"
-      },
-      {
-        "period": "Nov/2025 – hoje",
-        "title": "Desenvolvedora Fullstack Pleno",
-        "place": "Cotabox",
-        "type": "work",
-        "current": true
-      },
-      {
-        "period": "Dez/2026 · previsão",
-        "title": "Análise e Desenvolvimento de Sistemas",
-        "place": "Universidade Estácio de Sá",
-        "type": "education"
-      }
-    ],
-    "howTitle": "Como eu trabalho",
-    "how": [
-      {
-        "icon": "solve",
-        "title": "Resolver o problema de verdade",
-        "text": "Entendo a causa antes de propor a solução, seja um bug crítico ou uma query lenta."
-      },
-      {
-        "icon": "help",
-        "title": "Ajudar quem está do lado",
-        "text": "Mentoria e onboarding de novos devs fazem parte da minha rotina."
-      },
-      {
-        "icon": "focus",
-        "title": "Foco até o fim",
-        "text": "Quando assumo uma tarefa, levo até ela estar pronta, testada e no ar."
-      }
-    ],
     "nowTitle": "Agora",
     "now": "Concluindo Análise e Desenvolvimento de Sistemas e aprofundando segurança de aplicações e UX.",
     "hobbiesTitle": "Fora do código",
@@ -667,7 +652,23 @@
         "text": "Sempre tem algo novo pra aprender."
       }
     ],
-    "ctaText": "Freelance, vaga ou só um café virtual: me chama.",
-    "ctaButton": "Entrar em contato"
+    "story": [
+      "Comecei no técnico integrado em Informática do IFCE, passei por uma escola municipal ajudando nas salas de inovação e hoje sou desenvolvedora fullstack pleno na Cotabox, onde entrei como estagiária.",
+      "Gosto de entender a causa antes de propor a solução, seja um bug crítico ou uma query lenta. Mentorar quem está chegando faz parte da minha rotina, e quando pego uma tarefa, levo até ela estar pronta, testada e no ar.",
+      "Sou resoluta, centrada, um pouco tímida e estou sempre estudando. Fora do código: videogame, pets, café, praia (de preferência com água de coco) e família."
+    ],
+    "journeyLink": "Ver a trajetória completa",
+    "closing": "Freelance, vaga ou só um café virtual?",
+    "closingLink": "Me chama.",
+    "photoCaption": "Fortaleza, CE"
+  },
+  "secrets": {
+    "sunset": "Modo pôr do sol",
+    "coffee": "Café servido. Bom trabalho!"
+  },
+  "compare": {
+    "before": "Antes",
+    "after": "Depois",
+    "hint": "Arraste para comparar"
   }
 }

@@ -17,8 +17,8 @@ export default {
         sun: token('sun'),
       },
       fontFamily: {
-        display: ['Schibsted Grotesk', 'Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        sans: ['Geist', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        display: ['Schibsted Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Schibsted Grotesk', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
       },
       transitionTimingFunction: {
         out: 'cubic-bezier(0.22, 1, 0.36, 1)',

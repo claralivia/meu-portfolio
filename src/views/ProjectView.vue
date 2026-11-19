@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import { ArrowRightIcon, ArrowUpRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
 import NotFoundView from './NotFoundView.vue'
 import BackLink from '../components/BackLink.vue'
+import CompareSlider from '../components/CompareSlider.vue'
 import { useProjects } from '../composables/useProjects'
 import { usePageMeta } from '../composables/usePageMeta'
 import { useAnalytics } from '../composables/useAnalytics'
@@ -33,6 +34,8 @@ const githubLinks = computed(() => {
 const demoImages = import.meta.glob<string>('../assets/*.webp', { eager: true, import: 'default' })
 const imageOf = (key: string | undefined) => (key ? demoImages[`../assets/${key}.webp`] : undefined)
 const image = computed(() => imageOf(project.value?.key))
+// Drop a `<key>-antes.webp` next to a project picture and the page shows a before/after slider.
+const beforeImage = computed(() => imageOf(project.value?.key ? `${project.value.key}-antes` : undefined))
 const nextImage = computed(() => imageOf(next.value?.key))
 
 // Decisions and highlights are written "Short title: explanation". Show the title
@@ -123,16 +126,9 @@ usePageMeta(() => ({
       </dl>
     </header>
 
-    <!-- A browser window the screenshot sits in; it tips into place as it scrolls in. -->
-    <div v-if="image" class="stage mt-12 sm:mt-16">
-      <div class="window glass-flat p-2 sm:p-3">
-        <div class="flex items-center gap-1.5 px-2 pb-2.5 pt-1" aria-hidden="true">
-          <span class="h-2.5 w-2.5 rounded-full bg-ink/15"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-ink/15"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-ink/15"></span>
-        </div>
-        <img :src="image" :alt="`${t('caseStudy.screenshot')} ${project.title}`" width="960" height="540" class="w-full rounded-lg" />
-      </div>
+    <div v-if="image" class="mt-12 sm:mt-16">
+      <CompareSlider v-if="beforeImage" :before="beforeImage" :after="image" :alt="`${t('caseStudy.screenshot')} ${project.title}`" />
+      <img v-else :src="image" :alt="`${t('caseStudy.screenshot')} ${project.title}`" width="960" height="540" class="w-full rounded-2xl border" style="border-color: var(--line)" />
     </div>
 
     <!-- Problem, then answer: two statements read in sequence. -->
@@ -149,7 +145,7 @@ usePageMeta(() => ({
 
     <section v-if="decisions.length" class="mt-20 sm:mt-28">
       <h2 v-reveal class="section-title mb-8 !text-2xl sm:!text-3xl">{{ t('caseStudy.decisions') }}</h2>
-      <div class="glass-flat divide-y divide-ink/10 px-5 sm:px-8">
+      <div class="surface divide-y divide-ink/10 px-5 sm:px-8">
         <details v-for="(item, index) in decisions" :key="item.body" v-reveal="Math.min(index, 4) * 70" class="group py-5 sm:py-6" :open="index === 0">
           <summary class="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
             <span class="text-lg font-medium text-ink" style="letter-spacing: -0.01em">{{ item.lead || item.body }}</span>
@@ -164,7 +160,7 @@ usePageMeta(() => ({
       <h2 v-reveal class="section-title mb-8 !text-2xl sm:!text-3xl">{{ t('caseStudy.highlights') }}</h2>
       <ul class="track -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0">
         <li v-for="(item, index) in highlights" :key="item.body" v-reveal="Math.min(index, 3) * 80" class="w-[82%] shrink-0 snap-center sm:w-auto">
-          <div class="glass-flat h-full p-6">
+          <div class="surface h-full p-6">
             <p v-if="item.lead" class="text-lg font-medium text-ink" style="letter-spacing: -0.01em">{{ item.lead }}</p>
             <p class="leading-relaxed text-muted" :class="item.lead ? 'mt-2' : 'text-ink/85'">{{ item.body }}</p>
           </div>
@@ -184,7 +180,7 @@ usePageMeta(() => ({
 
     <!-- The next project, as a card with its own picture: the story carries on. -->
     <nav v-if="next" class="mt-24 sm:mt-32" :aria-label="t('caseStudy.more')">
-      <RouterLink :to="`/projetos/${next.slug}`" class="next group glass-flat relative block overflow-hidden p-2" v-reveal>
+      <RouterLink :to="`/projetos/${next.slug}`" class="next group surface relative block overflow-hidden p-2" v-reveal>
         <div class="relative aspect-[16/8] overflow-hidden rounded-lg bg-ink/5 sm:aspect-[16/6]">
           <img :src="nextImage" alt="" width="960" height="540" loading="lazy" class="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" aria-hidden="true"></div>
@@ -254,26 +250,6 @@ usePageMeta(() => ({
       }
     }
 
-    /* The window tips into place as it arrives. */
-    .stage {
-      perspective: 1200px;
-    }
-    .window {
-      transform-origin: 50% 100%;
-      animation: window-in linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 70%;
-    }
-    @keyframes window-in {
-      from {
-        opacity: 0.2;
-        transform: rotateX(10deg) translateY(48px) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
   }
 }
 
