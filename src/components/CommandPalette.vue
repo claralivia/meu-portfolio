@@ -203,17 +203,17 @@ onKeyStroke('Escape', () => {
     >
       <div
         v-if="isOpen"
-        class="fixed inset-0 z-50 flex items-start justify-center px-4 pt-[12vh] bg-neutral-900/20 dark:bg-black/50 backdrop-blur-sm"
+        class="fixed inset-0 z-50 flex items-start justify-center px-4 pt-[12vh] bg-black/40"
         @click.self="close"
       >
         <div
           role="dialog"
           aria-modal="true"
           :aria-label="t('navbar.search')"
-          class="palette w-full max-w-xl overflow-hidden rounded-2xl glass !bg-white/85 dark:!bg-neutral-900/80 shadow-2xl"
+          class="palette w-full max-w-xl overflow-hidden rounded-2xl border border-ink/15 bg-surface"
         >
-          <div class="flex items-center gap-3 px-5 border-b border-black/5 dark:border-white/10">
-            <MagnifyingGlassIcon class="w-5 h-5 shrink-0 text-neutral-500 dark:text-gray-400" />
+          <div class="flex items-center gap-3 px-5 border-b border-ink/10">
+            <MagnifyingGlassIcon class="w-5 h-5 shrink-0 text-muted" />
             <input
               ref="input"
               v-model="query"
@@ -223,15 +223,15 @@ onKeyStroke('Escape', () => {
               aria-controls="command-list"
               :aria-activedescendant="results.length ? `cmd-${activeIndex}` : undefined"
               :placeholder="t('palette.placeholder')"
-              class="w-full py-4 bg-transparent text-base text-neutral-900 dark:text-white placeholder:text-neutral-500 dark:placeholder:text-gray-500 outline-none"
+              class="w-full py-4 bg-transparent text-base text-ink placeholder:text-muted outline-none"
               @keydown="onInputKeydown"
             />
-            <kbd class="hidden sm:inline text-[11px] font-semibold px-1.5 py-0.5 rounded-md border border-black/10 dark:border-white/15 text-neutral-500 dark:text-gray-400">esc</kbd>
+            <kbd class="hidden sm:inline text-[11px] font-semibold px-1.5 py-0.5 rounded-md border border-ink/15 text-muted">esc</kbd>
           </div>
 
           <ul id="command-list" role="listbox" class="max-h-[55vh] overflow-y-auto p-2">
             <template v-for="group in groups" :key="group.group">
-              <li role="presentation" class="px-3 pt-3 pb-1.5 text-xs font-semibold text-neutral-500 dark:text-gray-500">
+              <li role="presentation" class="px-3 pt-3 pb-1.5 text-xs font-semibold text-muted">
                 {{ t(`palette.groups.${group.group}`) }}
               </li>
               <li
@@ -242,29 +242,29 @@ onKeyStroke('Escape', () => {
                 :aria-selected="indexOf(command) === activeIndex"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-colors duration-150"
                 :class="indexOf(command) === activeIndex
-                  ? 'bg-white/80 dark:bg-white/10 text-neutral-900 dark:text-white shadow-sm shadow-black/5'
-                  : 'text-neutral-700 dark:text-gray-300'"
+                  ? 'bg-ink/10 text-ink'
+                  : 'text-ink/85'"
                 @mousemove="activeIndex = indexOf(command)"
                 @click="runCommand(command)"
               >
-                <component :is="command.icon" class="w-5 h-5 shrink-0 text-neutral-500 dark:text-gray-400" />
+                <component :is="command.icon" class="w-5 h-5 shrink-0 text-muted" />
                 <span class="font-medium truncate">{{ command.label }}</span>
-                <span v-if="command.hint" class="ml-auto text-xs text-neutral-500 dark:text-gray-500 truncate">{{ command.hint }}</span>
+                <span v-if="command.hint" class="ml-auto text-xs text-muted truncate">{{ command.hint }}</span>
               </li>
             </template>
 
-            <li v-if="!results.length" class="px-3 py-8 text-center text-sm text-neutral-500 dark:text-gray-400">
+            <li v-if="!results.length" class="px-3 py-8 text-center text-sm text-muted">
               {{ t('palette.empty') }}
             </li>
           </ul>
 
-          <div class="flex items-center justify-between gap-3 px-5 py-3 border-t border-black/5 dark:border-white/10 text-xs text-neutral-500 dark:text-gray-500">
-            <span aria-live="polite" class="text-emerald-600 dark:text-emerald-400 font-medium">{{ feedback }}</span>
+          <div class="flex items-center justify-between gap-3 px-5 py-3 border-t border-ink/10 text-xs text-muted">
+            <span aria-live="polite" class="text-accent font-medium">{{ feedback }}</span>
             <span class="hidden sm:flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 rounded-md border border-black/10 dark:border-white/15">↑</kbd>
-              <kbd class="px-1.5 py-0.5 rounded-md border border-black/10 dark:border-white/15">↓</kbd>
+              <kbd class="px-1.5 py-0.5 rounded-md border border-ink/15">↑</kbd>
+              <kbd class="px-1.5 py-0.5 rounded-md border border-ink/15">↓</kbd>
               {{ t('palette.hint') }}
-              <kbd class="ml-2 px-1.5 py-0.5 rounded-md border border-black/10 dark:border-white/15">↵</kbd>
+              <kbd class="ml-2 px-1.5 py-0.5 rounded-md border border-ink/15">↵</kbd>
               {{ t('palette.select') }}
             </span>
           </div>

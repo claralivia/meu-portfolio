@@ -69,6 +69,9 @@ const chapters = computed(() => {
 })
 const chapterNow = computed(() => Math.max(chapters.value.indexOf(main.value), 0))
 
+// "Universidade Estácio de Sá (UNESA)" reads better without the second pair of brackets.
+const shortPlace = (place: string) => place.split(' · ')[0].replace(/\s*\(.*\)$/, '')
+
 const label = computed(() => {
   if (value.value >= 990) return t('experience.today')
   const idx = Math.round(at.value)
@@ -229,7 +232,7 @@ const canNext = computed(() => chapterNow.value < chapters.value.length - 1)
               </ul>
               <p v-if="alongside.length" class="max-w-[62ch] text-sm text-muted" :class="current?.summary || current?.points?.length ? 'mt-8' : ''">
                 <span class="font-medium text-ink">{{ t('experience.alongside') }}:</span>
-                <template v-for="(s, i) in alongside" :key="s.title">{{ i ? ' · ' : ' ' }}{{ s.title }} ({{ s.place.split(' · ')[0] }})</template>
+                <template v-for="(s, i) in alongside" :key="s.title">{{ i ? ' · ' : ' ' }}{{ s.title }} ({{ shortPlace(s.place) }})</template>
               </p>
             </div>
           </article>

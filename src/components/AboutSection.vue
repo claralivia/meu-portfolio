@@ -73,7 +73,7 @@ onBeforeUnmount(() => window.clearInterval(clockTimer))
 
 <template>
   <section id="about" class="pb-16 pt-20 md:pb-28 md:pt-32">
-    <div class="hero recede">
+    <div class="hero">
       <p class="rise eyebrow text-[15px] text-muted">{{ t('about.role') }} · {{ t('about.company') }}</p>
 
       <h1 class="name font-display font-extrabold text-ink" :aria-label="`${first.join('')} ${last.join('')}`">

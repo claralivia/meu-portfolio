@@ -16,7 +16,7 @@ const { toast } = useSecrets()
 </script>
 
 <template>
-  <div class="relative min-h-screen overflow-x-clip md:pl-[4.5rem]">
+  <div class="relative isolate z-0 min-h-screen overflow-x-clip md:pl-[4.5rem]">
     <SideRail />
 
     <main class="mx-auto w-full max-w-6xl px-6 md:px-10">

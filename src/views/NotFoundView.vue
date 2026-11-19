@@ -14,10 +14,10 @@ if (route.name === 'not-found') {
 </script>
 
 <template>
-  <section class="flex min-h-[100svh] items-center py-28">
+  <section class="flex min-h-[80svh] items-center py-28">
     <div>
-      <p class="text-[clamp(5rem,18vw,10rem)] font-semibold leading-none text-ink/15" style="letter-spacing: -0.05em">404</p>
-      <h1 class="mt-4 text-3xl font-semibold text-ink" style="letter-spacing: -0.03em">{{ t('notFound.title') }}</h1>
+      <p class="text-sm font-semibold text-accent">404</p>
+      <h1 class="mt-3 font-display text-4xl font-bold text-ink sm:text-5xl" style="letter-spacing: -0.04em">{{ t('notFound.title') }}</h1>
       <p class="mt-3 max-w-[40ch] text-muted">{{ t('notFound.description') }}</p>
       <RouterLink to="/" class="pill-glass mt-8">
         <ArrowLeftIcon class="h-4 w-4" />
