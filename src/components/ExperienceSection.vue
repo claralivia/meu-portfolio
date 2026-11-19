@@ -223,7 +223,7 @@ const canNext = computed(() => chapterNow.value < chapters.value.length - 1)
               <p v-if="current?.summary" class="max-w-[40ch] font-display text-xl font-semibold text-ink md:text-2xl" style="letter-spacing: -0.02em">{{ current.summary }}</p>
               <ul v-if="current?.points?.length" class="space-y-3 text-[16px] text-ink/85" :class="current?.summary ? 'mt-6' : ''">
                 <li v-for="point in current.points" :key="point" class="flex gap-3">
-                  <span class="mt-[0.72em] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span class="mt-[0.72em] h-1 w-1 shrink-0 rounded-full bg-muted" aria-hidden="true"></span>
                   <span>{{ point }}</span>
                 </li>
               </ul>

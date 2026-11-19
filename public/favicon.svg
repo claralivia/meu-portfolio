@@ -1,17 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#17406e"/>
-      <stop offset="1" stop-color="#06111f"/>
-    </linearGradient>
-    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff" stop-opacity="0.22"/>
-      <stop offset="0.45" stop-color="#fff" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
-  <rect width="64" height="64" rx="16" fill="url(#sheen)"/>
-  <!-- C and L drawn as shapes, not text, so the mark never depends on a font. -->
-  <path d="M34.96 23.64A13 13 0 1 0 34.96 40.36" fill="none" stroke="#fdf3e3" stroke-width="6.5" stroke-linecap="round"/>
-  <path d="M43 21V43H53" fill="none" stroke="#ff7a45" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="64" height="64" rx="16" fill="#14171c"/>
+  <!-- The C is drawn as a shape, not text, so the mark never depends on a font. -->
+  <path d="M40.5 22.2A14 14 0 1 0 40.5 41.8" fill="none" stroke="#f7f5f1" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="47.5" cy="42.5" r="4.6" fill="#ff8f52"/>
 </svg>

@@ -255,7 +255,7 @@ const openPalette = () => {
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   color: rgb(var(--muted));
@@ -303,10 +303,16 @@ const openPalette = () => {
 }
 .found {
   margin-bottom: 0.4rem;
-  font-size: 0.7rem;
+  font-size: 0.78rem;
+  animation: nudge 1.1s ease 1.8s 1 both;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   color: rgb(var(--accent));
+}
+@keyframes nudge {
+  40% {
+    transform: scale(1.5);
+  }
 }
 .tool {
   display: flex;

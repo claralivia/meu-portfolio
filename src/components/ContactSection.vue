@@ -32,36 +32,24 @@ onBeforeUnmount(() => window.clearTimeout(timer))
 
 <template>
   <section id="contact" class="py-20 md:py-28">
-    <div class="grid gap-14 md:grid-cols-2 md:gap-20">
+    <h2 v-reveal class="section-title">{{ t('contact.title') }}</h2>
+
+    <button v-reveal="100" type="button" class="mail" :aria-label="t('contact.copy')" @click="copy">
+      <span class="mail-address">{{ contact.email }}</span>
+      <span class="chip" :class="{ 'is-on': copied }" aria-live="polite">{{ copied ? t('contact.copied') : t('contact.copy') }}</span>
+    </button>
+
+    <div class="mt-14 grid gap-12 md:grid-cols-2 md:gap-20">
       <div v-reveal>
-        <h2 class="section-title">{{ t('contact.title') }}</h2>
-        <p class="mt-4 max-w-[36ch] text-lg text-muted">{{ t('contact.description') }}</p>
-
-        <button type="button" class="mail" :aria-label="t('contact.copy')" @click="copy">
-          <span class="mail-address">{{ contact.email }}</span>
-          <span class="chip" :class="{ 'is-on': copied }" aria-live="polite">{{ copied ? t('contact.copied') : t('contact.copy') }}</span>
-        </button>
-
+        <p class="max-w-[36ch] text-lg text-muted">{{ t('contact.description') }}</p>
         <ul class="mt-6 flex gap-6 text-[15px]">
           <li>
-            <a
-              :href="contact.linkedinUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="link"
-              @click="() => trackClick('click_linkedin', { section: 'contact' })"
-            >
+            <a :href="contact.linkedinUrl" target="_blank" rel="noopener noreferrer" class="link" @click="() => trackClick('click_linkedin', { section: 'contact' })">
               LinkedIn <ArrowUpRightIcon class="h-3.5 w-3.5" />
             </a>
           </li>
           <li>
-            <a
-              :href="contact.githubUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="link"
-              @click="() => trackClick('click_github', { section: 'contact' })"
-            >
+            <a :href="contact.githubUrl" target="_blank" rel="noopener noreferrer" class="link" @click="() => trackClick('click_github', { section: 'contact' })">
               GitHub <ArrowUpRightIcon class="h-3.5 w-3.5" />
             </a>
           </li>
@@ -79,7 +67,7 @@ onBeforeUnmount(() => window.clearTimeout(timer))
   flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem 0.9rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   text-align: left;
 }
 .mail-address {

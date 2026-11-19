@@ -181,6 +181,12 @@ onBeforeUnmount(() => window.clearInterval(clockTimer))
   gap: 0.25rem 1.1rem;
 }
 @media (min-width: 768px) {
+  .avail {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+@media (min-width: 768px) {
   .hero {
     grid-template-columns: 1.5fr 1fr;
     column-gap: 3.5rem;
@@ -211,6 +217,9 @@ onBeforeUnmount(() => window.clearInterval(clockTimer))
     grid-column: 2;
     grid-row: 1 / span 5;
     align-self: center;
+    width: 100%;
+    max-width: 22rem;
+    margin-left: auto;
   }
   .avail {
     margin-top: 1rem;
@@ -219,14 +228,14 @@ onBeforeUnmount(() => window.clearInterval(clockTimer))
 
 /* The name: two big lines. Each letter tips up from below, one after the other. */
 .name {
-  font-size: 29vw;
+  font-size: 24vw;
   line-height: 0.9;
   letter-spacing: -0.055em;
   perspective: 900px;
 }
 @media (min-width: 768px) {
   .name {
-    font-size: clamp(4.4rem, 15.5vw, 10.5rem);
+    font-size: clamp(4rem, 11vw, 8rem);
   }
 }
 .line {
@@ -298,8 +307,6 @@ onBeforeUnmount(() => window.clearInterval(clockTimer))
 @media (min-width: 768px) {
   .stage {
     width: 100%;
-    max-width: 22rem;
-    margin-left: auto;
   }
 }
 .card {

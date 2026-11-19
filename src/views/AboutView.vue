@@ -179,7 +179,7 @@ usePageMeta(() => ({
   font-size: 0.8rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: rgb(var(--accent));
+  color: rgb(var(--muted));
 }
 .t {
   flex: 1;
