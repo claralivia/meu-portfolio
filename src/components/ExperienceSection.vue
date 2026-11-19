@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
+import { useFound } from '../composables/useSecrets'
 
 type Kind = 'education' | 'volunteer' | 'paused' | 'work'
 interface Stop {
@@ -17,6 +18,7 @@ interface Stop {
 }
 
 const { t, tm, locale } = useI18n()
+const { discover } = useFound()
 
 const monthIndex = (iso: string) => {
   const [y, m] = iso.split('-').map(Number)
@@ -106,6 +108,10 @@ const animateTo = (to: number, ms = 500) =>
 // When the section first comes into view the bar slides back and forth once, to show it can be moved.
 const section = ref<HTMLElement | null>(null)
 const touched = ref(false)
+// Going all the way back to the first stop is one of the hidden things.
+watch([value, touched], ([v, tc]) => {
+  if (tc && v <= 5) discover('start', t('secrets.start'))
+})
 let observer: IntersectionObserver | null = null
 onMounted(() => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !section.value) return
@@ -204,23 +210,28 @@ const canNext = computed(() => chapterNow.value < chapters.value.length - 1)
         </div>
       </div>
 
-      <div class="role mt-8">
+      <div class="role mt-10 border-t pt-10 md:mt-14 md:pt-12" style="border-color: var(--line)">
         <Transition name="fade" mode="out-in">
-          <article :key="main">
-            <p class="text-sm tabular-nums text-muted">{{ current?.date }}</p>
-            <h3 class="mt-1 font-display text-2xl font-bold text-ink md:text-3xl" style="letter-spacing: -0.03em; text-wrap: balance">{{ current?.title }}</h3>
-            <p class="mt-2 text-muted">{{ current?.place }}<template v-if="current?.note"> · {{ current.note }}</template></p>
-            <p v-if="current?.summary" class="mt-4 max-w-[56ch] text-lg text-ink/85">{{ current.summary }}</p>
-            <ul v-if="current?.points?.length" class="mt-5 max-w-[62ch] space-y-3 text-[16px] text-ink/85">
-              <li v-for="point in current.points" :key="point" class="flex gap-3">
-                <span class="mt-[0.72em] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
-                <span>{{ point }}</span>
-              </li>
-            </ul>
-            <p v-if="alongside.length" class="mt-6 max-w-[62ch] border-t pt-4 text-sm text-muted" style="border-color: var(--line)">
-              <span class="font-medium text-ink">{{ t('experience.alongside') }}:</span>
-              <template v-for="(s, i) in alongside" :key="s.title">{{ i ? ' · ' : ' ' }}{{ s.title }} ({{ s.place.split(' · ')[0] }})</template>
-            </p>
+          <article :key="main" class="grid gap-8 md:grid-cols-[1fr_1.1fr] md:gap-16">
+            <header>
+              <p class="text-sm tabular-nums text-muted">{{ current?.date }}</p>
+              <h3 class="mt-2 font-display font-extrabold text-ink" style="font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1; letter-spacing: -0.045em; text-wrap: balance">{{ current?.title }}</h3>
+              <p class="mt-4 text-lg text-muted">{{ current?.place }}</p>
+              <p v-if="current?.note" class="mt-1 text-muted">{{ current.note }}</p>
+            </header>
+            <div>
+              <p v-if="current?.summary" class="max-w-[40ch] font-display text-xl font-semibold text-ink md:text-2xl" style="letter-spacing: -0.02em">{{ current.summary }}</p>
+              <ul v-if="current?.points?.length" class="space-y-3 text-[16px] text-ink/85" :class="current?.summary ? 'mt-6' : ''">
+                <li v-for="point in current.points" :key="point" class="flex gap-3">
+                  <span class="mt-[0.72em] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span>{{ point }}</span>
+                </li>
+              </ul>
+              <p v-if="alongside.length" class="max-w-[62ch] text-sm text-muted" :class="current?.summary || current?.points?.length ? 'mt-8' : ''">
+                <span class="font-medium text-ink">{{ t('experience.alongside') }}:</span>
+                <template v-for="(s, i) in alongside" :key="s.title">{{ i ? ' · ' : ' ' }}{{ s.title }} ({{ s.place.split(' · ')[0] }})</template>
+              </p>
+            </div>
           </article>
         </Transition>
       </div>
@@ -376,7 +387,7 @@ const canNext = computed(() => chapterNow.value < chapters.value.length - 1)
 }
 
 .role {
-  min-height: 21rem;
+  min-height: 20rem;
 }
 .fade-enter-active,
 .fade-leave-active {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Navbar from './components/Navbar.vue'
+import SideRail from './components/SideRail.vue'
 import Footer from './components/Footer.vue'
 import CommandPalette from './components/CommandPalette.vue'
 import { inject as injectAnalytics } from '@vercel/analytics'
@@ -16,10 +16,10 @@ const { toast } = useSecrets()
 </script>
 
 <template>
-  <div class="relative min-h-screen overflow-x-clip">
-    <Navbar />
+  <div class="relative min-h-screen overflow-x-clip md:pl-[4.5rem]">
+    <SideRail />
 
-    <main class="mx-auto w-full max-w-5xl px-6">
+    <main class="mx-auto w-full max-w-6xl px-6 md:px-10">
       <RouterView />
     </main>
 
@@ -36,8 +36,8 @@ const { toast } = useSecrets()
 .toast {
   position: fixed;
   left: 50%;
-  bottom: 1.5rem;
-  z-index: 60;
+  bottom: 1.6rem;
+  z-index: 70;
   translate: -50% 0;
   border-radius: 9999px;
   padding: 0.6rem 1.1rem;

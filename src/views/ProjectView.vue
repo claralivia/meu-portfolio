@@ -126,7 +126,7 @@ usePageMeta(() => ({
       </dl>
     </header>
 
-    <div v-if="image" class="mt-12 sm:mt-16">
+    <div v-if="image" class="mt-12 sm:mt-16" style="view-transition-name: project-shot">
       <CompareSlider v-if="beforeImage" :before="beforeImage" :after="image" :alt="`${t('caseStudy.screenshot')} ${project.title}`" />
       <img v-else :src="image" :alt="`${t('caseStudy.screenshot')} ${project.title}`" width="960" height="540" class="w-full rounded-2xl border" style="border-color: var(--line)" />
     </div>

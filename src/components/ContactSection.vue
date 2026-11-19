@@ -4,9 +4,11 @@ import { useI18n } from 'vue-i18n'
 import { ArrowUpRightIcon } from '@heroicons/vue/24/outline'
 import ContactForm from './ContactForm.vue'
 import { useAnalytics } from '../composables/useAnalytics'
+import { useFound } from '../composables/useSecrets'
 
 const { t, tm } = useI18n()
 const { trackClick } = useAnalytics()
+const { discover } = useFound()
 // tm, not t: vue-i18n reads the @ in an e-mail address as message syntax.
 const contact = computed(() => tm('contact') as { email: string; linkedinUrl: string; githubUrl: string })
 
@@ -18,6 +20,7 @@ const copy = async () => {
   try {
     await navigator.clipboard.writeText(contact.value.email)
     copied.value = true
+    discover('copy', t('secrets.copy'))
     window.clearTimeout(timer)
     timer = window.setTimeout(() => (copied.value = false), 1800)
   } catch {

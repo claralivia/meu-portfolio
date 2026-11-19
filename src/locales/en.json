@@ -66,7 +66,12 @@
       "Hi!",
       "How are you?",
       "Shall we talk?"
-    ]
+    ],
+    "teaser": "There is something hidden here.",
+    "flipHint": "Flip the photo",
+    "backTitle": "Psst.",
+    "backText": "You flipped the photo. There are more secrets around.",
+    "backHint": "Hint: the keyboard works too."
   },
   "buttons": {
     "linkedin": "LinkedIn",
@@ -433,7 +438,7 @@
     "caseStudy": "Read the case study",
     "filteringBy": "Projects with {tech}",
     "clearFilter": "Clear filter",
-    "swipe": "Swipe",
+    "swipe": "swipe",
     "caseStudyShort": "Case study",
     "filterLabel": "Technology",
     "empty": "No project uses that technology."
@@ -541,7 +546,7 @@
   },
   "navbar": {
     "about": "About",
-    "experience": "Experience",
+    "experience": "Journey",
     "education": "Education",
     "projects": "Projects",
     "contact": "Contact",
@@ -551,7 +556,9 @@
     "closeMenu": "Close menu",
     "skills": "Skills",
     "search": "Search",
-    "menu": "Main menu"
+    "menu": "Main menu",
+    "home": "Start",
+    "secrets": "Secrets"
   },
   "footer": {
     "credit": "Designed & Built by Clara Lívia",
@@ -652,19 +659,40 @@
         "text": "There is always something new to learn."
       }
     ],
-    "story": [
-      "I started in the integrated technical course in Informatics at IFCE, spent time at a municipal school helping in the innovation rooms, and today I am a mid-level fullstack developer at Cotabox, where I joined as an intern.",
-      "I like to understand the cause before proposing a fix, whether it is a critical bug or a slow query. Mentoring people who are just arriving is part of my routine, and when I take on a task I carry it until it is done, tested and live.",
-      "I am determined, focused, a bit shy and always studying. Outside of code: video games, pets, coffee, the beach (ideally with coconut water) and family."
-    ],
-    "journeyLink": "See the full journey",
     "closing": "Freelance, a job opening or just a virtual coffee?",
     "closingLink": "Get in touch.",
-    "photoCaption": "Fortaleza, CE"
+    "photoCaption": "Fortaleza, CE",
+    "openOne": "Open one at a time.",
+    "items": [
+      {
+        "title": "Where I come from",
+        "text": "Integrated technical course in Informatics at IFCE. Then a municipal school, helping in the innovation rooms."
+      },
+      {
+        "title": "How I work",
+        "text": "I understand the cause before proposing a fix. I carry it until it is done, tested and live."
+      },
+      {
+        "title": "Who I am",
+        "text": "Determined, focused, a bit shy. Always studying."
+      },
+      {
+        "title": "Outside of code",
+        "text": "Video games, pets, coffee, the beach (ideally with coconut water) and family."
+      }
+    ],
+    "archive": "Archive",
+    "archiveHint": "Education, certifications and technologies",
+    "journeyLink": "See the full journey"
   },
   "secrets": {
     "sunset": "Sunset mode",
-    "coffee": "Coffee served. Good work!"
+    "coffee": "Coffee served. Good work!",
+    "found": "Secret {n}/{total}",
+    "all": "You found them all. Now get in touch.",
+    "flip": "You flipped the photo",
+    "copy": "E-mail copied",
+    "start": "You went back to where it all began"
   },
   "compare": {
     "before": "Before",

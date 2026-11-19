@@ -66,7 +66,12 @@
       "Oi!",
       "Tudo bem?",
       "Bora conversar?"
-    ]
+    ],
+    "teaser": "Tem coisa escondida aqui.",
+    "flipHint": "Vire a foto",
+    "backTitle": "Psiu.",
+    "backText": "Você virou a foto. Tem mais segredos por aí.",
+    "backHint": "Dica: o teclado também funciona."
   },
   "buttons": {
     "linkedin": "LinkedIn",
@@ -433,7 +438,7 @@
     "caseStudy": "Ver estudo de caso",
     "filteringBy": "Projetos com {tech}",
     "clearFilter": "Limpar filtro",
-    "swipe": "Deslize",
+    "swipe": "deslize",
     "caseStudyShort": "Estudo de caso",
     "filterLabel": "Tecnologia",
     "empty": "Nenhum projeto com essa tecnologia."
@@ -541,7 +546,7 @@
   },
   "navbar": {
     "about": "Sobre",
-    "experience": "Experiência",
+    "experience": "Trajetória",
     "education": "Formação",
     "projects": "Projetos",
     "contact": "Contato",
@@ -551,7 +556,9 @@
     "closeMenu": "Fechar menu",
     "skills": "Habilidades",
     "search": "Buscar",
-    "menu": "Menu principal"
+    "menu": "Menu principal",
+    "home": "Início",
+    "secrets": "Segredos"
   },
   "footer": {
     "credit": "Projetado & Construído por Clara Lívia",
@@ -652,19 +659,40 @@
         "text": "Sempre tem algo novo pra aprender."
       }
     ],
-    "story": [
-      "Comecei no técnico integrado em Informática do IFCE, passei por uma escola municipal ajudando nas salas de inovação e hoje sou desenvolvedora fullstack pleno na Cotabox, onde entrei como estagiária.",
-      "Gosto de entender a causa antes de propor a solução, seja um bug crítico ou uma query lenta. Mentorar quem está chegando faz parte da minha rotina, e quando pego uma tarefa, levo até ela estar pronta, testada e no ar.",
-      "Sou resoluta, centrada, um pouco tímida e estou sempre estudando. Fora do código: videogame, pets, café, praia (de preferência com água de coco) e família."
-    ],
-    "journeyLink": "Ver a trajetória completa",
     "closing": "Freelance, vaga ou só um café virtual?",
     "closingLink": "Me chama.",
-    "photoCaption": "Fortaleza, CE"
+    "photoCaption": "Fortaleza, CE",
+    "openOne": "Abra uma por vez.",
+    "items": [
+      {
+        "title": "De onde vim",
+        "text": "Técnico integrado em Informática no IFCE. Depois, uma escola municipal, ajudando nas salas de inovação."
+      },
+      {
+        "title": "Como eu trabalho",
+        "text": "Entendo a causa antes de propor a solução. Levo até estar pronto, testado e no ar."
+      },
+      {
+        "title": "Quem sou",
+        "text": "Resoluta, centrada, um pouco tímida. Sempre estudando."
+      },
+      {
+        "title": "Fora do código",
+        "text": "Videogame, pets, café, praia (de preferência com água de coco) e família."
+      }
+    ],
+    "archive": "Arquivo",
+    "archiveHint": "Formação, certificações e tecnologias",
+    "journeyLink": "Ver a trajetória completa"
   },
   "secrets": {
     "sunset": "Modo pôr do sol",
-    "coffee": "Café servido. Bom trabalho!"
+    "coffee": "Café servido. Bom trabalho!",
+    "found": "Segredo {n}/{total}",
+    "all": "Você achou todos. Agora me chama.",
+    "flip": "Você virou a foto",
+    "copy": "E-mail copiado",
+    "start": "Você voltou ao começo de tudo"
   },
   "compare": {
     "before": "Antes",

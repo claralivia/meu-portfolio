@@ -137,15 +137,60 @@ html[data-mood='sunset'] {
    state only applies once JS has opted the page in, so content never stays invisible. */
 .reveal-ready .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: perspective(1000px) translateY(30px) rotateX(8deg);
+  transform-origin: 50% 100%;
   transition:
-    opacity 0.55s ease-out,
-    transform 0.55s ease-out;
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 .reveal-ready .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Scroll-driven depth (compositor only, no JavaScript). Where the browser lacks it, nothing happens. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .recede {
+      transform-origin: 50% 0%;
+      animation: recede linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 90%;
+    }
+    @keyframes recede {
+      to {
+        opacity: 0.1;
+        transform: perspective(1200px) translateY(-40px) translateZ(-160px) rotateX(7deg);
+      }
+    }
+  }
+}
+
+/* Page changes: the old page steps back, the new one comes forward; the rail stays put. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: 0.3s ease both vt-out;
+  }
+  ::view-transition-new(root) {
+    animation: 0.6s cubic-bezier(0.22, 1, 0.36, 1) both vt-in;
+  }
+  ::view-transition-group(project-shot) {
+    animation-duration: 0.7s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes vt-out {
+    to {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+  }
+  @keyframes vt-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -8,7 +8,7 @@ const currentYear = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t px-6 py-8 text-sm text-muted" style="border-color: var(--line)">
+  <footer class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 pb-24 pt-8 md:px-10 md:pb-8 text-sm text-muted">
     <p>&copy; {{ currentYear }} Clara Lívia · {{ t('footer.colophon') }}</p>
     <a
       href="https://github.com/claralivia/meu-portfolio"
